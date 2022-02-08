@@ -3,7 +3,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_wtf import FlaskForm
 
 
-class StudentLoginForm(FlaskForm):
+class LoginForm(FlaskForm):
     username = StringField(
         label="الاسم", validators=[Length(min=6, max=40), DataRequired()]
     )
@@ -33,17 +33,6 @@ class StudentRegisterForm(FlaskForm):
     )
     submit = SubmitField(
         label = "انشاء حساب"
-    )
-
-class TeacherLoginForm(FlaskForm):
-    username = StringField(
-        label="الاسم", validators=[Length(min=6, max=40), DataRequired()]
-    )
-    password = PasswordField(
-        label="كلمة السر", validators=[Length(min=6), DataRequired()]
-    )
-    submit = SubmitField(
-        label = "تسجيل الدخول"
     )
 
 
