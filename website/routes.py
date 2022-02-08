@@ -1,5 +1,5 @@
 from website import app
-from flask import render_template, url_for
+from flask import render_template, url_for, redirect
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm
 
 
