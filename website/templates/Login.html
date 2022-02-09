@@ -3,32 +3,35 @@
     تسجيل الدخول
 {%endblock%}
 {%block body%}
-<div class = "login-box">
-    <div class = "login-title" >
-         <h3 class = "login-text">تسجيل الدخول</h3>
-    </div>
-    <div class = "login-body">   
-        <div>
-            <form>
-                <div align = "center">
-                    <div class="form-label-lg mb-3">
-                        {{form.username.label()}}
-                        {{form.username(class="form-control mb-3")}}
+<form class="form-login" method="POST" >
+    <div class = "login-box">
+        <div class = "login-title" >
+            <h3 class = "login-text">تسجيل الدخول</h3>
+        </div>
+        <div class = "login-body">   
+            <div>
+                <form>
+                    <div align = "center" class = "container at-middle">
+                        <div class="form-label-sm mb-3">
+                            {{form.username.label(class = "left-name mb-2")}}
+                            {{form.username(class="form-control mb-3")}}
+                        </div>
+                        <div class="form-label-sm mb-4">
+                            
+                            {{form.password.label(class = "left-account mb-2")}}
+                            {{form.password(class="form-control mb-3")}}
+                        </div>
+                        <div>
+                            {{form.submit(class = "button")}}
+                        </div>
                     </div>
-                    <div class="form-label-lg mb-3">
-                        
-                        {{form.password.label()}}
-                        {{form.password(class="form-control mb-3")}}
-                    </div>
+                    <div align = "center" class="checkbox mb-3 down">
+                        <h6> لا تملك حساب ؟<a href = {{url_for("StudentRegisterPage")}}> انضم لنا</a></h6>
+                </form> 
+        </div> 
+        </div>
 
-                    <div class="d-grid gap-2">
-                        {{form.submit(class = "button")}}
-                    </div>
-                </div>
-            </form> 
-       </div> 
+        
     </div>
-
-    
-</div>
+</form>
 {%endblock%}
