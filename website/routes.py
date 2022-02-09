@@ -24,4 +24,4 @@ def TeacherRegisterPage():
 @app.route("/login")
 def LoginPage():
     form = LoginForm()
-    return render_template("Teacher_login.html", form=form)
+    return render_template("Login.html", form=form)
