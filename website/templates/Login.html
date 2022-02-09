@@ -3,6 +3,7 @@
     تسجيل الدخول
 {%endblock%}
 {%block body%}
+{%include '/modal.html'%}
 <form class="form-login" method="POST" >
     <div class = "login-box">
         <div class = "login-title" >
@@ -26,7 +27,7 @@
                         </div>
                     </div>
                     <div align = "center" class="checkbox mb-3 down">
-                        <h6> لا تملك حساب ؟<a href = {{url_for("StudentRegisterPage")}}> انضم لنا</a></h6>
+                        <h6> لا تملك حساب ؟<a href = {{url_for("StudentRegisterPage")}} data-bs-toggle="modal" data-bs-target="#exampleModal"> انضم لنا</a></h6>
                 </form> 
         </div> 
         </div>

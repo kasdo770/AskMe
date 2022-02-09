@@ -1,0 +1,77 @@
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title center" id="exampleModalLabel">انضم الينا</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <button type = "button" class = "button-style"><a class = "a2" href = {{url_for("TeacherRegisterPage")}}> انشاء حساب معلم</a></button>
+            <button type = "button" class = "to-left" ><a class = "a2" href = {{url_for("StudentRegisterPage")}}> انشاء حساب طالب</a></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">اغلاق</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<style>
+        .center{
+            position: relative;
+            left: 190px;
+        }
+        a {
+          font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          text-decoration: none;
+        }
+        .a2{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            color:white;
+        }
+        .a2:hover{
+            color:rgba(255, 255, 255, 0.705);
+        }
+        .to-left{
+            position: relative;
+            top: -33px;
+            left:40px;
+            background-image: linear-gradient(#6B0085, #6a287a);
+            border: 1px solid #6B0085;
+            border-radius: 6px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            display: block;
+            font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+            color: white;
+            font-size: 17px;
+            font-weight: 400;
+            letter-spacing: -.022em;
+            line-height: 1.47059;
+            min-width: 40px;
+            height: 60px;
+            padding: 2px 10px;
+            text-align: center;
+        }
+        .button-style{
+            position: relative;
+            top: 26px;
+            left:275px;
+            background-image: linear-gradient(#6B0085, #6a287a);
+            border: 1px solid #6B0085;
+            border-radius: 6px;
+            box-sizing: border-box;
+            color: #FFFFFF;         
+            display: block;
+            font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+            color: white;
+            font-size: 17px;
+            font-weight: 400;
+            letter-spacing: -.022em;
+            line-height: 1.47059;
+            min-width: 40px;
+            height: 60px;
+            padding: 2px 10px;
+            text-align: center;
+}
+</style>
