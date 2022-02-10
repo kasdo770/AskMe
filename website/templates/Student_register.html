@@ -7,12 +7,40 @@
    
      <div class = "sign-up-box">
           <div class = "sign-up-title" >
-               <h3 class = "sign-up-text">انشاء حساب الطالب</h3>
+               <h3 class = "sign-up-text ">انشاء حساب الطالب</h3>
           </div>
           <div class = "sign-up-body"> 
                <div>
                     <form>
+                         <div class = 'mb-1'>
+
+                         </div>
+                         <div class="mb-3">
+                              {{form.username.label(class = "name-text mb-2")}}
+                              {{form.username(class="name-input-text")}}
+                              
+                              {{form.password1.label(class = "pass1-text mb-2")}}
+                              {{form.password1(class="pass1-input-text")}}
                          
+                              {{form.password2.label(class = "pass2-text mb-2")}}
+                              {{form.password2(class = "pass2-input-text mb-2")}}
+
+                              {{form.email.label(class = "email-text mb-2")}}
+                              {{form.email(class = "email-input-text mb-2")}}
+
+                              {{form.schooltype.label(class = " school-text")}}
+                              {{form.schooltype(class = "school-input-text")}}
+
+                              {{form.age.label(class = "age-text")}}
+                              {{form.age(class = "age-input-text")}}
+                         </div>
+                         <div>
+                              {{form.submit(class = "submit button")}}
+                          </div>
+                          <br></br>
+                          <div align = "center" class="checkbox down">
+                              <h6> هل تملك حساب من قبل ؟<a href = {{url_for("LoginPage")}}> فلتعد الينا</a></h6>
+                          </div>
                     </form> 
                </div> 
           </div>

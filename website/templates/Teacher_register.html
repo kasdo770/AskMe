@@ -12,7 +12,23 @@
           <div class = "sign-up-body">   
                <div>
                     <form>
-            
+                         {{form.username.label(class = "name-text mb-2")}}
+                         {{form.username(class="name-input-text")}}
+                         
+                         {{form.password1.label(class = "pass1-text mb-2")}}
+                         {{form.password1(class="pass1-input-text")}}
+                    
+                         {{form.password2.label(class = "pass2-text mb-2")}}
+                         {{form.password2(class = "pass2-input-text mb-2")}}
+
+                         {{form.email.label(class = "email-text mb-2")}}
+                         {{form.email(class = "email-input-text mb-2")}}
+
+                    </div>
+                    
+                    <div>  
+                         {{form.submit(class = "button submit")}}
+                     </div>
                     </form> 
                </div> 
           </div>

@@ -1,4 +1,4 @@
-from wtforms import StringField, PasswordField, EmailField, RadioField,SubmitField
+from wtforms import StringField, PasswordField, EmailField, SelectField,SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_wtf import FlaskForm
 
@@ -28,9 +28,11 @@ class StudentRegisterForm(FlaskForm):
     email = EmailField(
         label="الايميل الاكتروني", validators=[Email(), DataRequired(), Length(min=8)]
     )
-    schooltype = RadioField(
-        label="نوع المدرسة", choices=[("language","الغات"), ("public","العام"), ("private","الخاص"), ("international","العالمية")]
-    )
+    schooltype = SelectField(label='اختار نوع مدرستك', choices=[('international', 'عالمية'), ('private', 'خاص'), ('public', 'عام'),
+    ("language","لغات")])
+
+    age = StringField(label = "العمر",validators=[Length(min=1,max=2), DataRequired()] )
+
     submit = SubmitField(
         label = "انشاء حساب"
     )
