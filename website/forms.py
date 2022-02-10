@@ -51,15 +51,6 @@ class TeacherRegisterForm(FlaskForm):
     email = EmailField(
         label="الايميل الاكتروني", validators=[Email(), DataRequired(), Length(min=8)]
     )
-    first_subject = StringField(
-        label="المادة الاولة", validators=[Length(min=6, max=40), DataRequired()]
-    )
-    second_subject = StringField(
-        label="المادة الثانية", validators=[Length(min=6, max=40)]
-    )
-    third_subject = StringField(
-        label="المادة الثالثة", validators=[Length(min=6, max=40)]
-    )
     submit = SubmitField(
         label = "انشاء حساب"
     )
