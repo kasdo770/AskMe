@@ -4,7 +4,9 @@
      
 {%endblock%}
 {%block body%}
-   
+<form class="register-page" method="POST">
+     {{ form.hidden_tag() }}
+     {{ form.csrf_token }}
      <div class = "sign-up-box">
           <div class = "sign-up-title" >
                <h3 class = "sign-up-text">  انشاء حساب المعلم</h3>
@@ -21,24 +23,29 @@
                          {{form.password2.label(class = "pass2-text mb-2")}}
                          {{form.password2(dir = "rtl", placeholder = "اكتب هنا",class = "pass2-input-text mb-2")}}
 
-                         {{form.email.label(class = "email-text mb-2")}}
+                         {{form.email.label(class = "email-text mb-3")}}
                          {{form.email(dir = "rtl", placeholder = "اكتب هنا", class = "email-input-text mb-2")}}
 
-                         {{form.first_subject.label()}}
-                         {{form.first_subject}}
+                         {{form.first_subject.label(class = "subject1-text")}}
+                         {{form.first_subject(class = "subject1-input-text")}}
 
-                         {{form.second_subject.label()}}
-                         {{form.second_subject}}
+                         {{form.second_subject.label(class = "subject2-text")}}
+                         {{form.second_subject(class = "subject2-input-text mb-2")}}
 
                     </div>
-                    
                     <div>  
-                         {{form.submit(class = "button submit")}}
+                         {{form.submit(class = "button submit mb-4")}}
                      </div>
+                     <br></br>
+                    <div align = "center" class="checkbox down-signup">
+                         <h6> هل لديك حساب مسبقا ؟<a href = {{url_for("LoginPage")}}> ارجع اليه</a></h6>
+                     </div>
+                    
                     </form> 
                </div> 
           </div>
 
           
      </div>
+</form>
 {%endblock%}

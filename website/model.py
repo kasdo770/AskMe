@@ -32,9 +32,21 @@ class Teacher(db.Model,UserMixin):
     username = db.Column(db.String(), nullable=False, unique=True)
     email = db.Column(db.String(), nullable=False)
     password_hash = db.Column(db.String(), nullable=False)
-    First_Subject = db.Column(db.String(), nullable=False)
-    Second_Subject = db.Column(db.String())
-    Third_Subject = db.Column(db.String())
+    first_subject = db.Column(db.String(), nullable=False)
+    second_subject = db.Column(db.String())
+
+    
+
+    @property
+    def password(self):
+        return self.password    
+
+    @password.setter
+    def password(self, plain_text_password):
+        self.password_hash = bcrypts.generate_password_hash(plain_text_password).decode("utf-8")
+
+    def password_check(self,thepass):
+        return bcrypts.check_password_hash(self.password_hash, thepass)
 
     
 

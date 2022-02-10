@@ -42,14 +42,14 @@ class TeacherRegisterForm(FlaskForm):
     username = StringField(
         label="الاسم", validators=[Length(min=6, max=40), DataRequired()]
     )
+    email = EmailField(
+        label="الايميل الاكتروني", validators=[Email(), DataRequired(), Length(min=8)]
+    )
     password1 = PasswordField(
         label="كلمة السر", validators=[Length(min=6), DataRequired()]
     )
     password2 = PasswordField(
         label="تاكيد كلمة السر", validators=[EqualTo("password1"), DataRequired()]
-    )
-    email = EmailField(
-        label="الايميل الاكتروني", validators=[Email(), DataRequired(), Length(min=8)]
     )
     first_subject = SelectField(
         label="المادة الاولى", choices=[('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
@@ -57,9 +57,9 @@ class TeacherRegisterForm(FlaskForm):
      ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات")], validators=[DataRequired()]
     )
     second_subject = SelectField(
-        label="المادة الاولى", choices=[('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
+        label="المادة الثانية", choices=[ ("none", "لا شيء اخر"),('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
     ("ara","الغة العربية"), ("eng", "الغةالانجليزية"), ("fre", "الغة الفرنسية"), ("ita","الغة الايطالية "),
-     ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات"), ("none", "لا شيء اخر")]
+     ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات")]
     )
     submit = SubmitField(
         label = "انشاء حساب"
