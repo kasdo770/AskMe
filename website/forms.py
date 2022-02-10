@@ -51,6 +51,16 @@ class TeacherRegisterForm(FlaskForm):
     email = EmailField(
         label="الايميل الاكتروني", validators=[Email(), DataRequired(), Length(min=8)]
     )
+    first_subject = SelectField(
+        label="المادة الاولى", choices=[('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
+    ("ara","الغة العربية"), ("eng", "الغةالانجليزية"), ("fre", "الغة الفرنسية"), ("ita","الغة الايطالية "),
+     ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات")], validators=[DataRequired()]
+    )
+    second_subject = SelectField(
+        label="المادة الاولى", choices=[('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
+    ("ara","الغة العربية"), ("eng", "الغةالانجليزية"), ("fre", "الغة الفرنسية"), ("ita","الغة الايطالية "),
+     ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات"), ("none", "لا شيء اخر")]
+    )
     submit = SubmitField(
         label = "انشاء حساب"
     )

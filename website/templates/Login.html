@@ -3,31 +3,6 @@
     تسجيل الدخول
 {%endblock%}
 {%block body%}
-{% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %} {% if category ==
-    'error' %}
-    <div class="alert alert-danger alter-dismissable fade show" role="alert">
-      {{ message }}
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    {% elif category == 'info' %}
-    <div class="alert alert-warning alter-dismissable fade show" role="alert">
-      {{ message }}
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    {% else %}
-    <div class="alert alert-success alter-dismissable fade show" role="alert">
-      {{ message }}
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-
-    {% endif %} {% endfor %} {% endif %} {% endwith %}
 {%include '/modal.html'%}
 <form class="form-login" method="POST">
     {{ form.hidden_tag() }}
@@ -53,9 +28,8 @@
                             {{form.submit(class = "button")}}
                         </div>
                     </div>
-                    <div align = "center" class="checkbox mb-3 down">
+                    <div align = "center" class="checkbox mb-3 down-login">
                         <h6> لا تملك حساب ؟<a href = {{url_for("StudentRegisterPage")}} data-bs-toggle="modal" data-bs-target="#exampleModal"> انضم لنا</a></h6>
-                    </div>
                 </form> 
         </div> 
         </div>

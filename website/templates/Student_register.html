@@ -18,14 +18,14 @@
 
                          </div>
                          <div class="mb-3">
-                              {{form.username.label(class = "name-text mb-2")}}
-                              {{form.username(class="name-input-text")}}
+                              {{form.username.label( class = "name-text mb-2")}}
+                              {{form.username(dir = "rtl", class="name-input-text")}}
                               
                               {{form.password1.label(class = "pass1-text mb-2")}}
-                              {{form.password1(class="pass1-input-text")}}
+                              {{form.password1(dir = "rtl" , class="pass1-input-text")}}
                          
                               {{form.password2.label(class = "pass2-text mb-2")}}
-                              {{form.password2(class = "pass2-input-text mb-2")}}
+                              {{form.password2(dir = "rtl" ,class = "pass2-input-text mb-2")}}
 
                               {{form.email.label(class = "email-text mb-2")}}
                               {{form.email(class = "email-input-text mb-2")}}
@@ -40,8 +40,8 @@
                               {{form.submit(class = "submit button")}}
                           </div>
                           <br></br>
-                          <div align = "center" class="checkbox down">
-                              <h6> هل تملك حساب من قبل ؟<a href = {{url_for("LoginPage")}}> فلتعد الينا</a></h6>
+                          <div align = "center" class="checkbox down-signup">
+                              <h6> هل لديك حساب مسبقا ؟<a href = {{url_for("LoginPage")}}> ارجع اليه</a></h6>
                           </div>
                     </form> 
                </div> 

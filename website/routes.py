@@ -4,7 +4,15 @@ from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm
 from website.model import Student , Teacher
 
+#temporay function
+@app.route("/ct")
+@app.route("/cleartable")
+def cleartable():
+    db.drop_all()
+    db.create_all()
+    return render_template("base.html")
 
+#----------
 @app.route("/home")
 @app.route("/")
 def HomePage():
@@ -54,7 +62,7 @@ def LoginPage():
                 flash(
                     f"تم تسجيل الدخول بنجاح ايها الطالب {form.username.data} ",
                     category="success",
-                )
+                ) 
                 print("Logged in successfuly")
                 return redirect(url_for("HomePage"))
             else:
