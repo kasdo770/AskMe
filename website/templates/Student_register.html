@@ -4,7 +4,9 @@
      
 {%endblock%}
 {%block body%}
-   
+<form class = "register-form" method="POST">
+     {{ form.hidden_tag() }}
+     {{ form.csrf_token }}
      <div class = "sign-up-box">
           <div class = "sign-up-title" >
                <h3 class = "sign-up-text ">انشاء حساب الطالب</h3>
@@ -44,7 +46,6 @@
                     </form> 
                </div> 
           </div>
-
-          
+</form>
      </div>
 {%endblock%}
