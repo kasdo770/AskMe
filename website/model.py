@@ -54,5 +54,8 @@ class Teacher(db.Model,UserMixin):
 class Post(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     date = db.Column(db.String())
+    subject = db.Column(db.String())
+    title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable = False)
+    likes = db.Column(db.Integer())
     owner = db.Column(db.Integer(), db.ForeignKey('student.id'))
