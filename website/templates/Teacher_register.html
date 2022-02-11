@@ -1,9 +1,46 @@
-{%extends 'base.html'%}
+{%extends 'register_base.html'%}
 {%block title%}
      انشاء حساب 
      
 {%endblock%}
 {%block body%}
+<style>
+     .subject1-input-text{
+          width: 25%;
+          position: relative;
+          padding: 6px 10px;
+          left :140px;
+          margin: 4px 0;
+          bottom: -100px;
+     }
+     .subject1-text{
+          font-weight: bold;
+          position: relative;
+          padding: 6px 10px;
+          left :23em;
+          margin: 4px 0;
+          bottom: -98px;
+          box-sizing: border-box;
+     }
+     /*------------------------------second subject-------------------------*/
+      .subject2-input-text{
+          width: 25%;
+          position: relative;
+          padding: 6px 10px;
+          left :-320px;
+          margin: 4px 0;
+          bottom: -100px;
+     }
+     .subject2-text{
+          font-weight: bold;
+          position: relative;
+          padding: 6px 10px;
+          right :90px;
+          margin: 4px 0;
+          bottom: -98px;
+          box-sizing: border-box;
+     }
+</style>
 <form class="register-page" method="POST">
      {{ form.hidden_tag() }}
      {{ form.csrf_token }}

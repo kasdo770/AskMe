@@ -1,9 +1,57 @@
-{%extends 'base.html'%}
+{%extends 'register_base.html'%}
 {%block title%}
      انشاء حساب 
      
 {%endblock%}
 {%block body%}
+<style>
+     /*---------------------------SignUpStudent-----------------------------------*/
+
+     /*-----------------------------------School------------------------------*/
+     .school-text{
+          font-weight: bold;
+          position: relative;
+          bottom :-110px;
+          left :345px;
+     }
+     .school-input-text{
+          
+          padding:5px 10px;
+          font-weight: bold;
+          font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', Verdana, sans-serif;
+          font-size: 20px;
+          margin: 4px 0;
+          position: relative;
+          bottom :-115px;
+          right :-120px;
+     }
+     /*-----------------------------------Age------------------------------*/
+     .age-text{
+          font-weight: bold;
+          position: relative;
+          padding: 6px 10px;
+          right :50px;
+          margin: 4px 0;
+          bottom: -110px;
+          box-sizing: border-box;
+     }
+     .age-input-text{
+          width: 8.5%;
+          position: relative;
+          padding: 6px 10px;
+          left :-150px;
+          margin: 4px 0;
+          bottom: -110px;
+     }
+     /*-----------------------------------Submit------------------------------*/
+     .submit{
+          position: relative;
+          padding: 5px 10px;
+          bottom :-130px;
+          left :200px;
+          font-size: 17px;
+     }
+</style>
 <form class = "register-form" method="POST">
      {{ form.hidden_tag() }}
      {{ form.csrf_token }}
