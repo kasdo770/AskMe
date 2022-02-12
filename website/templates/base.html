@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <head>
     <meta charset="UTF-8">
     <title>{%block title%}HomePage{%endblock%}</title>
@@ -12,13 +12,27 @@
 </head>
 <body>
      <style> 
+
+      :root{
+        --first-background-gradient:#f5e6ff;
+        --last-background-gradient:#fff;
+        --header:#000;
+        --header-text:#1C1C1C;
+        --footer:#2D2D2D;
+        --button-color:#6B0085;
+        --button-color-hover:#6a0085cb;
+        --button-color-active:#5c0272;
+        --alert-button-color:#ed4337;
+        --success-button-color:#53A653;
+        --info-button-color:#EFFD5F;
+      }
           /* _______________________________________Error Button_____________________________________________ */
       .alert {
            position: relative;
           width: 30%;
           left: 42.5em;
          padding: 10px;
-         background-color: #ed4337;
+         background-color: var(--alert-button-color);
          opacity: 90%;
          color: white;
          margin-bottom: 15px;
@@ -28,7 +42,7 @@
          width: 30%;
          left: 42.5em;
          padding: 10px;
-         background-color: #53A653;
+         background-color: var(--success-button-color);
          opacity: 90%;
          color: white;
          margin-bottom: 15px;
@@ -38,7 +52,7 @@
          width: 30%;
          left: 85em;
          padding: 10px;
-         background-color: #EFFD5F;
+         background-color: var(--info-button-color);
          opacity: 90%;
          color: white;
          margin-bottom: 15px;
@@ -84,7 +98,7 @@
           }
           
           .button {
-               background-color: #6B0085;
+               background-color: var(--button-color);
                border: none;
                color: white;
                padding: 7px 13px;
@@ -96,17 +110,17 @@
                cursor: pointer;
           }
           .button:hover{
-               background-color: #6a0085cb;
+               background-color: var(--button-color-hover);
           }
           .button:active {
-               background-color: #5c0272;
+               background-color: var(--button-color-active);
             }
           body{
-          height: 100vh;
-          width: 100%;
-          background-image: linear-gradient(#f5e6ff,#ffffff);
+          margin-right:0px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-image: linear-gradient(var(--first-background-gradient),var(--last-background-gradient));
           } 
-
      </style>
      
     {%block body%}
