@@ -1,79 +1,197 @@
 {% extends 'base.html' %}
 {% block body %}
 <style>
-    #centerheader{
-        text-align: center;
-        position: absolute;
-        top: 24%;
-        width: 100%;
-        text-align: center;
-        font-size: 33px;
-
+    body{
+        background-image: linear-gradient(#f5e6ff,#ffffff);
+        font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
     }
-
-    #scndcenterheader{
-        text-align: center;
-        position: absolute;
-        top: 31%;
-        width: 100%;
-        text-align: center;
-        font-size: 33px;
+    
+    .center{
+    text-align: center;
+    margin-top: 15%;
     }
-
-    #centerP{
-        text-align: center;
-        position: absolute;
-        top: 38%;
-        width: 100%;
-        text-align: center;
-        font-size: 19px;
+    
+    .center h1{
+        color: #000000;
+        font-size: 200%;
     }
-
+    
+    .center p{
+        color: #1C1C1C;
+    
+    }
+    
     .cntrline{
         border-left: 2px solid #6B0085;
-        height: 51px;
-        position: absolute;
-        left: 50%;
-        margin-left: 1.9px;
-        top: 47%;
+        height: 50px;
+    
     }
-
-    #wordunderbutton{
-        text-align: center;
-        position: absolute;
-        top: 56%;
-        width: 100%;
-        font-size: 15px;
-    }
-
-    .logo{
-        text-align: right; 
-        font-size: 50px;
+    
+    
+     #sign{
+        margin-top: 1%;
+        margin-right: 6%;
+        margin-left: 0.9%;
+        font-size: 18px;
+        background-color: #6B0085;
+        color: white;
+        border: #6B0085;
+        border-radius: 0.25em;
+        padding: 0.6%;
+     }
+    
+     #aboutus{
+        margin-top: 1%;
+        font-size: 18px;
+        background-color: #6B0085;
+        color: white;
+        border: #6B0085;
+        border-radius: 0.25em;
+        padding: 0.6%;
+     }
+    
+     #teacher{
         margin-right: 2%;
-        color: #6B0085;
+        font-size: 18px;
+        background-color: #8c05ae;
+        color: white;
+        border-color: #55036a;
+        border-radius: 0.25em;
+        padding: 0.6%;
+     }
+    
+     #student{
+        margin-left: 2%;
+        font-size: 18px;
+        background-color: #ffffff;
+        color: #6B0085 ;
+        border-color: #6B0085;
+        border-radius: 0.25em;
+        padding: 0.6%;
+     }
+    
+     #sign:hover{
+        background-color: #6a0085cb;
     }
-
+    #aboutus:hover{
+        background-color: #6a0085cb;
+    }
+    
+    #sign:active{
+        background-color: #5c0272;
+    }
+    #aboutus:active{
+        background-color: #5c0272;
+    }
+    
+    #teacher:hover{
+        background-color: #6a0085cb;
+    }
+    #student:hover{
+        background-color: #cacacacb;
+    }
+    
+    #teacher:active{
+        background-color: #5c0272;
+    }
+    #student:active{
+        background-color: #b166b1;
+    }
+    
+    .centerflexbtns{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav{
+     display: flex;
+     align-items: center;
+    
+    }
+    
+    .nav #logo{
+        margin-top: -0.1;
+        color: #9000b5;
+        margin-left: 69%;
+    }
+    
+    #wordundrbtn{
+        font-size: 12px;
+        color: #2D2D2D;
+    }
+    
     #footer{
-        text-align:left;
-        position: absolute;
-        top: 95%;
-        width: 100%;
-        font-size: 15px;
-        margin-left: 1%;
+        margin-top: 20%;
+    }
+    /*Mobil Screen*/
+    @media screen and (max-width:420px) {
+        body{
+            height: fit-content;
+
+        }
+        #footer{
+            margin-top: 70%;
+        }
+    }
+    /*Tablet Screen*/
+    @media screen and (min-width:421px) and (max-width:580px){
+        body{
+            height:fit-content;
+
+        }
+        #footer{
+            margin-top: 50%;
+        }
+    }
+    /*ipad Screen*/
+    @media screen and (min-width:580px) and (max-width:720px){
+        body{
+            height:fit-content;
+
+        }
+        #footer{
+            margin-top: 35%;
+        }
+    }
+    /*Laptop Screen*/
+    @media screen and (min-width:720px) {
+        body{
+            height:fit-content;
+
+        }
+        #footer{
+            margin-top: 22%;
+        }
     }
 </style>
-{%block body%}
-<h1 id="centerheader"><b>لملفكره انا موقع وسخ</b></h1>
+<div class="navparent">
+    <div class="nav">
+        <button id="sign"> تسجيل الدخول</button>
+        <button id="aboutus"> معلومات عنا</button>
+        <h1 id="logo">ffff</h1>
+    </div>
+</div> 
 
-<h1 id="scndcenterheader"><b>عورم ابسم از اكتوالي امك عشان ابسم بيبحش اللور</b></h1>
 
-<p id="centerP">دامي تكست بحب البمبم والبمبم مش بيحبني خخخخ كسم حياتي</p>
 
-<p id="wordunderbutton">عمر و يوسف شواذ باي زا وي</p>
 
-<div class="cntrline"></div>
 
-<p class="logo">لوجو</p>
+<div class="centerparent">
+    <div class="center">
+        <h1 id="centerh1"> <b> لورم ابسم امك حلوه ابسم لورم ه</b></h1>
+        <h1 id="centerh2"><b>الخاخلهاخسياتهخشسنيتشسهخيتخشسهيتشسخهيشسهخي</b></h1>
+        <p id="centerp">جدا جدا جدا جدا جدا جدا جداكان عندي 3 تفاحات ونا صغير بس الموقع دا خلاهم 10 عشان دا موقع محزوووز</p>
+        
+        <div class="centerflexbtns">
+        <button id="teacher">انا معلم</button>
+        <div class="cntrline"></div>
+        <button id="student">انا تلميذ </button>
+        </div>
+        <p id="wordundrbtn">خخخخخخخخخخخخخخخخخ هلو</p>
+    </div>
+</div>
 
-<p id="footer">محمصة ابو الفتوح&copy;</p>
+<p id="footer">&copy;بورن هاب</p>
+</body>
 {% endblock body %}

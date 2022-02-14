@@ -16,7 +16,7 @@ def cleartable():
 @app.route("/home")
 @app.route("/")
 def HomePage():
-    return render_template("base.html")
+    return render_template("homepage.html")
 
 
 @app.route("/register/std", methods = ["POST", "GET"])
