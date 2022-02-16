@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% block body %}
 <style>
+    a{
+        border: 1px solid red;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .student-link{
+        color: black;
+    }
+    .student-link:hover{
+        color: black;
+    }
+    .teacher-link{
+        color: white;
+    }
+    .teacher-link:hover{
+        color: white;
+    }
     body{
         background-image: linear-gradient(#f5e6ff,#ffffff);
         font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
@@ -50,7 +66,7 @@
         padding: 0.6%;
      }
     
-     #teacher{
+     .teacher{
         margin-right: 2%;
         font-size: 18px;
         background-color: #8c05ae;
@@ -59,7 +75,17 @@
         border-radius: 0.25em;
         padding: 0.6%;
      }
-    
+     .teacher:hover{
+        background-color: #6d0088e1;
+     }
+     #mainpage{
+        font-size: 18px;
+        background-color: #8c05ae;
+        color: white;
+        border-color: #55036a;
+        border-radius: 0.25em;
+        padding: 0.6%;
+     }
      #student{
         margin-left: 2%;
         font-size: 18px;
@@ -128,7 +154,6 @@
     @media screen and (max-width:420px) {
         body{
             height: fit-content;
-
         }
         #footer{
             margin-top: 70%;
@@ -182,12 +207,17 @@
         <h1 id="centerh1"> <b> لورم ابسم امك حلوه ابسم لورم ه</b></h1>
         <h1 id="centerh2"><b>الخاخلهاخسياتهخشسنيتشسهخيتخشسهيتشسخهيشسهخي</b></h1>
         <p id="centerp">جدا جدا جدا جدا جدا جدا جداكان عندي 3 تفاحات ونا صغير بس الموقع دا خلاهم 10 عشان دا موقع محزوووز</p>
-        
+        {% if current_user.is_authenticated %}
         <div class="centerflexbtns">
-        <button id="teacher">انا معلم</button>
-        <div class="cntrline"></div>
-        <button id="student">انا تلميذ </button>
+            <button id="mainpage">هيا بنا للصفحة الرئسية</button>
         </div>
+        {%else%}
+        <div class="centerflexbtns">
+            <button class="teacher"><a class="teacher-link" href="/register/tea">انا معلم </a></button>
+            <div class="cntrline"></div>
+            <button id="student"><a class="student-link" href="/register/std">انا تلميذ </a></button>
+        </div>
+        {%endif%}
         <p id="wordundrbtn">خخخخخخخخخخخخخخخخخ هلو</p>
     </div>
 </div>

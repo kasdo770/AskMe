@@ -24,38 +24,32 @@
         --button-color-active:#5c0272;
         --alert-button-color:#ed4337;
         --success-button-color:#53A653;
-        --info-button-color:#EFFD5F;
+        --info-button-color:#b39800;
       }
           /* _______________________________________Error Button_____________________________________________ */
+      .flash-container{
+        display: flex;
+        justify-content: center;
+      }
       .alert {
-           position: relative;
-          width: 30%;
-          left: 42.5em;
-         padding: 10px;
+        font-size: fit-content;
+          width: fit-content;
          background-color: var(--alert-button-color);
          opacity: 90%;
          color: white;
-         margin-bottom: 15px;
+         
        }
        .succes{
-            position: relative;
-         width: 30%;
-         left: 42.5em;
-         padding: 10px;
+        width: fit-content;
          background-color: var(--success-button-color);
          opacity: 90%;
          color: white;
-         margin-bottom: 15px;
        }
        .Info{
-           position: relative;
-         width: 30%;
-         left: 85em;
-         padding: 10px;
+        width: fit-content;
          background-color: var(--info-button-color);
          opacity: 90%;
          color: white;
-         margin-bottom: 15px;
        }
        .closebtn {
          margin-left: 15px;
@@ -74,21 +68,26 @@
        {% with messages = get_flashed_messages(with_categories=true) %} {% if
          messages %} {% for category, message in messages %} {% if category ==
          'error' %}
-         <div dir="rtl" class="alert">
-           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-           {{message}}
-         </div>
-         {% elif category ==
-             'success' %}
-             <div dir="rtl" class="succes">
-               <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-               {{message}}
-             </div>
+         <div class="flash-container">
+          <div dir="rtl" class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+          </div>
+        </div>
+         {% elif category =='success' %}
+             <div class="flash-container">
+              <div dir="rtl" class="succes">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{message}}
+              </div>
+            </div>
          {%else%}
-         <div dir="rtl" class="Info">
-             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-             {{message}}
-           </div>
+         <div class="flash-container">
+          <div dir="rtl" class="Info">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              {{message}}
+            </div>
+          </div>
  
          {% endif %} {% endfor %} {% endif %} {% endwith %}
     <style>

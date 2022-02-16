@@ -10,7 +10,7 @@ from website.model import Student , Teacher
 def cleartable():
     db.drop_all()
     db.create_all()
-    return render_template("base.html")
+    return render_template("homepage.html")
 
 #----------
 @app.route("/home")
@@ -30,10 +30,10 @@ def StudentRegisterPage():
            schooltype=form.schooltype.data,
            age = form.age.data
         )
-        flash(f"تم انشاء حساب طالب جديد باسم{form.username.data}")
+        flash(f"تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
         db.session.add(new_student)
         db.session.commit()
-        return redirect(url_for("HomePage"))
+        return render_template("homepage.html")
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(
@@ -56,7 +56,7 @@ def TeacherRegisterPage():
            first_subject=form.first_subject.data,
            second_subject = form.second_subject.data
         )
-        flash(f"تم انشاء حساب معلم جديد باسم {form.username.data}")
+        flash(f"تم انشاء حساب معلم جديد باسم {form.username.data}", category="success")
         db.session.add(new_teacher)
         db.session.commit()
         return redirect(url_for("HomePage"))
@@ -82,7 +82,7 @@ def LoginPage():
                     f"تم تسجيل الدخول بنجاح يا  {form.username.data}",
                     category="success",
                 ) 
-                print("Logged in successfuly")
+                print("تم تسجيل الدخول ب نجاح")
                 return redirect(url_for("HomePage"))
             else:
                 flash("كلمة المرور خاطئا", category="error")
