@@ -17,16 +17,17 @@
      }
       form label{
           display: flex;
-          margin-top: 12px;
+          margin-top: 3%;
           font-size: 18px;
           justify-content: flex-end;
           align-items: flex-end;
-          margin-right: 0.6%;
+          margin-right: 4%;
      }
      form input{
-          width: 100%;
+          width: 80%;
+          margin-left:18%;
           padding:7px;
-          margin-top: 10px;
+          margin-top: 5%;
      }
      .subject1-input-text{
           display: flex;
@@ -42,6 +43,7 @@
           justify-content: flex-end;
           margin-right: -10%;
      }
+     
      /*------------------------------second subject-------------------------*/
       .subject2-input-text{
            margin-top: 1%;
@@ -64,8 +66,8 @@
           justify-content: flex-start;
      }
      .button-mar{
-     margin-right: 15%;
-     margin-left: 0%;
+          width: 80%;
+          margin-left:11%;
      }
 </style>
 <form class="register-page" method="POST">
@@ -84,8 +86,8 @@
                          {{form.password1.label(class = "pass1-text mb-2")}}
                          {{form.password1(dir = "rtl", placeholder = "اكتب هنا",class="pass1-input-text")}}
                     
-                         {{form.password2.label(class = "pass2-text mb-2")}}
-                         {{form.password2(dir = "rtl", placeholder = "اكتب هنا",class = "pass2-input-text mb-2")}}
+                         {{form.password2.label(class = "pass2-text ")}}
+                         {{form.password2(dir = "rtl", placeholder = "اكتب هنا",class = "pass2-input-text ")}}
 
                          {{form.email.label(class = "email-text mb-3")}}
                          {{form.email(dir = "rtl", placeholder = "اكتب هنا", class = "email-input-text mb-2")}}
