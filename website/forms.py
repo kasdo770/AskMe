@@ -1,4 +1,4 @@
-from wtforms import StringField, PasswordField, EmailField, SelectField,SubmitField
+from wtforms import StringField, PasswordField, EmailField, SelectField,SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_wtf import FlaskForm
 
@@ -67,7 +67,7 @@ class TeacherRegisterForm(FlaskForm):
 
 class PostForm(FlaskForm):
     title = StringField(label="العنوان", validators=[Length(min=8 , max=100), DataRequired()])
-    description = StringField(label="الموضوع", validators=[Length(min=14), DataRequired()])
+    description = TextAreaField(label="الموضوع", validators=[Length(min=14), DataRequired()])
     subject = SelectField(label="نوع المادة", choices=[('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
     ("ara","الغة العربية"), ("eng", "الغةالانجليزية"), ("fre", "الغة الفرنسية"), ("ita","الغة الايطالية "),
      ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات")] , validators=[DataRequired()] )
