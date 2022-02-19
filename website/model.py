@@ -2,6 +2,7 @@ from flask_login.login_manager import LoginManager
 from website import db, login_man
 from website import bcrypts
 from flask_login import UserMixin
+from datetime import date
 
 @login_man.user_loader
 def load_user(id_user):
@@ -54,8 +55,17 @@ class Teacher(db.Model,UserMixin):
 class Post(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     date = db.Column(db.String())
-    subject = db.Column(db.String())
+    subject = db.Column(db.String(), nullable=False)
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable = False)
     likes = db.Column(db.Integer())
     owner = db.Column(db.Integer(), db.ForeignKey('student.id'))
+
+
+    @property
+    def DateTime(self):
+        return self.DateTime
+
+    @DateTime.setter
+    def DateTime(self):
+        self.date = date.today()

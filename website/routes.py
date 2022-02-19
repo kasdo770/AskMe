@@ -1,8 +1,8 @@
 from flask_login import current_user
 from website import app,db
 from flask import render_template, url_for, redirect,flash
-from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm
-from website.model import Student , Teacher
+from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm
+from website.model import Post, Student , Teacher
 
 #temporay function
 @app.route("/ct")
@@ -18,6 +18,25 @@ def cleartable():
 def HomePage():
     return render_template("homepage.html")
 
+@app.route("/create/post", methods=["POST", "GET"])
+def CreatePostPage():
+    form = PostForm()
+    if form.validate_on_submit():
+        if form.create.data:
+            new_post = Post(
+                title=form.title.data,
+                description = form.description.data,
+                subject = form.subject.data,
+                date=""
+            )
+            db.session.add(new_post)
+            db.session.commit()
+            flash("لقد تم انشاء سؤال بنجاح",category="success")
+            return render_template("")
+        elif form.cancel.data:
+            return render_template("")
+
+    return render_template("CreatePost.html", form=form)
 
 @app.route("/register/std", methods = ["POST", "GET"])
 def StudentRegisterPage():

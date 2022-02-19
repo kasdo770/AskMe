@@ -65,3 +65,11 @@ class TeacherRegisterForm(FlaskForm):
         label = "انشاء حساب"
     )
 
+class PostForm(FlaskForm):
+    title = StringField(label="العنوان", validators=[Length(min=8 , max=100), DataRequired()])
+    description = StringField(label="الموضوع", validators=[Length(min=14), DataRequired()])
+    subject = SelectField(label="نوع المادة", choices=[('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
+    ("ara","الغة العربية"), ("eng", "الغةالانجليزية"), ("fre", "الغة الفرنسية"), ("ita","الغة الايطالية "),
+     ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات")] , validators=[DataRequired()] )
+    create = SubmitField(label="انشاء")
+    cancel = SubmitField(label="حذف")

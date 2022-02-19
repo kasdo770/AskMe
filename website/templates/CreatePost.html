@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{%block title%}
+    اسئلة
+    
+{%endblock%}
+
+{% block body %}
+<style>
+    form label{
+          display: flex;
+          margin-top: 12%;
+          font-size: 18px;
+          justify-content: flex-end;
+          align-items: flex-end;
+          margin-bottom: 1%;
+          margin-right: 2%;
+     }
+     form input{
+         float: right;
+          width: 80%;
+          padding:2%;
+          margin-top: 1%;
+          margin-right:2%;
+     }
+    body{
+        background-image: linear-gradient(#f5e6ff,#fff);
+            height:fit-content;
+            width:100%;
+    }
+    .create_post_title{
+        background-color: #6B0085;
+        border-radius: 13px;  
+        padding: fit-content;
+}
+    .create_post_box{
+            margin-left: 30%;
+            width: 30%;
+            padding-bottom: 5%;
+            margin-top: 4%;
+            background-color: #ffffff00;
+            box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.2), 0 5px 12px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 2%;
+    }
+    .create_post_text{
+            padding:2%;
+            margin-left:70%;
+            font-weight:bold;
+            color: white;
+            font:bold;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        } 
+        /*----------------------------------------------Title------------------------------------*/
+        .title_text
+        {
+          margin-left:2%;
+          margin-top: 2%;
+          font-weight: bold;
+          margin-bottom: 2%;
+        }
+        .title_input
+        {
+          width: 90%;
+          text-align: right;
+          margin-left:2%;
+          padding: 1%;
+        }
+        /*----------------------------------------------Description------------------------------------*/
+        .description_text
+        {
+          margin-right: 2%;
+          margin-top: 14%;
+          font-weight: bold;
+          margin-bottom: 2%;
+        }
+        .description_input
+        {
+          width: 90%;
+          text-align: right;
+          margin-left:2%;
+          padding: 20%;
+        }
+        /*----------------------------------------------Subject------------------------------------*/
+        .subject_text
+        {
+          float: right;
+          margin-left:2%;
+          margin-top: 6%;
+          margin-right: 2%;
+          font-weight: bold;
+          margin-bottom: 3%;
+        }
+        .subject_input
+        {
+          width: 20%;
+          text-align: right;
+          margin-top: 5%;
+          margin-left:2%;
+          padding: 1%;
+          margin-bottom: 2%;
+        }
+        /*--------------------------------------------Button---------------------------------------------*/
+        .button {
+               border: none;
+               color: white;
+               padding: 2% 2%;
+               text-align: center;
+               text-decoration: none;
+               font-size: 100%;
+               font-weight: bold;
+               margin: 2% 9%;
+               border-radius: 5px;
+               cursor: pointer;
+               width: 30%;
+          }
+          
+            .cancel{
+                float: left;
+                background-color: red;
+                opacity: 65%;
+            }
+            .create{
+                background-color: green;
+                opacity: 65%;
+                float: right;
+                margin-right: -8%;
+            }
+            .create:hover{
+                background-color: green;
+              opacity:80%;
+          }
+          .cancel:hover{
+                background-color: red;
+              opacity:80%;
+          }
+          .create:active {
+            background-color: green;
+            opacity:90%;
+            } 
+            .cancel:active {
+                background-color: red;
+            opacity:90%;
+            } 
+            @media screen and (max-width: 930px) {
+            .create_post_box{
+                margin:0;
+                height: 80%;
+                width: 100%;
+            }
+            form div{
+                padding:fit-content;
+            }
+
+        }
+
+        @media screen and (min-width:930px) and (max-width:1529px) {
+            .create_post_box{
+                height: 60%;
+                width: 40%;
+            }
+
+        }
+        @media screen and (min-width:1530px) {
+            .create_post_box{
+                margin-left: 30%;
+                margin-top: 5%;
+                margin-bottom: 0;
+                margin-right: 0;
+            }  
+                 
+        }
+
+</style> 
+<form class = "post-form" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <div class = "create_post_box">
+         <div class = "create_post_title" >
+              <h3 class = "create_post_text ">انشاء سؤال</h3>
+         </div> 
+         <div class="input-container">
+              <div class="mb-3">
+
+                   {{form.title.label( class = "title_text")}}
+                   {{form.title(dir = "rtl", class="title_input")}}
+
+                   {{form.description.label(class = "description_text")}}
+                   {{form.description(dir = "rtl" , class="description_input")}}
+              
+                   <div dir="rtl">
+                    {{form.subject.label(class = " subject_text")}}
+                    {{form.subject(class = "subject_input")}}
+                    </div>
+                    <div>
+                    {{form.create(class = "submit button create ")}}
+                    {{form.cancel(class = "submit button  cancel")}}
+                    </div>
+                </div>
+           </div>
+    </div>
+  
+</form>
+{%endblock%}
