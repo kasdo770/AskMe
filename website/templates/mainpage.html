@@ -7,7 +7,6 @@
     <body>
 
         
-        
 
         <div id="sidenavv" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -25,6 +24,7 @@
             <h1 id="newquestionh1"><b>الاسئلة الجديدة</b></h1>
         
         </div>
+        <br></br>
         <script>
             function openNav() {
             document.getElementById("sidenavv").style.width = "250px";
@@ -158,6 +158,12 @@
             
         </style>
        
-    
+        <div>
+            {%for item in post%}
+            {{item.title}}
+            {{item.date}}
+            {{item.subject}}
+            {%endfor%}
+        </div>
     </body>
 </html>

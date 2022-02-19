@@ -1,4 +1,4 @@
-from flask_login import current_user
+from flask_login import current_user, login_required
 from website import app,db
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm
@@ -23,14 +23,13 @@ def HomePage():
 @app.route("/create/post", methods=["POST", "GET"])
 def CreatePostPage():
     form = PostForm()
-    datetime = time.ctime
     if form.validate_on_submit():
         if form.create.data:
             new_post = Post(
                 title=form.title.data,
                 description = form.description.data,
                 subject = form.subject.data,
-                date = datetime
+                date = time.ctime()
 
             )
             db.session.add(new_post)
@@ -128,6 +127,8 @@ def LoginPage():
     return render_template("Login.html", form=form)
 
 
+@login_required
 @app.route("/mainpage", methods=["GET"])
 def MainPage():
-    return render_template("mainpage.html")
+    post = Post.query.all()
+    return render_template("mainpage.html" ,post=post)

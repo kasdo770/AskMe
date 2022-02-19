@@ -53,14 +53,14 @@ class TeacherRegisterForm(FlaskForm):
         label="تاكيد كلمة السر", validators=[EqualTo("password1"), DataRequired()]
     )
     first_subject = SelectField(
-        label="المادة الاولى", choices=[('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
-    ("ara","الغة العربية"), ("eng", "الغةالانجليزية"), ("fre", "الغة الفرنسية"), ("ita","الغة الايطالية "),
-     ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات")], validators=[DataRequired()]
+        label="المادة الاولى", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
+    ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
+     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")], validators=[DataRequired()]
     )
     second_subject = SelectField(
-        label="المادة الثانية", choices=[ ("none", "لا شيء اخر"),('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
-    ("ara","الغة العربية"), ("eng", "الغةالانجليزية"), ("fre", "الغة الفرنسية"), ("ita","الغة الايطالية "),
-     ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات")]
+        label="المادة الثانية", choices=[ ("none", "لا شيء اخر"),('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
+    ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
+     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")]
     )
     submit = SubmitField(
         label = "انشاء حساب"
@@ -69,8 +69,8 @@ class TeacherRegisterForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField(label="العنوان", validators=[Length(min=8 , max=100), DataRequired()])
     description = TextAreaField(label="الموضوع", validators=[Length(min=14), DataRequired()])
-    subject = SelectField(label="نوع المادة", choices=[('phy ', 'فيزياء'), ('che', 'كيمياء'), ('bio', 'احياء'),
-    ("ara","الغة العربية"), ("eng", "الغةالانجليزية"), ("fre", "الغة الفرنسية"), ("ita","الغة الايطالية "),
-     ("psy", "فلسفة"), ("geo", "الجغرافيا"), ("his", "التاريخ"), ("mat", "رياضيات")] , validators=[DataRequired()] )
+    subject = SelectField(label="نوع المادة", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
+    ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
+     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] , validators=[DataRequired()] )
     create = SubmitField(label="انشاء")
     cancel = SubmitField(label="حذف")
