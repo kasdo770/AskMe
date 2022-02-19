@@ -13,6 +13,43 @@
 
 <body>
     <style>
+        .flash-container{
+            display: flex;
+            justify-content: center;
+          }
+          .alert {
+            font-size: fit-content;
+              width: fit-content;
+             background-color: var(--alert-button-color);
+             opacity: 90%;
+             color: white;
+             
+           }
+           .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+          }
+          .closebtn:hover {
+            color: black;
+          }
+    </style>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        'error' %}
+        <div class="flash-container">
+         <div dir="rtl" class="alert">
+           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+           {{message}}
+         </div>
+       </div>
+       {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <style>
         body{
             background-image: linear-gradient(#f5e6ff,#fff);
             height:80vh;
