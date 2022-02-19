@@ -59,7 +59,7 @@ def StudentRegisterPage():
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(
-                f"The was an an Error with creating user :  {err_msg}", category="error"
+                f"هنالك مشكلة في :  {err_msg}", category="error"
             )
 
     return render_template("Student_register.html", form=form)
@@ -84,8 +84,8 @@ def TeacherRegisterPage():
         return redirect(url_for("HomePage"))
     if form.errors != {}:
         for err_msg in form.errors.values():
-            flash(
-                f"The was an an Error with creating user :  {err_msg}", category="error"
+             flash(
+                f"هنالك مشكلة في :  {err_msg}", category="error"
             )
     return render_template("Teacher_register.html", form=form)
 
