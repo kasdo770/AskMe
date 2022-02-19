@@ -5,7 +5,7 @@
 {% block body %}
 <style>
     body{
-        background-image: linear-gradient(#f5e6ff,#ffffff);
+        background-color: black;
         font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
     }
     
@@ -134,7 +134,7 @@
     #footer{
         margin-top: 20%;
     }
-    /*Mobil Screen*/
+    /*Mobile Screen*/
     @media screen and (max-width:420px) {
         body{
             height: fit-content;
@@ -176,8 +176,8 @@
 </style>
 <div class="navparent">
     <div class="nav">
-        <button id="sign"> تسجيل الدخول</button>
-        <button id="aboutus"> معلومات عنا</button>
+        <button id="sign" onclick="window.location.href = 'http://127.0.0.1:5000/login'"> تسجيل الدخول</button>
+        <button id="aboutus" onclick="window.location.href = 'google.com'"> معلومات عنا</button>
         <h1 id="logo">ffff</h1>
     </div>
 </div> 
@@ -193,9 +193,9 @@
         <h1 id="centerh2"><b>الخاخلهاخسياتهخشسنيتشسهخيتخشسهيتشسخهيشسهخي</b></h1>
         <p id="centerp">جدا جدا جدا جدا جدا جدا جداكان عندي 3 تفاحات ونا صغير بس الموقع دا خلاهم 10 عشان دا موقع محزوووز</p>
         <div class="centerflexbtns">
-            <button id="teacher">انا معلم</button>
-            <div class="cntrline"></div>
-            <button id="student">انا تلميذ</button>
+            <button id="teacher" onclick="window.location.href = 'http://127.0.0.1:5000/register/tea'">انا معلم</button>
+            <div class="cntrline" ></div>
+            <button id="student" onclick="window.location.href = 'http://127.0.0.1:5000/register/std'">انا تلميذ</button>
         </div>
         <p id="wordundrbtn">خخخخخخخخخخخخخخخخخ هلو</p>
     </div>
