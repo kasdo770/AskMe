@@ -69,6 +69,24 @@
           width: 80%;
           margin-left:11%;
      }
+     @media screen and (min-width:1113px) {
+          body{
+              height: 100%;
+              width:100%;
+          }
+          .signup-container{
+              display: flex;
+              width: 200em;
+          }
+          .signup-box{
+              margin-left: 0;
+              margin-top: 0;
+              margin-bottom: 0;
+              margin-right: 0;
+              padding: 20%;
+          }       
+
+      }
 </style>
 <form class="register-page" method="POST">
      {{ form.hidden_tag() }}

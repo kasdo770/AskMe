@@ -130,4 +130,5 @@ def LoginPage():
 @login_required
 @app.route("/mainpage", methods=["GET"])
 def MainPage():
-    return render_template("mainpage.html")
+    post = Post.query.all()
+    return render_template("mainpage.html" ,post=post)
