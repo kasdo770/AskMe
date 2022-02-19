@@ -126,3 +126,8 @@ def LoginPage():
             flash("ليس هنالك اي حساب بهذ الاسم", category="error")
 
     return render_template("Login.html", form=form)
+
+
+@app.route("/mainpage", methods=["GET"])
+def MainPage():
+    return render_template("mainpage.html")

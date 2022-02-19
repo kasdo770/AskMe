@@ -1,3 +1,4 @@
+from tokenize import String
 from wtforms import StringField, PasswordField, EmailField, SelectField,SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_wtf import FlaskForm

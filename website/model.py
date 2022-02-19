@@ -61,11 +61,3 @@ class Post(db.Model):
     likes = db.Column(db.Integer())
     owner = db.Column(db.Integer(), db.ForeignKey('student.id'))
 
-
-    @property
-    def DateTime(self):
-        return self.DateTime
-
-    @DateTime.setter
-    def DateTime(self):
-        self.date = date.today()
