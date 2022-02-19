@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <title>omk</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        
+        
+
+        <div id="sidenavv" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">About</a>
+        </div>
+
+        <div class="topnav">
+            <span id="menubutton" onclick="openNav()">&#9776;</span>
+            <button id="newquestionbtn" onclick="window.location.href =''">سؤال جديد</button>
+            <div class="logo">
+                <p id="logo">ffff</p>
+            </div>
+        </div>
+        <div class="newq">
+            <h1 id="newquestionh1"><b>الاسئلة الجديدة</b></h1>
+        
+        </div>
+        <script>
+            function openNav() {
+            document.getElementById("sidenavv").style.width = "250px";
+            }
+            
+            function closeNav() {
+            document.getElementById("sidenavv").style.width = "0";
+            }
+        </script>
+
+        <style>
+            body{
+                background-image: linear-gradient(#efd4ffec,#ffffff);
+                font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
+            }
+            
+            
+            #newquestionbtn{
+                margin-top: -1.8%;
+                margin-left: 3%;
+                font-size: 18px;
+                background-color: transparent;
+                color: #6B0085 ;
+                border-color: #6B0085;
+                border-radius: 0.25em;
+                padding: 0.3% 0.6% 0.3% 0.6%;
+            
+            }
+            
+             #newquestionbtn:hover{
+                background-color: #faf6f6;
+            }
+            
+            #newquestionbtn:active{
+                background-color: #a700c9;
+            }
+            
+            #menubutton{
+                font-size:32px;
+                cursor: pointer;
+                margin-left: 3%;
+                margin-top: -2%;
+            }
+            
+            .logo{
+                margin-left: 79%;
+                font-size: 40px;
+                margin-top:-2%;
+                color:#6B0085 ;
+            
+            }
+            
+            .topnav{
+                display: flex;
+                align-items: center;
+                margin-top: 0;
+            
+            }
+            
+            .sidenav{
+              height: 100%;
+              width: 0;
+              position: fixed;
+              top: 0;
+              left: 0;
+              background-color: #f5f5f5ce;
+              overflow-x: hidden;
+              transition: 0.7s;
+              padding-top: 60px;
+              
+            }
+            
+            .sidenav a{
+              padding: 8px 8px 8px 32px;
+              text-decoration: none;
+              font-size: 25px;
+              color: #000000;
+              display: block;
+              transition: 0.3s;
+            }
+            
+            .sidenav a:hover{
+              color: #f1f1f1;
+            }
+            
+            .sidenav .closebtn{
+              position: absolute;
+              top: 0;
+              right: 25px;
+              font-size: 36px;
+              margin-left: 50px;
+            }
+            
+            
+            
+            #newquestionh1{              
+            
+                font-size: 38px;
+                float: right;
+                margin-left:-94%;
+                margin-top:-3%;
+                
+            }
+            
+            .newq{                          
+                display: flex;
+                flex-direction: column;
+                float: right;
+                align-items: center;
+                margin-right: 3%;
+            }
+            
+            
+            @media screen and (max-height: 450px){
+              .sidenav{
+                  padding-top: 15px;
+              }
+              .sidenav a {
+                  font-size: 18px;
+              }
+              .logo{
+                  margin-left: 61%;
+              }
+            }
+            
+            @media only screen and (max-width: 900px) {
+                .logo{
+                    margin-left: 65%;
+                }
+              }
+            
+        </style>
+       
+    
+    </body>
+</html>
