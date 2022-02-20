@@ -90,6 +90,7 @@ def TeacherRegisterPage():
     return render_template("Teacher_register.html", form=form)
 
 
+
 @app.route("/login" ,methods = ["POST", "GET"])
 def LoginPage():
     form = LoginForm()

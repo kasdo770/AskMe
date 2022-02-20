@@ -52,6 +52,7 @@ class TeacherRegisterForm(FlaskForm):
     password2 = PasswordField(
         label="تاكيد كلمة السر", validators=[EqualTo("password1"), DataRequired()]
     )
+    
     first_subject = SelectField(
         label="المادة الاولى", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
     ("arabic","العربية"), ("english", "الانجليزية"), ("french",  "الفرنسية"), ("italy","الايطالية "),

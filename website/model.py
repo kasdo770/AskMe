@@ -60,4 +60,5 @@ class Post(db.Model):
     description = db.Column(db.String(), nullable = False)
     likes = db.Column(db.Integer())
     owner = db.Column(db.Integer(), db.ForeignKey('student.id'))
+    
 
