@@ -36,7 +36,8 @@ def CreatePostPage():
                 title=form.title.data,
                 description = form.description.data,
                 subject = form.subject.data,
-                date = time.ctime
+                date = time.ctime,
+                author = current_user.id
             )
             db.session.add(new_post)
             db.session.commit()
@@ -143,4 +144,4 @@ def LoginPage():
 #@login_required
 def MainPage():
     post = Post.query.all()
-    return render_template("mainpage.html" ,post=post)
+    return render_template("mainpage.html" ,post=post, user=current_user)

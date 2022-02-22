@@ -62,6 +62,14 @@
         border-radius: 0.25em;
         padding: 0.6%;
      }
+     #join{
+        font-size: 18px;
+        background-color: #8c05ae;
+        color: white;
+        border-color: #55036a;
+        border-radius: 0.25em;
+        padding: 0.6%;
+     }
      #mainpage{
         font-size: 18px;
         background-color: #8c05ae;
@@ -97,11 +105,17 @@
     #teacher:hover{
         background-color: #6a0085cb;
     }
+    #join:hover{
+        background-color: #6a0085cb;
+    }
     #student:hover{
         background-color: #cacacacb;
     }
     
     #teacher:active{
+        background-color: #5c0272;
+    }
+    #join:active{
         background-color: #5c0272;
     }
     #student:active{
@@ -192,11 +206,17 @@
         <h1 id="centerh1"> <b> لورم ابسم امك حلوه ابسم لورم ه</b></h1>
         <h1 id="centerh2"><b>الخاخلهاخسياتهخشسنيتشسهخيتخشسهيتشسخهيشسهخي</b></h1>
         <p id="centerp">جدا جدا جدا جدا جدا جدا جداكان عندي 3 تفاحات ونا صغير بس الموقع دا خلاهم 10 عشان دا موقع محزوووز</p>
+        {%if current_user.is_authenticated%}
+        <div class="centerflexbtns">
+            <button id="join" onclick="window.location.href = 'http://127.0.0.1:5000/mainpage'">انضم لنا</button>
+        </div>
+        {%else%}
         <div class="centerflexbtns">
             <button id="teacher" onclick="window.location.href = 'http://127.0.0.1:5000/register/tea'">انا معلم</button>
             <div class="cntrline" ></div>
             <button id="student" onclick="window.location.href = 'http://127.0.0.1:5000/register/std'">انا تلميذ</button>
         </div>
+        {%endif%}
         <p id="wordundrbtn">خخخخخخخخخخخخخخخخخ هلو</p>
     </div>
 </div>

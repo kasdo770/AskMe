@@ -20,7 +20,7 @@ class Student(db.Model,UserMixin):
     password_hash = db.Column(db.String(), nullable=False)
     schooltype = db.Column(db.String(), nullable=False)
     age = db.Column(db.String(), nullable=False)
-    post = db.relationship('Post', backref="owned_user", lazy=True)
+    post = db.relationship('Post', backref="user", passive_deletes=True)
 
     @property
     def password(self):
@@ -63,7 +63,6 @@ class Post(db.Model):
     subject = db.Column(db.String(), nullable=False)
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable = False)
-    likes = db.Column(db.Integer())
-    owner = db.Column(db.Integer(), db.ForeignKey('student.id'))
+    author = db.Column(db.Integer(), db.ForeignKey('student.id', ondelete="CASCADE"), nullable=False)
     
 
