@@ -39,16 +39,17 @@
             color: black;
           }
     </style>
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-        messages %} {% for category, message in messages %} {% if category ==
-        'error' %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+     {% if messages %} 
+     {% for category, message in messages %} 
+     {% if category =='error' %}
         <div class="flash-container">
          <div dir="rtl" class="alert">
            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
            {{message}}
          </div>
        </div>
-       {% endwith %}  {% endif %} {% endfor %} {% endif %} 
+       {% endif %} {% endfor %} {% endif %} {% endwith %}  
     <style>
         body{
             background-image: linear-gradient(#f5e6ff,#fff);

@@ -1,10 +1,11 @@
-from flask_login import current_user, login_required
-from website import app,db
+from flask_login import current_user, login_required, login_user, logout_user
+from website import app,db,login_man
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm
 from website.model import Post, Student , Teacher
-#from datetime import datetime as dt
 import time
+
+
 
 #temporay function
 @app.route("/ct")
@@ -14,6 +15,12 @@ def cleartable():
     db.create_all()
     return render_template("homepage.html")
 
+
+@app.route("/logout")
+@login_required
+def Logout():
+    logout_user()
+    return redirect(url_for("HomePage"))
 #----------
 @app.route("/home")
 @app.route("/")
@@ -29,15 +36,14 @@ def CreatePostPage():
                 title=form.title.data,
                 description = form.description.data,
                 subject = form.subject.data,
-                date = time.ctime()
-
+                date = time.ctime
             )
             db.session.add(new_post)
             db.session.commit()
             flash("لقد تم انشاء سؤال بنجاح",category="success")
-            return render_template("homepage.html")
+            return render_template("mainpage.html")
         elif form.cancel.data:
-            return render_template("")
+            return render_template("mainpage.html")
 
     return render_template("CreatePost.html", form=form)
 
@@ -55,6 +61,7 @@ def StudentRegisterPage():
         flash(f"تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
         db.session.add(new_student)
         db.session.commit()
+        login_user(new_student, remember=True)
         return render_template("homepage.html")
     if form.errors != {}:
         for err_msg in form.errors.values():
@@ -81,6 +88,7 @@ def TeacherRegisterPage():
         flash(f"تم انشاء حساب معلم جديد باسم {form.username.data}", category="success")
         db.session.add(new_teacher)
         db.session.commit()
+        login_user(new_teacher, remember=True)
         return redirect(url_for("HomePage"))
     if form.errors != {}:
         for err_msg in form.errors.values():
@@ -105,6 +113,7 @@ def LoginPage():
                     f"تم تسجيل الدخول بنجاح يا  {form.username.data}",
                     category="success",
                 ) 
+                login_user(student_user, remember=True)
                 print("تم تسجيل الدخول ب نجاح")
                 return redirect(url_for("HomePage"))
             else:
@@ -117,6 +126,8 @@ def LoginPage():
                     f"تم تسجيل الدخول بنجاح يا  {form.username.data}",
                     category="success",
                 )
+
+                login_user(teacher_user, remember=True)
                 print("Logged in successfuly")
                 return redirect(url_for("HomePage"))
             else:
@@ -128,8 +139,8 @@ def LoginPage():
     return render_template("Login.html", form=form)
 
 
-@login_required
 @app.route("/mainpage", methods=["GET"])
+#@login_required
 def MainPage():
     post = Post.query.all()
     return render_template("mainpage.html" ,post=post)

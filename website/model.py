@@ -6,7 +6,12 @@ from datetime import date
 
 @login_man.user_loader
 def load_user(id_user):
-    return Student.query.get(int(id_user)) , Teacher.query.get(int(id_user))
+    std = Student.query.get(int(id_user)) 
+    tea = Teacher.query.get(int(id_user))
+    if std:
+        return std
+    elif tea:
+        return tea
 
 class Student(db.Model,UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
