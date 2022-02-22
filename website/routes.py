@@ -1,8 +1,10 @@
+from dataclasses import dataclass
+from hashlib import new
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db,login_man
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm
-from website.model import Post, Student , Teacher
+from website.model import Student , Teacher, ThePost
 import time
 
 
@@ -28,24 +30,23 @@ def HomePage():
     return render_template("homepage.html")
 
 @app.route("/create/post", methods=["POST", "GET"])
+#@login_required
 def CreatePostPage():
     form = PostForm()
     if form.validate_on_submit():
         if form.create.data:
-            new_post = Post(
+            new_post = ThePost(
                 title=form.title.data,
-                description = form.description.data,
+                description=form.description.data,
                 subject = form.subject.data,
-                date = time.ctime,
                 author = current_user.id
             )
             db.session.add(new_post)
             db.session.commit()
-            flash("لقد تم انشاء سؤال بنجاح",category="success")
-            return render_template("mainpage.html")
+            flash("لقد تم انشاء سؤال بنجاح", category="success")
+            return redirect(url_for("MainPage"))
         elif form.cancel.data:
-            return render_template("mainpage.html")
-
+            return redirect(url_for("MainPage"))
     return render_template("CreatePost.html", form=form)
 
 @app.route("/register/std", methods = ["POST", "GET"])
@@ -143,5 +144,4 @@ def LoginPage():
 @app.route("/mainpage", methods=["GET"])
 #@login_required
 def MainPage():
-    post = Post.query.all()
-    return render_template("mainpage.html" ,post=post, user=current_user)
+    return render_template("mainpage.html",user=current_user)

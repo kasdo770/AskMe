@@ -1,8 +1,10 @@
+from email.policy import default
 from flask_login.login_manager import LoginManager
 from website import db, login_man
 from website import bcrypts
 from flask_login import UserMixin
 from datetime import date
+from sqlalchemy.sql import func
 
 @login_man.user_loader
 def load_user(id_user):
@@ -20,7 +22,7 @@ class Student(db.Model,UserMixin):
     password_hash = db.Column(db.String(), nullable=False)
     schooltype = db.Column(db.String(), nullable=False)
     age = db.Column(db.String(), nullable=False)
-    post = db.relationship('Post', backref="user", passive_deletes=True)
+    posts = db.relationship("ThePost",backref="user",passive_deletes=True)
 
     @property
     def password(self):
@@ -54,15 +56,11 @@ class Teacher(db.Model,UserMixin):
     def password_check(self,thepass):
         return bcrypts.check_password_hash(self.password_hash, thepass)
 
-    
 
-
-class Post(db.Model):
+class ThePost(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    date = db.Column(db.String())
+    title = db.Column(db.String(), nullable = False)
+    description = db.Column(db.String() , nullable = False)
     subject = db.Column(db.String(), nullable=False)
-    title = db.Column(db.String(), nullable=False)
-    description = db.Column(db.String(), nullable = False)
-    author = db.Column(db.Integer(), db.ForeignKey('student.id', ondelete="CASCADE"), nullable=False)
-    
-
+    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    author = db.Column(db.Integer(), db.ForeignKey("student.id",ondelete="CASCADE"), nullable=False)
