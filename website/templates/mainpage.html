@@ -5,8 +5,7 @@
     </head>
 
     <body>
-
-
+     
         <div id="sidenavv" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#">About</a>
@@ -19,10 +18,15 @@
                 <p id="logo">ffff</p>
             </div>
         </div>
-        <div class="newq">
-            <h1 id="newquestionh1"><b>الاسئلة الجديدة</b></h1>
+            <div class="newq">
+                <h1 id="newquestionh1"><b>الاسئلة الجديدة</b></h1>
+                <h2 class="card_title">كيف احل 1+1</h2>
+                <h3 class="card_by">بواسطة: احمد سأل من ساعة </h3>           
+                <h3 class="card_answer">لا احد جاوب</h3>
+                <h4 class = "subject">رياضيات</h4>     
+                
+            </div>
         
-        </div>
         <br>
         <script>
             function openNav() {
@@ -123,7 +127,7 @@
             
                 font-size: 38px;
                 float: right;
-                margin-left:-94%;
+                margin-left:0%;
                 margin-top:-3%;
                 
             }
@@ -134,6 +138,34 @@
                 float: right;
                 align-items: center;
                 margin-right: 3%;
+            }
+            .card_title{
+                justify-content: right;
+                align-self: flex-end;
+                font-weight: bold;             
+            }
+            .card_answer{
+                margin-top: 0%;
+                justify-content: right;
+                align-self: flex-end;
+                font-weight: bold;             
+            }
+            .card_by{
+                margin-top: 0%;
+                justify-content: right;
+                align-self: flex-end;
+                font-weight: bold;
+            
+            }
+            .subject{
+                background-color: #9149a4;
+                color:white;
+                margin-top: 0%;
+                padding: 2%;
+                justify-content: right;
+                align-self: flex-end;
+                font-weight: bold;
+            
             }
             
             
@@ -156,7 +188,6 @@
               }
             
         </style>
-       
         <div>
             {%for item in post%}
             {{item.title}}
@@ -164,5 +195,9 @@
             {{item.subject}}
             {%endfor%}
         </div>
+        
+            
+          
+
     </body>
 </html>
