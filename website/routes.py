@@ -30,7 +30,7 @@ def HomePage():
     return render_template("homepage.html")
 
 @app.route("/create/post", methods=["POST", "GET"])
-#@login_required
+@login_required
 def CreatePostPage():
     form = PostForm()
     if form.validate_on_submit():
@@ -142,6 +142,6 @@ def LoginPage():
 
 
 @app.route("/mainpage", methods=["GET"])
-#@login_required
+@login_required
 def MainPage():
     return render_template("mainpage.html",user=current_user)
