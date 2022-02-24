@@ -1,4 +1,3 @@
-from email.policy import default
 from flask_login.login_manager import LoginManager
 from website import db, login_man
 from website import bcrypts
