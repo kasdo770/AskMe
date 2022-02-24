@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{%block title%}
+    معلوماتك الشخصية
+{%endblock%}
+{% block body %}
+    <style>
+        body{
+            background-image: linear-gradient(#f5e6ff,#fff);
+            height:80vh;
+            width:100%;
+        }
+        .profile_title{
+        color: white;
+        background-color: #6B0085;
+        padding: fit-content;
+        }
+    </style>
+    <div>
+        {{current_user.username}}
+        {{current_user.email}}
+        {{current_user.schooltype}}
+        {{current_user.age}}
+        <h2 class = "profile_title">معلوماتك الشخصية</h2>
+    </div>
+{%endblock%}
+
