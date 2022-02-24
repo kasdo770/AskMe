@@ -60,9 +60,9 @@
      #teacher{
         margin-right: 2%;
         font-size: 18px;
-        background-color: #8c05ae;
+        background-color: #7f039e;
         color: white;
-        border-color: #55036a;
+        border-color: #7f039e;
         border-radius: 0.25em;
         padding: 0.6%;
      }
@@ -159,12 +159,12 @@
     /*Mobile Screen*/
     @media screen and (max-width:420px) {
         .center h1{
-            font-size: 19px;
+            font-size: 15px;
             line-height: 30px;
 
         }
          .center p{
-            font-size: 15px;
+            font-size: 10px;
 
         }
 
@@ -174,13 +174,13 @@
 
         #sign{
             font-size: 14px;
-            padding: 0.6%;
+            padding: 0.9%;
             margin-top: 3%;
          }
         
          #aboutus{
             font-size: 14px;
-            padding: 0.6%;
+            padding: 0.9%;
             margin-top: 3%;
          }
         
@@ -204,7 +204,7 @@
          }
 
          #footer{
-            margin-top: 47%;
+            margin-top: 42%;
          }
 
          .nav #logo{
@@ -218,6 +218,12 @@
          .centerparent{
              margin-top: 33%;
          }
+
+         #wordundrbtn{
+            font-size: 10px;
+            color: #2D2D2D;
+            margin-top: 1%;
+        }
         
 
     }
@@ -279,7 +285,6 @@
             margin-left: 82%;
             font-size: 30px;
          }
-         
          .centerparent{
              margin-top: 33%;
          }
@@ -399,7 +404,8 @@
          }
 
          #footer{
-            margin-top: 57%;
+            margin-top: 50%;
+            font-size: 18px;
          }
 
          .nav #logo{
@@ -434,7 +440,7 @@
     <div class="center">
         <h1 id="centerh1"> <b> لورم ابسم امك حلوه ابسم لورم ه</b></h1>
         <h1 id="centerh2"><b>الخاخلهاخسياتهخشسنيتشسهخيتخشسهيتشسخهيشسهخي</b></h1>
-        <p id="centerp">جدا جدا جدا جدا جدا جدا جداكان عندي 3 تفاحات ونا صغير بس الموقع دا خلاهم 10 عشان دا موقع محزوووز</p>
+        <p id="centerp">جدا جدا جدا كان عندي 3 تفاحات ونا صغير بس الموقع دا خلاهم 10 عشان دا موقع محزوووز</p>
         {%if current_user.is_authenticated%}
         <div class="centerflexbtns">
             <button id="join" onclick="window.location.href = 'http://127.0.0.1:5000/mainpage'">انضم لنا</button>
