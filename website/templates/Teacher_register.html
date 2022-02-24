@@ -15,20 +15,33 @@
      body{
           background-repeat: no-repeat;
      }
-      form label{
+     form label{
           display: flex;
-          margin-top: 3%;
+          margin-top: 14%;
           font-size: 18px;
           justify-content: flex-end;
           align-items: flex-end;
-          margin-right: 4%;
+          margin-bottom: 1%;
+          margin-right: 2%;
      }
      form input{
+          float:right;
           width: 80%;
-          margin-left:18%;
-          padding:7px;
-          margin-top: 5%;
+          padding:2%;
+          margin-top: 1%;
+          margin-right:2%;
      }
+     .signup-container{
+              display: flex;
+              width: 200em;
+          }
+          .signup-box{
+              margin-left: 0;
+              margin-top: 0;
+              margin-bottom: 0;
+              margin-right: 0;
+              padding: 20%;
+          }
      .subject1-input-text{
           display: flex;
           padding: 6px 10px;
@@ -69,39 +82,36 @@
           width: 80%;
           margin-left:11%;
      }
-     @media screen and (min-width:1113px) {
-          body{
-              height: 100%;
-              width:100%;
-          }
-          .signup-container{
-              display: flex;
-              width: 200em;
-          }
-          .signup-box{
-              margin-left: 0;
-              margin-top: 0;
-              margin-bottom: 0;
-              margin-right: 0;
-              padding: 20%;
-          }
-          .subject1-input-text{
-               width:50%;
-          }
-          .subject2-input-text{
-               width:60%;
-               margin-left:4%;
-          }
-          .fir-sec-sub{
-               margin-left: 15.4%;
-          }
 
-      }
+     .subject1-input-text{
+          width:50%;
+     }
+     .subject2-input-text{
+          width:60%;
+          margin-left:4%;
+     }
+     .fir-sec-sub{
+          margin-left: 15.4%;
+     }
+     @media screen and (max-width:1325px) and (min-width:1114px){
+       body{
+            width: 120%;
+            height: 60%;
+            
+       }   
+     }
+       @media screen and (max-width:929px) and (min-width:694px){
+       body{
+            width: 60%;
+            height: 100%;
+            
+       }   
+     }
 </style>
 <form class="register-page" method="POST">
      {{ form.hidden_tag() }}
      {{ form.csrf_token }}
-     <div class = "sign-up-box">
+     <div class = "sign-up-box margin">
           <div class = "sign-up-title" >
                <h3 class = "sign-up-text">  انشاء حساب المعلم</h3>
           </div>
