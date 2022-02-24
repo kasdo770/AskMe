@@ -10,17 +10,124 @@
             width:100%;
         }
         .profile_title{
+        
         color: white;
         background-color: #6B0085;
         padding: fit-content;
+        padding-right: 46%;
+        padding-bottom: 0.5%;
+        
+        }      
+        .profile_name_text{
+        float: right;
+        margin-right: 15%;
+        margin-top: 5%;
+        }
+        .profile_name{
+        float: right;
+        margin-right: 30%;
+        margin-top: 3%;
+        width: max-content;
+        }
+        .comments{
+            float: right;
+        margin-right: -10%;
+        margin-top: 13%;
+        text-align: center;
+        }
+        .question{
+            float: right;
+        margin-right: 2%;
+        margin-top: 13%;
+        text-align: center;
+        }
+        .cntrline{
+            float: right;
+            height: 2px;
+            width: 25%;
+            background-color: #6B0085;
+            padding-left: 7px;
+            padding-right: 7px;
+            margin-top: 17%;
+            margin-right: -20%;
+        }
+        .border{
+            border-color:black;
+            border-style: double;
+        }
+        .profile_std_text{
+            float: right;
+            margin-right: -25%;
+            margin-top: 20%;                   
+        }
+        .email_title{
+            float: right;
+        margin-right: 0%;
+        margin-top: 8%;
+        text-align: center;
+        
+        }
+        .school_text{
+            float: right;
+        margin-right: -25%;
+        margin-top: 26%;
+        text-align: center;
+
+        }
+        .age_text{
+            float: right;
+        margin-right: -25%;
+        margin-top: 28.5%;
+        text-align: center;
+
         }
     </style>
     <div>
-        {{current_user.username}}
-        {{current_user.email}}
-        {{current_user.schooltype}}
-        {{current_user.age}}
-        <h2 class = "profile_title">معلوماتك الشخصية</h2>
+        <h2 dir="rtl" class = "profile_title">ملفك الشخصي</h2>
+        <div>
+            <div class="profile_name_text">
+                <h2>الاسم</h2>
+                <div class="profile_name">
+                    <h5>
+                        {{current_user.username}}
+                    </h5>            
+                </div>
+            </div>
+            <div class="comments">
+                <h4>التعليقات</h4>
+                <!-- the backend thing for the numbers -->
+                <h4>15</h4>
+            </div>
+            <div class="question">
+                <h4>الاسئلة</h4>
+                <!-- the backend thing for the numbers -->
+                <h4>18</h4>
+            </div>
+            <div class="cntrline" ></div>
+        <div>
+            <div  class="profile_std_text">
+                <h2>معلومات طالب</h2>
+                <div class="email_title">
+                    <h5> {{current_user.email}} :الايميل</h5>
+                    </div>
+                </div>
+                <div class="school_text">
+                    <h5> {{current_user.schooltype}} :المدرسة</h5>
+                    </div>
+                </div>
+                <div class="age_text">
+                    <h5> {{current_user.age}} :العمر</h5>
+                    </div>
+                </div>
+            </div>
+        </div>          
+        </div>
+        
+        
+        
+        
+        
+        
     </div>
 {%endblock%}
 

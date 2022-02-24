@@ -146,3 +146,6 @@ def LoginPage():
 def MainPage():
     post = ThePost.query.all()
     return render_template("mainpage.html",post=post,user=current_user)
+@app.route("/profile")
+def ProfilePage():
+    return render_template("profile.html", user = current_user)
