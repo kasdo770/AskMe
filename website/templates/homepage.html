@@ -31,7 +31,6 @@
     .cntrline{
         border-left: 2px solid #6B0085;
         height: 50px;
-    
     }
     
     
@@ -62,9 +61,9 @@
         font-size: 18px;
         background-color: #7f039e;
         color: white;
-        border-color: #7f039e;
+        border:none;
         border-radius: 0.25em;
-        padding: 0.6%;
+        padding: 0.7%;
      }
      #join{
         font-size: 18px;
@@ -89,7 +88,7 @@
         color: #6B0085 ;
         border-color: #6B0085;
         border-radius: 0.25em;
-        padding: 0.6%;
+        padding: 0.5%;
      }
     
      #sign:hover{
@@ -113,7 +112,7 @@
         background-color: #6a0085cb;
     }
     #student:hover{
-        background-color: #cacacacb;
+        background-color: #e6e6e6cb;
     }
     
     #teacher:active{
@@ -123,7 +122,7 @@
         background-color: #5c0272;
     }
     #student:active{
-        background-color: #b166b1;
+        background-color: #c0c0c0cb;
     }
     
     .centerflexbtns{
@@ -186,6 +185,7 @@
         
          #teacher{
             font-size: 14px;
+            padding: 0.95%;
          }
 
          #join{
@@ -208,10 +208,10 @@
          }
 
          .nav #logo{
-            margin-top: -8%;
+            margin-top: -7%;
             color: #9000b5;
             margin-left: 82%;
-            font-size: 35px;
+            font-size: 30px;
             margin-bottom: 16%;
          }
          
@@ -307,13 +307,13 @@
 
         #sign{
             font-size: 18px;
-            padding: 0.6%;
+            padding: 0.5%;
             margin-top: 2%;
          }
         
          #aboutus{
             font-size: 18px;
-            padding: 0.6%;
+            padding: 0.5%;
             margin-top: 2%;
             margin-left: 2%;
          }
@@ -338,22 +338,25 @@
          }
 
          #footer{
-            margin-top: 12%;
-            font-size: 20px;
+            margin-top: 10.8%;
+            font-size: 18px;
          }
 
          .nav #logo{
-            margin-top: -3%;
+            margin-top: -4%;
             color: #9000b5;
-            margin-left: 93%;
+            margin-left: 91%;
             font-size: 43px;
 
          }
          
          .centerparent{
-             margin-top: 6%;
+             margin-top: -3%;
          }
-     
+         
+         #wordundrbtn{
+             font-size: 15px;
+         }
         }
 
     /*ipad Screen*/
@@ -427,7 +430,7 @@
     <div class="nav">
         <button id="sign" onclick="window.location.href = 'http://127.0.0.1:5000/login'"> تسجيل الدخول</button>
         <button id="aboutus" onclick="window.location.href = 'google.com'"> معلومات عنا</button>
-        <h1 id="logo">ffff</h1>
+        <h1 id="logo"><b>اسئلة</b></h1>
     </div>
 </div> 
 
@@ -438,12 +441,12 @@
 <div class="centerparent">
     
     <div class="center">
-        <h1 id="centerh1"> <b> لورم ابسم امك حلوه ابسم لورم ه</b></h1>
-        <h1 id="centerh2"><b>الخاخلهاخسياتهخشسنيتشسهخيتخشسهيتشسخهيشسهخي</b></h1>
-        <p id="centerp">جدا جدا جدا كان عندي 3 تفاحات ونا صغير بس الموقع دا خلاهم 10 عشان دا موقع محزوووز</p>
+        <h1 id="centerh1"> <b>مرحبا بك في موقع اسئلة</b></h1>
+        <h1 id="centerh2"><b>حيث يوجد من يمنحك الاجابة الصحيحة</b></h1>
+        <p id="centerp">في مجتمعنا المتواضع نساعد كل تلميذ علي ايجاد اجابة لكل سؤال يحيره</p>
         {%if current_user.is_authenticated%}
         <div class="centerflexbtns">
-            <button id="join" onclick="window.location.href = 'http://127.0.0.1:5000/mainpage'">انضم لنا</button>
+            <button id="join" onclick="window.location.href = 'http://127.0.0.1:5000/mainpage'">ابدأ الآن</button>
         </div>
         {%else%}
         <div class="centerflexbtns">
@@ -453,10 +456,10 @@
         </div>
         {%endif%}
         
-        <p id="wordundrbtn">خخخخخخخخخخخخخخخخخ هلو</p>
+        <p id="wordundrbtn">نتشرف بانضمامك لنا</p>
     </div>
 </div>
 
-<p id="footer">&copy;بورن هاب</p>
+<p id="footer">&copy; جميع الحقوق محفوظة</p>
 </body>
 {% endblock body %}
