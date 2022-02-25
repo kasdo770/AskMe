@@ -20,14 +20,13 @@
         </div>
             <div class="newquestionh1flex">
                 <h1 id="newquestionh1"><b>الاسئلة الجديدة</b></h1>
-                <div class="cntrline"></div>
                 </div>
                 {%for item in post%}
                 
                 <div class="newq">
                     <h2 class="card_title "> {{item.title}}</h2>
                     {%if current_user.custom_id == item.user.custom_id%}
-                    <h3 class="card_by">بواسطة:انت </h3> 
+                    <h3 class="card_by">بواسطة: انت </h3> 
                     
                     
                     {%else%}
@@ -35,27 +34,36 @@
                     {%endif%}                
                     <h5 class = "subject">{{item.subject}}</h5>   
                     <h6 class="card_answer">{{item.datetime}}</h6>  
+                    <p class="cntrline"><p>
                 </div>
-                {%if current_user.custom_id == item.user.custom_id%}
-                    <button class="button answer">تفحص سؤالك</button>
-                    {%else%}
-                    <button class="button answer">اجب عليه</button>
-                    {%endif%}
-        <div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </div>
-        {%endfor%}
+                                {%if current_user.custom_id == item.user.custom_id%}
+                <button class="button answer">ألقي نظرة</button>
+                {%else%}
+                <button class="button answer">اجب عليه</button>
+                {%endif%}
+                
+                <button class="deleteXedit" id="delete">حذف</button>
+                <button class="deleteXedit" id="edit">تعديل</button>
+
+
+                    <div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+
+                    {%endfor%}
         
         <script>
             function openNav() {
@@ -71,7 +79,7 @@
             body{
                 background-image: linear-gradient(#efd4ffec,#ffffff);
                 font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
-                font-size: 23px;
+                font-size: 15px;
             }
             .update{
                 margin-top:10%;
@@ -82,6 +90,14 @@
             .answer{
                 margin-top:5%;
                 margin-left:15%;
+                margin-bottom: 1%;
+                font-size: 16px;
+                background-color: #7f039e;
+                color: white;
+                border:none;
+                border-radius: 0.25em;
+                padding: 0.5%;
+                float: right;
             }
             #newquestionbtn{
                 margin-top: -2%;
@@ -121,7 +137,7 @@
             .topnav{
                 display: flex;
                 align-items: center;
-                margin-top: 0;
+                margin-top: 2%;
             
             }
             
@@ -136,20 +152,12 @@
               transition: 0.5s;
               padding-top: 60px;
               
-            }
-            .button {
-                font-size: 18px;
-            background-color: #8c05ae;
-            color: white;
-            border-color: #55036a;
-            border-radius: 0.25em;
-            padding: 0.6%;
-            float: right;
-          }
-          .button:hover{
+            }  
+
+            .button:hover{
                 background-color: #6a0085cb;
-          }
-          .button:active {
+            }
+            .button:active {
                 background-color: #5c0272;
             } 
             
@@ -178,10 +186,12 @@
             
             #newquestionh1{              
                 display: flex;
-                font-size: 32px;
+                font-size: 28px;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                margin-top: -1%;
+                margin-bottom: 9%;
 
                 
             }
@@ -191,7 +201,8 @@
                 flex-direction: column;
                 float: right;
                 align-items: center;
-                margin-right: 25%;
+                margin-right: 27%;
+                margin-top: -1.8%;
             }
             .card_title{
                 justify-content: right;
@@ -223,12 +234,112 @@
             
             }
 
+            .cntrline{
+                border-left: 600px solid #6B0085;
+                height: 2px;
+            }
 
-            @media screen and (min-device-width:50px) and (max-device-width:587px) {
+            .deleteXedit{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-left: 75%;
+                background-color: transparent;
+                color: #6B0085 ;
+                border-color: #6B0085;
+                border-radius: 0.25em;
+                padding: 0.3% 0.6% 0.3% 0.6%;
+            }
+
+            #delete{
+                margin-bottom: 3%;
+                margin-top: 0.5%;
+            }
+            
+            
+            .deleteXedit:hover{
+                background-color: #faf6f6;
+            }
+            
+            .deleteXedit:active{
+                background-color: #a700c9;
+            }
+            
+            @media screen and (min-device-width:2560px){
                 body{
-                    font-size: 35px;
+                    font-size: 46px;
                 }
 
+                .deleteXedit{
+                    font-size: 30px;
+                }
+
+                #newquestionh1{
+                    font-size: 60px;
+                }
+
+                .answer{
+                    font-size: 30px;
+                    margin-top: 10%;
+                }
+
+                #newquestionbtn{
+                    font-size: 30px;
+                }
+
+                #logo{
+                    font-size: 50px;
+                }
+            }
+
+            @media screen and (max-device-width:912px){
+                .answer{
+                    margin-right:78.5%;
+                    margin-top: -18%;
+                }
+
+                .deleteXedit{
+                    margin-bottom: -5%;
+                }
+
+            }
+
+            @media screen and (min-device-width:768px) and (max-device-width:1280px){
+                .cntrline{
+                    border-left: 600px solid #6B0085;
+                }
+
+                .logo{
+                    margin-right: 75%;
+                    margin-top: -0.8%;
+                }
+
+            }
+
+            @media screen and (max-device-width:1024px) {
+
+                .cntrline{
+                    border-left: 500px solid #6B0085;
+                }
+
+                .newq{
+                    margin-top: 2%;
+                }
+
+            }
+
+
+
+            @media screen and (min-device-width:50px) and (max-device-width:820px) {
+                body{
+                    font-size: 23px;
+                }
+
+                .answer{
+                    margin-top: -29%;
+                    font-size: 25px;
+                    margin-left: 2%;
+                }
                 .logo{
                     margin-left: 54%;
                     font-size: 60px;
@@ -257,7 +368,7 @@
             
                     font-size: 50px;
                     margin-top: -10%;
-                    margin-bottom: 12%;
+                    margin-bottom: 20%;
                     
                 }
                 .sidenav a{
@@ -269,7 +380,53 @@
 
                 }
 
+                .cntrline{
+                    border-left: 600px solid #6B0085;
+                    height: 2px;
+                }
+                .newq{
+                    margin-top: -4%;
+                    margin-right:15%;
+                }
+
+                .deleteXedit{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-left: 90%;
+                    background-color: transparent;
+                    color: #6B0085 ;
+                    border-color: #6B0085;
+                    border-radius: 0.25em;
+                    padding: 0.3% 0.6% 0.3% 0.6%;
+                    font-size: 25px;
+
+                }
+    
+                #delete{
+                    margin-top: -0.5%;
+                }
+
+
+
             }
+            @media screen and (min-device-width:768px) and (max-device-width:821px){
+                .logo{
+                    margin-left: 64%;
+                }
+                .newq{
+                    margin-right: 12%;
+                }
+                .answer{
+                    font-size: 22px;
+                }
+                .deleteXedit{
+                    font-size: 22px;
+                }
+                
+                
+            }
+
         </style>
 
     </body>
