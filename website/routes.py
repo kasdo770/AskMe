@@ -1,11 +1,9 @@
-from dataclasses import dataclass
-from hashlib import new
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db,login_man
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm
 from website.model import Student , Teacher, ThePost
-import time
+import secrets
 
 
 
@@ -52,18 +50,22 @@ def CreatePostPage():
 @app.route("/register/std", methods = ["POST", "GET"])
 def StudentRegisterPage():
     form = StudentRegisterForm()
-    if form.validate_on_submit():
+    phrase1 = secrets.token_hex(16)  
+    final_answer = str(phrase1)
+    if form.validate_on_submit():   
         new_student = Student(
+           custom_id = final_answer,
            username=form.username.data,
            password = form.password1.data,
            email=form.email.data,
            schooltype=form.schooltype.data,
            age = form.age.data
         )
-        flash(f"تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
+        flash(f" تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
         db.session.add(new_student)
         db.session.commit()
         login_user(new_student, remember=True)
+        current_user.custom_id = final_answer
         return render_template("homepage.html")
     if form.errors != {}:
         for err_msg in form.errors.values():
@@ -77,20 +79,22 @@ def StudentRegisterPage():
 @app.route("/register/tea", methods = ["POST", "GET"])
 def TeacherRegisterPage():
     form = TeacherRegisterForm()
-    print("first")
+    phrase1 = secrets.token_hex(16)  
+    final_answer = str(phrase1)
     if form.validate_on_submit():
-        print("second")
         new_teacher = Teacher(
+           custom_id = final_answer,
            username=form.username.data,
            password = form.password1.data,
            email=form.email.data,
            first_subject=form.first_subject.data,
            second_subject = form.second_subject.data
         )
-        flash(f"تم انشاء حساب معلم جديد باسم {form.username.data}", category="success")
+        flash(f" تم انشاء حساب معلم جديد باسم {form.username.data}", category="success")
         db.session.add(new_teacher)
         db.session.commit()
         login_user(new_teacher, remember=True)
+        current_user.custom_id = final_answer
         return redirect(url_for("HomePage"))
     if form.errors != {}:
         for err_msg in form.errors.values():
@@ -107,22 +111,19 @@ def LoginPage():
     if form.validate_on_submit():
         student_user = Student.query.filter_by(username=form.username.data).first()
         teacher_user = Teacher.query.filter_by(username=form.username.data).first()
-        print("Stop")
         if student_user:
-            print("student")
             if student_user.password_check(thepass=form.password.data):
                 flash(
                     f"تم تسجيل الدخول بنجاح يا  {form.username.data}",
                     category="success",
                 ) 
                 login_user(student_user, remember=True)
-                print("تم تسجيل الدخول ب نجاح")
+                print(current_user.custom_id)
                 return redirect(url_for("HomePage"))
             else:
                 flash("كلمة المرور خاطئا", category="error")
                 
         elif teacher_user:
-            print("student")
             if teacher_user.password_check(thepass=form.password.data):
                 flash(
                     f"تم تسجيل الدخول بنجاح يا  {form.username.data}",
@@ -130,6 +131,7 @@ def LoginPage():
                 )
 
                 login_user(teacher_user, remember=True)
+                print(current_user.custom_id)
                 print("Logged in successfuly")
                 return redirect(url_for("HomePage"))
             else:
@@ -145,9 +147,11 @@ def LoginPage():
 @login_required
 def MainPage():
     post = ThePost.query.all()
+    print(current_user.custom_id)
     return render_template("mainpage.html",post=post,user=current_user)
 
 
 @app.route("/profile")
 def ProfilePage():
+    print(current_user.custom_id)
     return render_template("profile.html", user=current_user)

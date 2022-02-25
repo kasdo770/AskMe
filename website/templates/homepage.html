@@ -497,7 +497,11 @@
 </style>
 <div class="navparent">
     <div class="nav">
+        {%if current_user.is_authenticated%}
+        <button id="sign" onclick="window.location.href = 'http://127.0.0.1:5000/logout'"> تسجيل الخروج</button>
+        {%else%}
         <button id="sign" onclick="window.location.href = 'http://127.0.0.1:5000/login'"> تسجيل الدخول</button>
+        {%endif%}
         <button id="aboutus" onclick="window.location.href = 'google.com'"> معلومات عنا</button>
         <h1 id="logo"><b>اسئلة</b></h1>
     </div>

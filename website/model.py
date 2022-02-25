@@ -1,3 +1,4 @@
+from enum import unique
 from flask_login.login_manager import LoginManager
 from website import db, login_man
 from website import bcrypts
@@ -16,6 +17,7 @@ def load_user(id_user):
 
 class Student(db.Model,UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
+    custom_id = db.Column(db.String(), unique=True)
     username = db.Column(db.String(), nullable=False, unique=True)
     email = db.Column(db.String(), nullable=False)
     password_hash = db.Column(db.String(), nullable=False)
@@ -36,6 +38,7 @@ class Student(db.Model,UserMixin):
 
 class Teacher(db.Model,UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
+    custom_id = db.Column(db.String(), unique=True)
     username = db.Column(db.String(), nullable=False, unique=True)
     email = db.Column(db.String(), nullable=False)
     password_hash = db.Column(db.String(), nullable=False)
