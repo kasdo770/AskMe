@@ -1,5 +1,5 @@
 from flask_login import current_user, login_required, login_user, logout_user
-from website import app,db,login_man
+from website import app,db
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm
 from website.model import Student , Teacher, ThePost

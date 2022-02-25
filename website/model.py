@@ -1,9 +1,7 @@
-from enum import unique
 from flask_login.login_manager import LoginManager
 from website import db, login_man
 from website import bcrypts
 from flask_login import UserMixin
-from datetime import date
 from sqlalchemy.sql import func
 
 @login_man.user_loader
