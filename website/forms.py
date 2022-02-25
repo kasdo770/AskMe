@@ -132,3 +132,13 @@ class PostForm(FlaskForm):
      ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] )
     create = SubmitField(label="انشاء")
     cancel = SubmitField(label="اغلاق")
+
+
+
+class UpdatePostForm(FlaskForm):
+    description = TextAreaField(label="الموضوع" )
+    subject = SelectField(label="نوع المادة", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
+    ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
+     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] )
+    crt = SubmitField(label="تحديث")
+    cal = SubmitField(label="اغلاق")

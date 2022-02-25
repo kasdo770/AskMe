@@ -1,7 +1,8 @@
+from django.shortcuts import render
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db
 from flask import render_template, url_for, redirect,flash
-from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm
+from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm
 from website.model import Student , Teacher, ThePost
 import secrets
 
@@ -27,33 +28,7 @@ def Logout():
 def HomePage():
     return render_template("homepage.html")
 
-@app.route("/create/post", methods=["POST", "GET"])
-@login_required
-def CreatePostPage():
-    form = PostForm()
-    if form.validate_on_submit():
-        if form.create.data:
-            new_post = ThePost(
-                title=form.title.data,
-                description=form.description.data,
-                subject = form.subject.data,
-                author = current_user.id
-            )
-            db.session.add(new_post)
-            db.session.commit()
-            flash("لقد تم انشاء سؤال بنجاح", category="success")
-            return redirect(url_for("MainPage"))
 
-        elif form.cancel.data:
-            return redirect(url_for("MainPage"))
-
-    if form.errors != {}:
-        for err_msg in form.errors.values():
-            flash(
-                f"هنالك مشكلة في :  {err_msg}", category="error"
-            )
-
-    return render_template("CreatePost.html", form=form)
 
 @app.route("/register/std", methods = ["POST", "GET"])
 def StudentRegisterPage():
@@ -150,6 +125,10 @@ def LoginPage():
 
     return render_template("Login.html", form=form)
 
+@app.route("/profile")
+def ProfilePage():
+    print(current_user.custom_id)
+    return render_template("profile.html", user=current_user)
 
 @app.route("/mainpage", methods=["GET"])
 @login_required
@@ -157,8 +136,98 @@ def MainPage():
     post = ThePost.query.all()
     return render_template("mainpage.html",post=post)
 
+@app.route("/create/post", methods=["POST", "GET"])
+@login_required
+def CreatePostPage():
+    form = PostForm()
+    if form.validate_on_submit():
+        if form.create.data:
+            new_post = ThePost(
+                title=form.title.data,
+                description=form.description.data,
+                subject = form.subject.data,
+                update_description = "",
+                author = current_user.id
+            )
+            db.session.add(new_post)
+            db.session.commit()
+            flash("لقد تم انشاء سؤال بنجاح", category="success")
+            return redirect(url_for("MainPage"))
 
-@app.route("/profile")
-def ProfilePage():
-    print(current_user.custom_id)
-    return render_template("profile.html", user=current_user)
+        elif form.cancel.data:
+            return redirect(url_for("MainPage"))
+
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(
+                f"هنالك مشكلة في :  {err_msg}", category="error"
+            )
+
+    return render_template("CreatePost.html", form=form)
+
+
+
+
+@app.route("/delete-post/<id>")
+def Delete_Post(id):
+    post = ThePost.query.filter_by(id=id).first()
+    if not post:
+
+        flash("هذا السؤال غير موجود من قبل", category="error")
+
+    elif current_user.id != post.user.id:
+        flash("انت لست صاحب السؤال . لا تملك صلاحية لحذفه", category="error")
+    else:
+        db.session.delete(post)
+        db.session.commit()
+        flash("لقد تم مسح السؤال بنجاح" , category="success")
+
+    return redirect(url_for("MainPage"))
+
+
+
+
+@app.route("/view-post/<id>")
+def View_Post(id):
+    post = ThePost.query.filter_by(id=id).first()
+    if not post:
+        flash("هذا السؤال غير موجود من قبل", category="error")
+        return redirect(url_for("MainPage"))
+    else:
+        return render_template("ViewPost.html", post=post)
+
+
+
+
+@app.route("/update-post/<id>", methods=["POST", "GET"])
+def Update_Post(id):
+    filled = False
+    post = ThePost.query.filter_by(id=id).first()
+    form = UpdatePostForm()
+    if not post:
+        flash("هذا السؤال غير موجود من قبل", category="error")
+        return redirect(url_for("MainPage"))
+    else:
+        if form.validate_on_submit():
+            if form.cal.data:
+                return redirect(url_for("MainPage"))
+            if form.crt.data:
+                post.update_description = ""
+                db.session.commit()
+                updated_post = ThePost(
+                    id = post.id,
+                    title= post.title,
+                    description= post.description,
+                    update_description = form.description.data,
+                    subject = form.subject.data,
+                    author = current_user.id
+                )
+                db.session.delete(post)
+                db.session.merge(updated_post)
+                db.session.commit()
+                flash("لقد تم تحديث سؤال بنجاح", category="success")
+                return redirect(url_for("MainPage"))
+
+    return render_template("UpdatePost.html", form=form , filled=filled)
+
+        

@@ -31,14 +31,6 @@
         display: flex;
         justify-content: center;
       }
-      .alert {
-        font-size: fit-content;
-          width: fit-content;
-         background-color: var(--alert-button-color);
-         opacity: 90%;
-         color: white;
-         
-       }
        .succes{
         width: fit-content;
          background-color: var(--success-button-color);
@@ -74,8 +66,7 @@
                 {{message}}
               </div>
             </div>
-
-          {% elif category =='error' %}
+            {% elif category =='error' %}
             <div class="flash-container">
              <div dir="rtl" class="alert">
                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -90,7 +81,7 @@
             </div>
           </div>
  
-          {% endif %}{% endfor %} {% endif %} {% endwith %}
+         {% endif %} {% endfor %} {% endif %} {% endwith %}
     <style>
           a {
           font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

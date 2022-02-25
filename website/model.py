@@ -61,6 +61,7 @@ class ThePost(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
+    update_description = db.Column(db.String())
     subject = db.Column(db.String())
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer(), db.ForeignKey("student.id",ondelete="CASCADE"))
