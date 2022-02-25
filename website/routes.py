@@ -45,7 +45,7 @@ def CreatePostPage():
             return redirect(url_for("MainPage"))
 
         elif form.cancel.data:
-            return render_template("mainpage.html")
+            return redirect(url_for("MainPage"))
 
     if form.errors != {}:
         for err_msg in form.errors.values():

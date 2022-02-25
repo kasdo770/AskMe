@@ -125,8 +125,8 @@ class PostForm(FlaskForm):
 
 
 
-    title = StringField(label="العنوان")
-    description = TextAreaField(label="الموضوع")
+    title = StringField(label="العنوان", validators=[Length(max=55)])
+    description = TextAreaField(label="الموضوع" )
     subject = SelectField(label="نوع المادة", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
     ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
      ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] )
