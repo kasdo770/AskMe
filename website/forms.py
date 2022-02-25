@@ -1,7 +1,9 @@
-from tokenize import String
+from unicodedata import category
 from wtforms import StringField, PasswordField, EmailField, SelectField,SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf import FlaskForm
+from website.model import Student, Teacher
+from flask import flash
 
 
 class LoginForm(FlaskForm):
@@ -17,6 +19,23 @@ class LoginForm(FlaskForm):
 
 
 class StudentRegisterForm(FlaskForm):
+    def validate_username(self, username_to_check):
+        student = Student.query.filter_by(username=username_to_check.data).first()
+        teacher = Teacher.query.filter_by(username=username_to_check.data).first()
+        if student:
+            raise ValidationError('هذا الاسم استخدم من قبل  . يرجي تغيير هذا الاسم ')
+        elif teacher:
+            raise ValidationError('هذا الاسم استخدم من قبل  . يرجي تغيير هذا الاسم ')
+
+    def validate_email_address(self, email_to_check):
+        student = Student.query.filter_by(email=email_to_check.data).first()
+        teacher = Teacher.query.filter_by(username=email_to_check.data).first()
+        if student:
+            raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الاسم ')
+        elif teacher:
+            raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الاسم ')
+
+    
     username = StringField(
         label="الاسم", validators=[Length(min=6, max=40), DataRequired()]
     )
@@ -40,6 +59,23 @@ class StudentRegisterForm(FlaskForm):
 
 
 class TeacherRegisterForm(FlaskForm):
+    def validate_username(self, username_to_check):
+        student = Student.query.filter_by(username=username_to_check.data).first()
+        teacher = Teacher.query.filter_by(username=username_to_check.data).first()
+        if student:
+            raise ValidationError('هذا الاسم استخدم من قبل. يرجي تغيير هذا الاسم ')
+        elif teacher:
+            raise ValidationError('هذا الاسم استخدم من قبل. يرجي تغيير هذا الاسم ')
+
+    def validate_email_address(self, email_to_check):
+        student = Student.query.filter_by(email=email_to_check.data).first()
+        teacher = Teacher.query.filter_by(username=email_to_check.data).first()
+        if student:
+            raise ValidationError('هذا الايميل استخدم من قبل. يرجي تغيير هذا الاسم ')
+        elif teacher:
+            raise ValidationError('هذا الايميل استخدم من قبل. يرجي تغيير هذا الاسم ')
+
+
     username = StringField(
         label="الاسم", validators=[Length(min=6, max=40), DataRequired()]
     )
