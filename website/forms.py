@@ -2,7 +2,6 @@ from wtforms import StringField, PasswordField, EmailField, SelectField,SubmitFi
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf import FlaskForm
 from website.model import Student, Teacher
-from flask import flash
 
 
 class LoginForm(FlaskForm):
@@ -26,14 +25,17 @@ class StudentRegisterForm(FlaskForm):
         elif teacher:
             raise ValidationError('هذا الاسم استخدم من قبل  . يرجي تغيير هذا الاسم ')
 
-    def validate_email_address(self, email_to_check):
+    def validate_email(self, email_to_check):
         student = Student.query.filter_by(email=email_to_check.data).first()
-        teacher = Teacher.query.filter_by(username=email_to_check.data).first()
+        teacher = Teacher.query.filter_by(email=email_to_check.data).first()
         if student:
             raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الاسم ')
         elif teacher:
             raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الاسم ')
-
+    
+    def validate_password2(self, password2_to_check):
+        if password2_to_check.data != self.password1.data :
+            raise ValidationError("يجب ان يكون كلمة المرور و تاكيد كلمة المرور متساويان")
     
     username = StringField(
         label="الاسم", validators=[Length(min=6, max=40), DataRequired()]
@@ -42,10 +44,10 @@ class StudentRegisterForm(FlaskForm):
         label="كلمة السر", validators=[Length(min=6), DataRequired()]
     )
     password2 = PasswordField(
-        label="تاكيد كلمة السر", validators=[EqualTo("password1"), DataRequired()]
+        label="تاكيد كلمة السر", validators=[DataRequired()]
     )
     email = EmailField(
-        label="الايميل الاكتروني", validators=[Email(), DataRequired(), Length(min=8)]
+        label="الايميل الاكتروني", validators=[DataRequired(), Length(min=8)]
     )
     schooltype = SelectField(label='اختار نوع مدرستك', choices=[('international', 'عالمية'), ('private', 'خاص'), ('public', 'عام'),
     ("language","لغات")])
@@ -59,33 +61,41 @@ class StudentRegisterForm(FlaskForm):
 
 class TeacherRegisterForm(FlaskForm):
     def validate_username(self, username_to_check):
-        student = Student.query.filter_by(username=username_to_check.data).first()
-        teacher = Teacher.query.filter_by(username=username_to_check.data).first()
-        if student:
+        student_name = Student.query.filter_by(username=username_to_check.data).first()
+        teacher_name = Teacher.query.filter_by(username=username_to_check.data).first()
+        if student_name:
             raise ValidationError('هذا الاسم استخدم من قبل. يرجي تغيير هذا الاسم ')
-        elif teacher:
+        elif teacher_name:
             raise ValidationError('هذا الاسم استخدم من قبل. يرجي تغيير هذا الاسم ')
 
-    def validate_email_address(self, email_to_check):
-        student = Student.query.filter_by(email=email_to_check.data).first()
-        teacher = Teacher.query.filter_by(username=email_to_check.data).first()
-        if student:
-            raise ValidationError('هذا الايميل استخدم من قبل. يرجي تغيير هذا الاسم ')
-        elif teacher:
-            raise ValidationError('هذا الايميل استخدم من قبل. يرجي تغيير هذا الاسم ')
+    def validate_email(self, email_to_check):
+        student_email = Student.query.filter_by(email=email_to_check.data).first()
+        teacher_email = Teacher.query.filter_by(email=email_to_check.data).first()
+        if student_email:
+            raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الاسم ')
+        elif teacher_email:
+            raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الاسم ')
+
+
+    
+    def validate_password2(self, password2_to_check):
+        if password2_to_check.data != self.password1.data :
+            raise ValidationError("يجب ان يكون كلمة المرور و تاكيد كلمة المرور متساويان")
+    
+
 
 
     username = StringField(
         label="الاسم", validators=[Length(min=6, max=40), DataRequired()]
     )
     email = EmailField(
-        label="الايميل الاكتروني", validators=[Email(), DataRequired(), Length(min=8)]
+        label="الايميل الاكتروني", validators=[DataRequired(), Length(min=8)]
     )
     password1 = PasswordField(
         label="كلمة السر", validators=[Length(min=6), DataRequired()]
     )
     password2 = PasswordField(
-        label="تاكيد كلمة السر", validators=[EqualTo("password1"), DataRequired()]
+        label="تاكيد كلمة السر", validators=[DataRequired()]
     )
     
     first_subject = SelectField(
