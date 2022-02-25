@@ -59,8 +59,8 @@ class Teacher(db.Model,UserMixin):
 
 class ThePost(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    title = db.Column(db.String(), nullable = False)
-    description = db.Column(db.String() , nullable = False)
-    subject = db.Column(db.String(), nullable=False)
+    title = db.Column(db.String(), nullable=False)
+    description = db.Column(db.String(), nullable=False)
+    subject = db.Column(db.String())
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
-    author = db.Column(db.Integer(), db.ForeignKey("student.id",ondelete="CASCADE"), nullable=False)
+    author = db.Column(db.Integer(), db.ForeignKey("student.id",ondelete="CASCADE"))

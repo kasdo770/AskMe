@@ -74,6 +74,14 @@
                 {{message}}
               </div>
             </div>
+
+          {% elif category =='error' %}
+            <div class="flash-container">
+             <div dir="rtl" class="alert">
+               <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+               {{message}}
+             </div>
+           </div>
          {%else%}
          <div class="flash-container">
           <div dir="rtl" class="Info">

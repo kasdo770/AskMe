@@ -43,8 +43,16 @@ def CreatePostPage():
             db.session.commit()
             flash("لقد تم انشاء سؤال بنجاح", category="success")
             return redirect(url_for("MainPage"))
+
         elif form.cancel.data:
-            return redirect(url_for("MainPage"))
+            return render_template("mainpage.html")
+
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(
+                f"هنالك مشكلة في :  {err_msg}", category="error"
+            )
+
     return render_template("CreatePost.html", form=form)
 
 @app.route("/register/std", methods = ["POST", "GET"])

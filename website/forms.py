@@ -1,5 +1,5 @@
 from wtforms import StringField, PasswordField, EmailField, SelectField,SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
 from flask_wtf import FlaskForm
 from website.model import Student, Teacher
 
@@ -113,10 +113,22 @@ class TeacherRegisterForm(FlaskForm):
     )
 
 class PostForm(FlaskForm):
-    title = StringField(label="العنوان", validators=[Length(min=8 , max=100), DataRequired()])
-    description = TextAreaField(label="الموضوع", validators=[Length(min=14), DataRequired()])
+    def validate_title(self, title_to_check):
+        if self.create.data:
+            if len(str(title_to_check.data)) < 6:
+                raise ValidationError("لا يمكن انشاء سؤال ب عنوان اقل من ستة حروف")
+
+    def validate_description(self, description_to_check):
+        if self.create.data:
+            if len(str(description_to_check.data)) < 20:
+                raise ValidationError("لا يمكن انشاء سؤال بعلوملات غير كافية ف الموضوع")
+
+
+
+    title = StringField(label="العنوان")
+    description = TextAreaField(label="الموضوع")
     subject = SelectField(label="نوع المادة", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
     ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
-     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] , validators=[DataRequired()] )
+     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] )
     create = SubmitField(label="انشاء")
     cancel = SubmitField(label="اغلاق")
