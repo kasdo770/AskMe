@@ -155,8 +155,7 @@ def LoginPage():
 @login_required
 def MainPage():
     post = ThePost.query.all()
-    print(current_user.custom_id)
-    return render_template("mainpage.html",post=post,user=current_user)
+    return render_template("mainpage.html",post=post)
 
 
 @app.route("/profile")

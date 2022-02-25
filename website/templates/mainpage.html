@@ -22,15 +22,24 @@
             <h1 id="newquestionh1"><b>الاسئلة الجديدة</b></h1>
             <div class="cntrline"></div>
             </div>
+            {%for item in post%}
+           
             <div class="newq">
-                <h2 class="card_title">كيف احل 1+1</h2>
-                <h3 class="card_by">بواسطة: احمد سأل من ساعة </h3>           
-                <h3 class="card_answer">لا احد جاوب</h3>
-                <h4 class = "subject">رياضيات</h4>     
+                <h2 class="card_title"> {{item.title}}</h2>
+                {%if current_user.custom_id == item.user.custom_id%}
+                <h3 class="card_by">بواسطة:انت</h3>  
+                {%else%}
+                <h3 class="card_by">بواسطة:{{item.user.username}} </h3>          
+                {%endif%}     
+                <h3 class="card_answer">{{item.date}}</h3>
+                <h4 class = "subject">{{item.subject}}</h4>     
                 
             </div>
         
         <br>
+            
+            {%endfor%}
+
         <script>
             function openNav() {
             document.getElementById("sidenavv").style.width = "280px";
@@ -222,16 +231,6 @@
 
             }
         </style>
-        <div>
-            {%for item in post%}
-            {{item.title}}
-            {{item.date}}
-            {{item.subject}}
-            {%endfor%}
-        </div>
-        
-            
-          
 
     </body>
 </html>
