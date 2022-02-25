@@ -119,4 +119,4 @@ class PostForm(FlaskForm):
     ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
      ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] , validators=[DataRequired()] )
     create = SubmitField(label="انشاء")
-    cancel = SubmitField(label="حذف")
+    cancel = SubmitField(label="اغلاق")
