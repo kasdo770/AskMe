@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db
 from flask import render_template, url_for, redirect,flash

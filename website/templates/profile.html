@@ -81,6 +81,42 @@
         text-align: center;
 
         }
+        .newq{
+                display: flex;
+                flex-direction: column;
+                float: right;
+                align-items: center;
+                margin-right: 25%;
+            }
+            .card_title{
+                justify-content: right;
+                align-self: flex-end;
+                font-weight: bold;
+            }
+            .card_answer{
+                margin-top: 0%;
+                justify-content: right;
+                align-self: flex-end;
+                font-weight: bold;
+            }
+            .card_by{
+                margin-top: 0%;
+                justify-content: right;
+                align-self: flex-end;
+                font-weight: bold;
+
+            }
+            .subject{
+                background-color: #9149a4;
+                color:white;
+                margin-top: 0%;
+                padding: 1.5%;
+                justify-content: right;
+                align-self: flex-end;
+                font-weight: bold;
+                border-radius: 0.25em;
+
+            }
     </style>
     <div>
         <h2 dir="rtl" class = "profile_title">ملفك الشخصي</h2>
@@ -122,6 +158,14 @@
             </div>
         </div>          
         </div>
+        <div class="newq">
+            <h2 class="card_title "> </h2>
+            <h3 class="card_by">بواسطة: انت </h3> 
+            <h5 class = "subject">{{item.user.username}}</h5>
+            <h6 class="card_answer"></h6>
+
+        </div> 
+
         
         
         
