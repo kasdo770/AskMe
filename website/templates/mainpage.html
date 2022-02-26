@@ -36,15 +36,15 @@
                     <h6 class="card_answer">{{item.datetime}}</h6>  
                     <p class="cntrline"><p>
                 </div>
-                                {%if current_user.custom_id == item.user.custom_id%}
-                <button class="button answer">ألقي نظرة</button>
+                {%if current_user.custom_id == item.user.custom_id%}
+                <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="button answer">ألقي نظرة</button>
                 {%else%}
-                <button class="button answer">اجب عليه</button>
+                <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="button answer">اجب عليه</button>
                 {%endif%}
-                
-                <button class="deleteXedit" id="delete">حذف</button>
-                <button class="deleteXedit" id="edit">تعديل</button>
-
+                {%if current_user.custom_id == item.user.custom_id%}
+                <button onclick="window.location.href = 'http://127.0.0.1:5000/delete-post/{{item.id}}'" class="deleteXedit" id="delete">حذف</button>
+                <button onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" class="deleteXedit" id="edit">تعديل</button>
+                {%endif%}
 
                     <div>
                         <br>
