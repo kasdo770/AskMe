@@ -12,4 +12,5 @@ bcrypts = Bcrypt(app)
 
 login_man = LoginManager(app)
 login_man.login_view = "/home"
+login_man.login_message = "لا يمكنك الدخول بدون تسجيل الدخول"
 from website import routes
