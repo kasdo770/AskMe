@@ -106,9 +106,9 @@
                     {%if item.title|length < 45 %}
                     <h2 class="card_title "> {{item.title}}</h2>
                     {%elif item.title|length < 65 and item.title|length > 45 %}
-                    <h3 class="card_title "> {{item.title}}</h3>
-                    {%elif item.title|length < 85 and item.title|length > 65 %}
                     <h4 class="card_title "> {{item.title}}</h4>
+                    {%elif item.title|length < 70 and item.title|length > 65 %}
+                    <h5 class="card_title "> {{item.title}}</h5>
                     {%endif%}
                     {%if current_user.id == item.user.id%}
                     <h3 class="card_by">بواسطة: انت </h3> 
