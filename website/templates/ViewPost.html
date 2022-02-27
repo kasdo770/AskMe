@@ -3,7 +3,61 @@
 البوست
 {%endblock%}
 {%block body%}
-<h1>{{post.user.username}}</h1>
-<h2>{{post.title}}</h2>
-<h4>{{post.description}}</h4>
+<style>
+.vp-box{
+            margin-left: 33%;
+            width: 35%;
+            margin-top: 3%;
+            background-color: #ffffff;
+            box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.2), 0 5px 12px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 2%;
+            padding-bottom: 25%;
+   
+}
+.vb-text{      
+            padding:2%;
+            font-weight:bold;
+            color: white;
+            font:bold;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-right: 30%;
+
+} 
+.vb-title{
+            background-color: #6B0085;
+            border-radius: 13px;  
+            padding: -1%;
+            
+}
+.vb-body{
+    color: black;
+    margin-right: 8%;
+    margin-top: 5%;
+}
+.vb-by{
+            font-weight: bold;
+            padding: 6px 10px;
+            box-sizing: border-box;
+            font-size: 100%;
+            
+}
+.vb-description{
+             font-weight: bold;
+            padding: 6px 10px;
+            box-sizing: border-box;
+}
+
+</style>
+<div class="vp-box">
+        <div class="vb-title">
+            <h2 dir="rtl" class = "vb-text">{{post.title}}</h2>
+        </div> 
+        <div class="vb-body">
+            <h5 dir="rtl" class="vb-by">بواسطة : {{post.user.username}}</h5>
+            <h5 dir="rtl" class="vb-description">الوصف : <br> {{post.description}}</h5>
+            <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png">
+        </div>
+
+</div>
+
 {%endblock%}
