@@ -1,11 +1,37 @@
+from asyncio.windows_events import NULL
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm
 from website.model import User , ThePost
-import secrets
 
+eng_subject = {
+        "احياء":"biology",
+        "كيمياء":"chemistry",
+        "عربي":"arabic",
+        "انجليزي":"english",
+        "فرنسي":"french",
+        "ايطالي":"italy",
+        "فلسف":"physiologist",
+        "تاريخ":"history",
+        "جفراقيا":"geography",
+        "رياض":"math",
+    }
 
+def Search_Bar(text):
+    subjects = ['فيزياء ', 'كيمياء', 'احياء',
+    "عربي", "انجليزي", "فرنسي", "ايطالي",
+    "فلسف", "جفراقيا", "تاريخ", "رياض"]
+
+    for item in subjects:
+        if item in text:
+            post = ThePost.query.filter_by(eng_subject.get(item))
+
+        else:
+            post = ""
+
+        result = result + " " + post 
+    return result   
 
 #temporay function
 @app.route("/ct")
@@ -33,6 +59,8 @@ def HomePage():
 def StudentRegisterPage():
     form = StudentRegisterForm()  
     if form.validate_on_submit():   
+        if current_user:
+            logout_user()
         new_student = User(
            username=form.username.data,
            password = form.password1.data,
@@ -60,6 +88,8 @@ def TeacherRegisterPage():
     print(current_user)
     form = TeacherRegisterForm()
     if form.validate_on_submit():
+        if current_user:
+            logout_user()
         new_teacher = User(
            username=form.username.data,
            password = form.password1.data,
@@ -87,6 +117,8 @@ def LoginPage():
     print(current_user)
     form = LoginForm()
     if form.validate_on_submit():
+        if current_user:
+            logout_user()
         user = User.query.filter_by(username=form.username.data).first()
         if user.kind =="student":
             if user.password_check(thepass=form.password.data):
@@ -128,38 +160,40 @@ def ProfilePage():
 @login_required
 def MainPage():
     user = User.query.filter_by(id=current_user.id).first()
-    first_subject_post = ""
-    post=""
-    if user.kind == "teacher":
-        print("gg")
-        first_subject_post = ThePost.query.filter_by(subject=user.first_subject).first()
-        post=""
-    elif user.kind == "student":
-        print("ss")
+    second_post = ""
+    post = ""
+    if user.first_subject is None:
         post = ThePost.query.all()
-        first_subject_post = ""
-    return render_template("mainpage.html",teacher=user,post=post,first_subject_post=first_subject_post)
+    elif user.first_subject is not None:
+        post = ThePost.query.filter_by(subject=user.first_subject)
+        if user.second_subject != "none":
+            second_post = ThePost.query.filter_by(subject=user.second_subject)
+    return render_template("mainpage.html",teacher=user,post=post,second_post=second_post)
 
 @app.route("/create/post", methods=["POST", "GET"])
 @login_required
 def CreatePostPage():
-    form = PostForm()
-    if form.validate_on_submit():
-        if form.create.data:
-            new_post = ThePost(
-                title=form.title.data,
-                description=form.description.data,
-                subject = form.subject.data,
-                update_description = "",
-                author = current_user.id
-            )
-            db.session.add(new_post)
-            db.session.commit()
-            flash("لقد تم انشاء سؤال بنجاح", category="success")
-            return redirect(url_for("MainPage"))
+    if current_user.kind == "student":
+        form = PostForm()
+        if form.validate_on_submit():
+            if form.create.data:
+                new_post = ThePost(
+                    title=form.title.data,
+                    description=form.description.data,
+                    subject = form.subject.data,
+                    update_description = "",
+                    author = current_user.id
+                )
+                db.session.add(new_post)
+                db.session.commit()
+                flash("لقد تم انشاء سؤال بنجاح", category="success")
+                return redirect(url_for("MainPage"))
 
-        elif form.cancel.data:
-            return redirect(url_for("MainPage"))
+            elif form.cancel.data:
+                return redirect(url_for("MainPage"))
+    elif current_user.kind == "teacher":
+        flash("لا يمكنك انشاء سؤال ب حساب معلم",category="error")
+        return redirect(url_for("MainPage"))
 
     if form.errors != {}:
         for err_msg in form.errors.values():

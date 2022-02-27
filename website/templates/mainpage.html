@@ -5,7 +5,83 @@
     </head>
 
     <body>
-     
+        <style> 
+
+            :root{
+              --first-background-gradient:#f5e6ff;
+              --last-background-gradient:#fff;
+              --header:#000;
+              --header-text:#1C1C1C;
+              --footer:#2D2D2D;
+              --button-color:#6B0085;
+              --button-color-hover:#6a0085cb;
+              --button-color-active:#5c0272;
+              --alert-button-color:#ed4337;
+              --success-button-color:#53A653;
+              --info-button-color:#b39800;
+            }
+                /* _______________________________________Error Button_____________________________________________ */
+            .flash-container{
+              display: flex;
+              justify-content: center;
+            }
+             .succes{
+              width: fit-content;
+               background-color: #53A653;
+               opacity: 90%;
+               color: white;
+             }
+             .Info{
+              width: fit-content;
+               background-color: #b39800;
+               opacity: 90%;
+               color: white;
+             }
+             .alert{
+                width: fit-content;
+               background-color: #ed4337;
+               opacity: 90%;
+               color: white;
+             }
+             .closebtn {
+               margin-left: 15px;
+               color: white;
+               font-weight: bold;
+               float: right;
+               font-size: 22px;
+               line-height: 20px;
+               cursor: pointer;
+               transition: 0.3s;
+             }
+             .closebtn:hover {
+               color: black;
+             }
+             </style>
+             {% with messages = get_flashed_messages(with_categories=true) %} {% if
+               messages %} {% for category, message in messages %}
+               {% if category =='success' %}
+                   <div class="flash-container">
+                    <div dir="rtl" class="succes">
+                      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                      {{message}}
+                    </div>
+                  </div>
+                  {% elif category =='error' %}
+                  <div class="flash-container">
+                   <div dir="rtl" class="alert">
+                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                     {{message}}
+                   </div>
+                 </div>
+               {%else%}
+               <div class="flash-container">
+                <div dir="rtl" class="Info">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {{message}}
+                  </div>
+                </div>
+       
+               {% endif %} {% endfor %} {% endif %} {% endwith %}
         <div id="sidenavv" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#">About</a>
@@ -13,7 +89,10 @@
 
         <div class="topnav">
             <span id="menubutton" onclick="openNav()">&#9776;</span>
+
+            {% if current_user.kind == "student"%}
             <button id="newquestionbtn" onclick="window.location.href ='http://127.0.0.1:5000/create/post'">سؤال جديد</button>
+            {%endif%}
             <div class="logo">
                 <p id="logo">ffff</p>
             </div>
@@ -25,7 +104,7 @@
                 
                 <div class="newq">
                     <h2 class="card_title "> {{item.title}}</h2>
-                    {%if current_user.custom_id == item.user.custom_id%}
+                    {%if current_user.id == item.user.id%}
                     <h3 class="card_by">بواسطة: انت </h3> 
                     
                     
@@ -37,13 +116,13 @@
                     <p class="cntrline"><p>
 
                         <div class="newqbtns">
-                    {%if current_user.custom_id == item.user.custom_id%}
+                    {%if current_user.id == item.user.id%}
                     <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="deleteXeditXanswer" id="answer">ألقي نظرة</button>
                     {%else%}
                     <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="deleteXeditXanswer" id="answer">اجب عليه</button>
                     {%endif%}
 
-                    {%if current_user.custom_id == item.user.custom_id%}
+                    {%if current_user.id == item.user.d%}
                     <button onclick="window.location.href = 'http://127.0.0.1:5000/delete-post/{{item.id}}'" class="deleteXeditXanswer" id="delete">حذف</button>
                     <button onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" class="deleteXeditXanswer" id="edit">تعديل</button>
                     {%endif%}
@@ -69,6 +148,57 @@
                     </div>
 
                     {%endfor%}
+                    {%for item in second_post%}
+                
+                <div class="newq">
+                    <h2 class="card_title "> {{item.title}}</h2>
+                    {%if current_user.id == item.user.id%}
+                    <h3 class="card_by">بواسطة: انت </h3> 
+                    
+                    
+                    {%else%}
+                    <h3 class="card_by">بواسطة:{{item.user.username}} </h3>          
+                    {%endif%}                
+                    <h5 class = "subject">{{item.subject}}</h5>     
+                    <h6 class="card_answer">{{item.datetime}}</h6>   
+                    <p class="cntrline"><p>
+
+                        <div class="newqbtns">
+                    {%if current_user.id == item.user.id%}
+                    <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="deleteXeditXanswer" id="answer">ألقي نظرة</button>
+                    {%else%}
+                    <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="deleteXeditXanswer" id="answer">اجب عليه</button>
+                    {%endif%}
+
+                    {%if current_user.id == item.user.d%}
+                    <button onclick="window.location.href = 'http://127.0.0.1:5000/delete-post/{{item.id}}'" class="deleteXeditXanswer" id="delete">حذف</button>
+                    <button onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" class="deleteXeditXanswer" id="edit">تعديل</button>
+                    {%endif%}
+                         </div>
+                    
+                </div>
+
+                    <div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+
+                    {%endfor%}
+
+
+
         
         <script>
             function openNav() {
