@@ -122,6 +122,8 @@ def LoginPage():
 def ProfilePage():
     return render_template("profile.html", user=current_user)
 
+
+
 @app.route("/mainpage", methods=["POST","GET"])
 @login_required
 def MainPage():
