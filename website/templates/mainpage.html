@@ -84,7 +84,30 @@
                {% endif %} {% endfor %} {% endif %} {% endwith %}
         <div id="sidenavv" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">About</a>
+
+            <a href="#" id="profile">بروفايلك</a>
+            <a href="#" id="support">الدعم</a>
+            <a href="javascript:void(0)" class="open_filter" onclick="openfilter()">نوع الاسئلة</a>
+            
+            <select class="subject_input" id="filter" name="filter">
+                <div class="options">
+                <option value="physics" id="physics">فيزياء</option>
+                <option value="chemistry">كيمياء</option>
+                <option value="biology">احياء</option>
+                <option value="arabic">الغة العربية</option>
+                <option value="english">الغةالانجليزية</option>
+                <option value="french">الغة الفرنسية</option>
+                <option value="italic">الغة الايطالية </option>
+                <option value="philosophy">فلسفة</option>
+                <option value="geography">الجغرافيا</option>
+                <option value="history">التاريخ</option>
+                <option value="math">رياضيات</option>
+                <option value="math">الاكثر اعجابا</option>
+                </div>
+            </select>
+            
+
+
         </div>
 
         <div class="topnav">
@@ -206,12 +229,20 @@
         
         <script>
             function openNav() {
-            document.getElementById("sidenavv").style.width = "220px";
+            document.getElementById("sidenavv").style.width = "250px";
             }
-            
+
             function closeNav() {
-            document.getElementById("sidenavv").style.width = "0";
-            }
+                document.getElementById("sidenavv").style.width = "0";
+                }
+
+            function openfilter() {
+                document.getElementById("filter").style.display ='block';
+                }
+
+
+
+
         </script>
 
         <style>
@@ -219,6 +250,15 @@
                 background-image: linear-gradient(#efd4ffec,#ffffff);
                 font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
                 font-size: 18px;
+            }
+
+            #filter{
+                font-size: 24px;
+                width: 50%;
+                margin-left: 12%;
+                border-radius: 0.25em;
+                margin-top: 10%;
+                display: none;
             }
 
             #newquestionbtn{
@@ -558,7 +598,18 @@
 
             @media screen and (min-device-width:50px) and (max-device-width:820px) {
                 body{
-                    font-size: 27px;
+                    font-size: 21px;
+                }
+
+
+                #filter{
+                    font-size: 30px;
+                    margin-top: 30%;
+                }
+                #physics{
+                    font-size: 18px;
+                    width:50%;
+                    
                 }
 
                 .answer{
@@ -599,11 +650,14 @@
                     
                 }
                 .sidenav a{
-                    font-size: 45px;
+                    font-size: 40px;
+                    margin-top: 30%;
+
                 }
                 .sidenav .closebtn{
 
-                    font-size: 50px;
+                    font-size: 45px;
+                    margin-top: 20%;
 
                 }
 
