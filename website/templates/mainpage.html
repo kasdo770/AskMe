@@ -32,19 +32,24 @@
                     {%else%}
                     <h3 class="card_by">بواسطة:{{item.user.username}} </h3>          
                     {%endif%}                
-                    <h5 class = "subject">{{item.subject}}</h5>   
-                    <h6 class="card_answer">{{item.datetime}}</h6>  
+                    <h5 class = "subject">{{item.subject}}</h5>     
+                    <h6 class="card_answer">{{item.datetime}}</h6>   
                     <p class="cntrline"><p>
+
+                        <div class="newqbtns">
+                    {%if current_user.custom_id == item.user.custom_id%}
+                    <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="deleteXeditXanswer" id="answer">ألقي نظرة</button>
+                    {%else%}
+                    <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="deleteXeditXanswer" id="answer">اجب عليه</button>
+                    {%endif%}
+
+                    {%if current_user.custom_id == item.user.custom_id%}
+                    <button onclick="window.location.href = 'http://127.0.0.1:5000/delete-post/{{item.id}}'" class="deleteXeditXanswer" id="delete">حذف</button>
+                    <button onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" class="deleteXeditXanswer" id="edit">تعديل</button>
+                    {%endif%}
+                         </div>
+                    
                 </div>
-                {%if current_user.custom_id == item.user.custom_id%}
-                <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="button answer">ألقي نظرة</button>
-                {%else%}
-                <button onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" class="button answer">اجب عليه</button>
-                {%endif%}
-                {%if current_user.custom_id == item.user.custom_id%}
-                <button onclick="window.location.href = 'http://127.0.0.1:5000/delete-post/{{item.id}}'" class="deleteXedit" id="delete">حذف</button>
-                <button onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" class="deleteXedit" id="edit">تعديل</button>
-                {%endif%}
 
                     <div>
                         <br>
@@ -67,7 +72,7 @@
         
         <script>
             function openNav() {
-            document.getElementById("sidenavv").style.width = "280px";
+            document.getElementById("sidenavv").style.width = "220px";
             }
             
             function closeNav() {
@@ -79,26 +84,9 @@
             body{
                 background-image: linear-gradient(#efd4ffec,#ffffff);
                 font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
-                font-size: 15px;
+                font-size: 18px;
             }
-            .update{
-                margin-top:10%;
-            }
-            .delete{
-                margin-top:20%;
-            }
-            .answer{
-                margin-top:5%;
-                margin-left:15%;
-                margin-bottom: 1%;
-                font-size: 16px;
-                background-color: #7f039e;
-                color: white;
-                border:none;
-                border-radius: 0.25em;
-                padding: 0.5%;
-                float: right;
-            }
+
             #newquestionbtn{
                 margin-top: -2%;
                 margin-left: 3%;
@@ -108,6 +96,9 @@
                 border-color: #6B0085;
                 border-radius: 0.25em;
                 padding: 0.3% 0.6% 0.3% 0.6%;
+                transition-timing-function: ease-in;
+                transition: 0.5s;
+                cursor: pointer;
             
             }
             
@@ -124,6 +115,8 @@
                 cursor: pointer;
                 margin-left: 3%;
                 margin-top: -2%;
+                transition-timing-function: ease-in;
+                transition: 1s;
             }
             
             .logo{
@@ -131,6 +124,8 @@
                 font-size: 40px;
                 margin-top:-2%;
                 color:#6B0085 ;
+                transition-timing-function: ease-in;
+                transition: 1s;
             
             }
             
@@ -147,7 +142,7 @@
               position: fixed;
               top: 0;
               left: 0;
-              background-color:#020002;
+              background-image:linear-gradient(#e3bdf8ec,#fae8e8);
               overflow-x: hidden;
               transition: 0.5s;
               padding-top: 60px;
@@ -164,8 +159,8 @@
             .sidenav a{
               padding: 8px 8px 8px 32px;
               text-decoration: none;
-              font-size: 35px;
-              color: #ffffff;
+              font-size: 30px;
+              color: #000000;
               display: block;
               transition: 0.3s;
             }
@@ -177,8 +172,8 @@
             .sidenav .closebtn{
               position: absolute;
               top: 0;
-              right: 25px;
-              font-size: 36px;
+              right: 22px;
+              font-size: 32px;
               margin-left: 50px;
             }
             
@@ -192,6 +187,8 @@
                 align-items: center;
                 margin-top: -1%;
                 margin-bottom: 9%;
+                transition-timing-function: ease-in;
+                transition: 0.5s;
 
                 
             }
@@ -203,23 +200,31 @@
                 align-items: center;
                 margin-right: 27%;
                 margin-top: -1.8%;
+                transition-timing-function: ease-in;
+                transition: 1s;
             }
             .card_title{
                 justify-content: right;
                 align-self: flex-end;
-                font-weight: bold;             
+                font-weight: bold;  
+                transition-timing-function: ease-in;
+                transition: 1s;          
             }
             .card_answer{
                 margin-top: 0%;
                 justify-content: right;
                 align-self: flex-end;
-                font-weight: bold;             
+                font-weight: bold; 
+                transition-timing-function: ease-in;
+                transition: 1s;          
             }
             .card_by{
                 margin-top: 0%;
                 justify-content: right;
                 align-self: flex-end;
                 font-weight: bold;
+                transition-timing-function: ease-in;
+                transition: 1s;
             
             }
             .subject{
@@ -231,108 +236,195 @@
                 align-self: flex-end;
                 font-weight: bold;
                 border-radius: 0.25em;
+                transition-timing-function: ease-in;
+                transition: 1s;
             
             }
 
             .cntrline{
                 border-left: 600px solid #6B0085;
                 height: 2px;
+                transition: 0.3s;
             }
 
-            .deleteXedit{
+            .newqbtns{
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: center;
                 align-items: center;
-                margin-left: 75%;
+                margin-top: -39%;
+                margin-right: 80%;
+            }
+
+
+            #answer{
+                font-size: 18px;
+                margin-right: -40%;
+                background-color: #7f039e;
+                color: white;
+                border:none;
+                border-radius: 0.25em;
+                padding: 5px;
+                transition-timing-function: ease-in;
+                transition: 0.5s;
+                cursor: pointer;
+            }
+
+            #edit{
+                margin-bottom: -90%;
+                margin-left: 30%;
+                font-size: 17px;
+                padding: 5px;
                 background-color: transparent;
                 color: #6B0085 ;
                 border-color: #6B0085;
                 border-radius: 0.25em;
                 padding: 0.3% 0.6% 0.3% 0.6%;
+                transition-timing-function: ease-in;
+                transition: 0.5s;
+                cursor: pointer;
+            }
+            #delete{
+                margin-bottom: -90%;
+                margin-left: -30%;
+                font-size: 17px;
+                padding: 5px;
+                background-color: transparent;
+                color: #6B0085 ;
+                border-color: #6B0085;
+                border-radius: 0.25em;
+                padding: 0.3% 0.6% 0.3% 0.6%;
+                transition-timing-function: ease-in;
+                transition: 0.5s;
+                cursor: pointer;
             }
 
-            #delete{
-                margin-bottom: 3%;
-                margin-top: 0.5%;
+            
+            
+            #answer:hover{
+                background-color: #6a0085cb;
             }
             
-            
-            .deleteXedit:hover{
+            #answer:active{
+                background-color: #5c0272;
+            }
+
+            #delete:hover{
                 background-color: #faf6f6;
             }
-            
-            .deleteXedit:active{
+
+            #edit:hover{
+                background-color: #faf6f6;
+            }
+
+            #delete:active{
+                background-color: #a700c9;
+            }
+            #edit:active{
                 background-color: #a700c9;
             }
             
-            @media screen and (min-device-width:2560px){
+
+
+
+            @media screen and (max-width: 850px) {
+
                 body{
-                    font-size: 46px;
+                    font-size: 14px;
+                }
+                .newq{
+                   width: 100%;
+
+                   margin-right: 5%;
                 }
 
-                .deleteXedit{
-                    font-size: 30px;
+                .newqbtns{
+
+                    margin-top: -28%;
+                    margin-left: 20%;
+
                 }
-
-                #newquestionh1{
-                    font-size: 60px;
+                #delete{
+                    font-size: 13.5px;
                 }
-
-                .answer{
-                    font-size: 30px;
-                    margin-top: 10%;
+                #edit{
+                    font-size: 13.5px;
+                    margin-left: 1%;
                 }
-
-                #newquestionbtn{
-                    font-size: 30px;
+                #answer{
+                    font-size: 14px;
+                    margin-left: -9px;
                 }
-
-                #logo{
-                    font-size: 50px;
-                }
-            }
-
-            @media screen and (max-device-width:912px){
-                .answer{
-                    margin-right:78.5%;
-                    margin-top: -18%;
-                }
-
-                .deleteXedit{
-                    margin-bottom: -5%;
-                }
-
-            }
-
-            @media screen and (min-device-width:768px) and (max-device-width:1280px){
                 .cntrline{
-                    border-left: 600px solid #6B0085;
+                    border-left: 400px solid #6B0085;
+                    margin-left: 9%;
                 }
-
                 .logo{
-                    margin-right: 75%;
-                    margin-top: -0.8%;
+                    margin-left: 67%;
+                }
+                #newquestionh1{
+                    font-size: 25px;
+                    margin-bottom: 14%;
                 }
 
-            }
 
-            @media screen and (max-device-width:1024px) {
 
-                .cntrline{
-                    border-left: 500px solid #6B0085;
+             }
+
+             @media screen and (min-device-width:2000px) and (max-device-width:3000px) {
+
+                body{
+                    font-size: 30px;
                 }
 
                 .newq{
-                    margin-top: 2%;
+                    margin-right: 38%;
+                }
+                .cntrline{
+                    border-left: 700px solid #6B0085;
+                    height: 3px;
+                }
+                #delete{
+                    font-size: 30px;
+                }
+                #edit{
+                    font-size: 30px;
+                }
+                #answer{
+                    font-size: 33px;
+                }
+                .logo{
+                    font-size: 70px;
+                }
+                #newquestionh1{
+                    font-size: 50px;
                 }
 
-            }
+                #newquestionbtn{
+                    font-size: 43px;
+                }
+                #menubutton{
+                    font-size: 50px;
+                }
+             }
 
 
+             @media screen and (min-device-width:821px) and (max-device-width:1075px) {
+
+                .logo{
+                    margin-left: 70% !important;
+                }
+
+                .newq{
+                    margin-right: 20%;
+                }
+
+
+             }
 
             @media screen and (min-device-width:50px) and (max-device-width:820px) {
                 body{
-                    font-size: 23px;
+                    font-size: 27px;
                 }
 
                 .answer{
@@ -369,6 +461,7 @@
                     font-size: 50px;
                     margin-top: -10%;
                     margin-bottom: 20%;
+                    margin-left: 3%;
                     
                 }
                 .sidenav a{
@@ -381,7 +474,7 @@
                 }
 
                 .cntrline{
-                    border-left: 600px solid #6B0085;
+                    border-left: 640px solid #6B0085;
                     height: 2px;
                 }
                 .newq{
@@ -389,42 +482,22 @@
                     margin-right:15%;
                 }
 
-                .deleteXedit{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    margin-left: 90%;
-                    background-color: transparent;
-                    color: #6B0085 ;
-                    border-color: #6B0085;
-                    border-radius: 0.25em;
-                    padding: 0.3% 0.6% 0.3% 0.6%;
+                #answer{
                     font-size: 25px;
+                    padding: 6px;
+                    margin-top: 10%;
 
                 }
-    
                 #delete{
-                    margin-top: -0.5%;
+                    font-size: 21px;
+                    padding: 5px;
+                    margin-right: 16%;
                 }
-
-
-
-            }
-            @media screen and (min-device-width:768px) and (max-device-width:821px){
-                .logo{
-                    margin-left: 64%;
+                #edit{
+                    font-size: 21px;
+                    padding: 5px;
+                    margin-left: -1%;
                 }
-                .newq{
-                    margin-right: 12%;
-                }
-                .answer{
-                    font-size: 22px;
-                }
-                .deleteXedit{
-                    font-size: 22px;
-                }
-                
-                
             }
 
         </style>
