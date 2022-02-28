@@ -1,9 +1,12 @@
+from logging import Filter
 from flask import request
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db
+from flask_mail import Message
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm
 from website.model import User , ThePost
+import secrets
 
 
 
@@ -57,6 +60,7 @@ def StudentRegisterPage():
     return render_template("Student_register.html", form=form)
 
 
+
 @app.route("/register/tea", methods = ["POST", "GET"])
 def TeacherRegisterPage():
     print(current_user)
@@ -87,6 +91,7 @@ def TeacherRegisterPage():
 
 
 @app.route("/login" ,methods = ["POST", "GET"])
+@login_required
 def LoginPage():
     print(current_user)
     form = LoginForm()
@@ -125,6 +130,7 @@ def LoginPage():
     return render_template("Login.html", form=form)
 
 @app.route("/profile")
+@login_required
 def ProfilePage():
     return render_template("profile.html", user=current_user)
 
@@ -188,6 +194,7 @@ def CreatePostPage():
 
 
 @app.route("/delete-post/<id>")
+@login_required
 def Delete_Post(id):
     post = ThePost.query.filter_by(id=id).first()
     if not post:
@@ -207,6 +214,7 @@ def Delete_Post(id):
 
 
 @app.route("/view-post/<id>")
+@login_required
 def View_Post(id):
     post = ThePost.query.filter_by(id=id).first()
     if not post:
@@ -219,6 +227,7 @@ def View_Post(id):
 
 
 @app.route("/update-post/<id>", methods=["POST", "GET"])
+@login_required
 def Update_Post(id):
     filled = False
     post = ThePost.query.filter_by(id=id).first()
