@@ -87,24 +87,29 @@
 
             <a href="#" id="profile">بروفايلك</a>
             <a href="#" id="support">الدعم</a>
+            {% if current_user.kind =="student"%}
             <a href="javascript:void(0)" class="open_filter" onclick="openfilter()">نوع الاسئلة</a>
-            
+            <form method="post">
             <select class="subject_input" id="filter" name="filter">
                 <div class="options">
-                <option value="physics" id="physics">فيزياء</option>
-                <option value="chemistry">كيمياء</option>
-                <option value="biology">احياء</option>
-                <option value="arabic">الغة العربية</option>
-                <option value="english">الغةالانجليزية</option>
-                <option value="french">الغة الفرنسية</option>
-                <option value="italic">الغة الايطالية </option>
-                <option value="philosophy">فلسفة</option>
-                <option value="geography">الجغرافيا</option>
-                <option value="history">التاريخ</option>
-                <option value="math">رياضيات</option>
-                <option value="math">الاكثر اعجابا</option>
+                <option>اختر</option>
+                <option value="فيزياء">فيزياء</option>
+                <option value="كيمياء">كيمياء</option>
+                <option value="احياء">احياء</option>
+                <option value="الغة العربية">الغة العربية</option>
+                <option value="الغةالانجليزية">الغةالانجليزية</option>
+                <option value="الغة الفرنسية">الغة الفرنسية</option>
+                <option value="الغة الايطالية">الغة الايطالية </option>
+                <option value="فلسفة">فلسفة</option>
+                <option value="الجغرافيا">الجغرافيا</option>
+                <option value="التاريخ">التاريخ</option>
+                <option value="رياضيات">رياضيات</option>
+                <option value="none">بدون</option>
                 </div>
             </select>
+            <button id="searchbtn">ابحث</button>
+            </form>
+            {%endif%}
             
 
 
@@ -126,8 +131,10 @@
                 {%for item in post%}
                 
                 <div class="newq">
-                    {%if item.title|length < 45 %}
+                    {%if item.title|length < 35 %}
                     <h2 class="card_title "> {{item.title}}</h2>
+                    {%elif item.title|length > 35 and item.title|length < 45 %}
+                    <h3 class="card_title "> {{item.title}}</h3>
                     {%elif item.title|length < 65 and item.title|length > 45 %}
                     <h5 class="card_title "> {{item.title}}</h5>
                     {%endif%}
@@ -235,12 +242,13 @@
             function closeNav() {
                 document.getElementById("sidenavv").style.width = "0";
                 }
+                
 
             function openfilter() {
                 document.getElementById("filter").style.display ='block';
-                }
-
-
+            
+                document.getElementById("searchbtn").style.display ='block';
+            }
 
 
         </script>
@@ -251,7 +259,10 @@
                 font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
                 font-size: 18px;
             }
-
+            #searchbtn{
+                font-size: 16px;
+                display:none;
+            }
             #filter{
                 font-size: 24px;
                 width: 50%;

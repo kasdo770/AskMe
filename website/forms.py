@@ -87,14 +87,14 @@ class TeacherRegisterForm(FlaskForm):
     )
     
     first_subject = SelectField(
-        label="المادة الاولى", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
-    ("arabic","العربية"), ("english", "الانجليزية"), ("french",  "الفرنسية"), ("italy","الايطالية "),
-     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")], validators=[DataRequired()]
+        label="المادة الاولى", choices=[('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),
+    ("الغة العربية","الغة العربية"), ("الغةالانجليزية", "الغةالانجليزية"), ("الغة الفرنسية", "الغة الفرنسية"), ("الغة الايطالية","الغة الايطالية"),
+     ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")], validators=[DataRequired()]
     )
     second_subject = SelectField(
-        label="المادة الثانية", choices=[ ("none", "لا شيء اخر"),('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
-    ("arabic","العربية"), ("english", "الانجليزية"), ("french", "الفرنسية"), ("italy","الايطالية "),
-     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")]
+        label="المادة الثانية", choices=[("none", "لا شيء اخر"),('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),
+    ("الغة العربية","الغة العربية"), ("الغةالانجليزية", "الغةالانجليزية"), ("الغة الفرنسية", "الغة الفرنسية"), ("الغة الايطالية","الغة الايطالية"),
+     ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")]
     )
     submit = SubmitField(
         label = "انشاء حساب"
@@ -109,15 +109,15 @@ class PostForm(FlaskForm):
     def validate_description(self, description_to_check):
         if self.create.data:
             if len(str(description_to_check.data)) < 20:
-                raise ValidationError("لا يمكن انشاء سؤال بعلوملات غير كافية ف الموضوع")
+                raise ValidationError("لا يمكن انشاء سؤال بمعلوملات غير كافية ف الموضوع")
 
 
 
     title = StringField(label="العنوان", validators=[Length(max=60)])
     description = TextAreaField(label="الموضوع" )
-    subject = SelectField(label="نوع المادة", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
-    ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
-     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] )
+    subject = SelectField(label="نوع المادة", choices=[('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),
+    ("الغة العربية","الغة العربية"), ("الغةالانجليزية", "الغةالانجليزية"), ("الغة الفرنسية", "الغة الفرنسية"), ("الغة الايطالية","الغة الايطالية"),
+     ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")] )
     create = SubmitField(label="انشاء")
     cancel = SubmitField(label="اغلاق")
 
@@ -125,8 +125,8 @@ class PostForm(FlaskForm):
 
 class UpdatePostForm(FlaskForm):
     description = TextAreaField(label="الموضوع" )
-    subject = SelectField(label="نوع المادة", choices=[('physics ', 'فيزياء'), ('chemistry', 'كيمياء'), ('biology', 'احياء'),
-    ("arabic","الغة العربية"), ("english", "الغةالانجليزية"), ("french", "الغة الفرنسية"), ("italy","الغة الايطالية "),
-     ("physiologist", "فلسفة"), ("geography", "الجغرافيا"), ("history", "التاريخ"), ("math", "رياضيات")] )
+    subject = SelectField(label="نوع المادة", choices=[('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),
+    ("الغة العربية","الغة العربية"), ("الغةالانجليزية", "الغةالانجليزية"), ("الغة الفرنسية", "الغة الفرنسية"), ("الغة الايطالية","الغة الايطالية"),
+     ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")] )
     crt = SubmitField(label="تحديث")
     cal = SubmitField(label="اغلاق")

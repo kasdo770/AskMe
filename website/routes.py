@@ -1,37 +1,11 @@
-from asyncio.windows_events import NULL
+from flask import request
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm
 from website.model import User , ThePost
 
-eng_subject = {
-        "احياء":"biology",
-        "كيمياء":"chemistry",
-        "عربي":"arabic",
-        "انجليزي":"english",
-        "فرنسي":"french",
-        "ايطالي":"italy",
-        "فلسف":"physiologist",
-        "تاريخ":"history",
-        "جفراقيا":"geography",
-        "رياض":"math",
-    }
 
-def Search_Bar(text):
-    subjects = ['فيزياء ', 'كيمياء', 'احياء',
-    "عربي", "انجليزي", "فرنسي", "ايطالي",
-    "فلسف", "جفراقيا", "تاريخ", "رياض"]
-
-    for item in subjects:
-        if item in text:
-            post = ThePost.query.filter_by(eng_subject.get(item))
-
-        else:
-            post = ""
-
-        result = result + " " + post 
-    return result   
 
 #temporay function
 @app.route("/ct")
@@ -155,19 +129,26 @@ def ProfilePage():
     return render_template("profile.html", user=current_user)
 
 
-
 @app.route("/mainpage", methods=["POST","GET"])
 @login_required
 def MainPage():
     user = User.query.filter_by(id=current_user.id).first()
-    second_post = ""
-    post = ""
-    if user.first_subject is None:
-        post = ThePost.query.all()
-    elif user.first_subject is not None:
-        post = ThePost.query.filter_by(subject=user.first_subject)
-        if user.second_subject != "none":
-            second_post = ThePost.query.filter_by(subject=user.second_subject)
+    if request.method == "POST":
+        sort_by = request.form.get("filter")
+        if sort_by != "none":
+            post = ThePost.query.filter_by(subject=sort_by)
+        elif sort_by == "none":
+            post = ThePost.query.all()
+        second_post = ""
+    else:
+        second_post = ""
+        post = ""
+        if user.first_subject is None:
+            post = ThePost.query.all()
+        elif user.first_subject is not None:
+            post = ThePost.query.filter_by(subject=user.first_subject)
+            if user.second_subject != "none":
+                second_post = ThePost.query.filter_by(subject=user.second_subject)
     return render_template("mainpage.html",teacher=user,post=post,second_post=second_post)
 
 @app.route("/create/post", methods=["POST", "GET"])
