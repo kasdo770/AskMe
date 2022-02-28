@@ -1,11 +1,9 @@
-from logging import Filter
 from flask import request
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db
-from flask_mail import Message
 from flask import render_template, url_for, redirect,flash
-from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm
-from website.model import User , ThePost
+from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm,CommentForm
+from website.model import User , Post,Comment
 import secrets
 
 
@@ -142,19 +140,19 @@ def MainPage():
     if request.method == "POST":
         sort_by = request.form.get("filter")
         if sort_by != "none":
-            post = ThePost.query.filter_by(subject=sort_by)
+            post = Post.query.filter_by(subject=sort_by)
         elif sort_by == "none":
-            post = ThePost.query.all()
+            post = Post.query.all()
         second_post = ""
     else:
         second_post = ""
         post = ""
         if user.first_subject is None:
-            post = ThePost.query.all()
+            post = Post.query.all()
         elif user.first_subject is not None:
-            post = ThePost.query.filter_by(subject=user.first_subject)
+            post = Post.query.filter_by(subject=user.first_subject)
             if user.second_subject != "none":
-                second_post = ThePost.query.filter_by(subject=user.second_subject)
+                second_post = Post.query.filter_by(subject=user.second_subject)
     return render_template("mainpage.html",teacher=user,post=post,second_post=second_post)
 
 @app.route("/create/post", methods=["POST", "GET"])
@@ -164,7 +162,7 @@ def CreatePostPage():
         form = PostForm()
         if form.validate_on_submit():
             if form.create.data:
-                new_post = ThePost(
+                new_post = Post(
                     title=form.title.data,
                     description=form.description.data,
                     subject = form.subject.data,
@@ -196,7 +194,7 @@ def CreatePostPage():
 @app.route("/delete-post/<id>")
 @login_required
 def Delete_Post(id):
-    post = ThePost.query.filter_by(id=id).first()
+    post = Post.query.filter_by(id=id).first()
     if not post:
 
         flash("هذا السؤال غير موجود من قبل", category="error")
@@ -216,7 +214,7 @@ def Delete_Post(id):
 @app.route("/view-post/<id>")
 @login_required
 def View_Post(id):
-    post = ThePost.query.filter_by(id=id).first()
+    post = Post.query.filter_by(id=id).first()
     if not post:
         flash("هذا السؤال غير موجود من قبل", category="error")
         return redirect(url_for("MainPage"))
@@ -230,7 +228,7 @@ def View_Post(id):
 @login_required
 def Update_Post(id):
     filled = False
-    post = ThePost.query.filter_by(id=id).first()
+    post = Post.query.filter_by(id=id).first()
     form = UpdatePostForm()
     if not post:
         flash("هذا السؤال غير موجود من قبل", category="error")
@@ -242,7 +240,7 @@ def Update_Post(id):
             if form.crt.data:
                 post.update_description = ""
                 db.session.commit()
-                updated_post = ThePost(
+                updated_post = Post(
                     id = post.id,
                     title= post.title,
                     description= post.description,
@@ -259,3 +257,24 @@ def Update_Post(id):
     return render_template("UpdatePost.html", form=form , filled=filled)
 
         
+@app.route("/create/comment/<post_id>", methods=["POST","GET"])
+def CreateComment(post_id):
+    form = CommentForm()
+    post=""
+    if not form.description.data:
+        flash("لا يمكن انشاء جواب ب موضوع فارغ")
+    else:
+        post = Post.query.filter_by(id = post_id)
+        if post:
+            new_comment = Comment(
+                title=form.title.data,
+                description=form.description.data,
+                author = current_user.id,
+                post = post_id
+            )
+            db.session.add(new_comment)
+            db.session.commit()
+            return redirect(f"/view-post/{post_id}")
+        else:
+            flash("ليس هنالك اي سؤال بهذا الاسم")
+    return render_template("CreateComment.html", form=form)

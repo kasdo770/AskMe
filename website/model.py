@@ -17,7 +17,8 @@ class User(db.Model,UserMixin):
     age = db.Column(db.String())
     first_subject = db.Column(db.String())
     second_subject = db.Column(db.String())
-    posts = db.relationship("ThePost",backref="user",passive_deletes=True)
+    posts = db.relationship("Post",backref="user",passive_deletes=True)
+    comments = db.relationship("Comment", backref="user", passive_deletes=True)
 
     @property
     def password(self):
@@ -31,7 +32,7 @@ class User(db.Model,UserMixin):
         return bcrypts.check_password_hash(self.password_hash, thepass)
 
 
-class ThePost(db.Model):
+class Post(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
@@ -39,3 +40,13 @@ class ThePost(db.Model):
     subject = db.Column(db.String())
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer(), db.ForeignKey("user.id",ondelete="CASCADE"))
+    comments = db.relationship("Comment", backref="posts", passive_deletes=True)
+
+
+class Comment(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    title = db.Column(db.String())
+    description = db.Column(db.String(), nullable=False)
+    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
+    post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))
