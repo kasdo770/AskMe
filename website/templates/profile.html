@@ -11,11 +11,13 @@
         }
         .profile_title{
         
-        color: white;
-        background-color: #6B0085;
+        color: black;
         padding: fit-content;
-        padding-right: 46%;
-        padding-bottom: 0.5%;
+        padding-right: 47%;
+        padding-bottom: 2%;
+        margin-top: 1%;
+        font-weight: bold;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         
         }      
         .profile_name_text{
@@ -53,16 +55,22 @@
         }
         .border{
             border-color:black;
-            border-style: double;
+            border-style: solid;
+            border-width: 5px;
         }
         .profile_std_text{
             float: right;
             margin-right: -25%;
             margin-top: 20%;                   
         }
+        .urinfo{
+            float: right;
+            margin-right: 20%;
+            margin-top: -5%;
+        }
         .email_title{
             float: right;
-        margin-right: 0%;
+        margin-right: 6.5%;
         margin-top: 8%;
         text-align: center;
         
@@ -82,44 +90,362 @@
 
         }
         .newq{
-                display: flex;
-                flex-direction: column;
                 float: right;
-                align-items: center;
-                margin-right: 25%;
+                margin-right: 50%;
+                margin-top: -14%;
             }
             .card_title{
-                justify-content: right;
-                align-self: flex-end;
                 font-weight: bold;
+                float: right;
+                margin-top: 3%;
             }
             .card_answer{
-                margin-top: 0%;
-                justify-content: right;
-                align-self: flex-end;
+                margin-top: 3%;         
                 font-weight: bold;
+                float: right;
             }
             .card_by{
-                margin-top: 0%;
-                justify-content: right;
-                align-self: flex-end;
+                margin-top: 3%;
                 font-weight: bold;
+                float: right;
 
             }
             .subject{
                 background-color: #9149a4;
                 color:white;
-                margin-top: 0%;
+                margin-top: 3%;
                 padding: 1.5%;
-                justify-content: right;
-                align-self: flex-end;
                 font-weight: bold;
                 border-radius: 0.25em;
+                float: right;
 
             }
+            .urnewq{
+                margin-top: -15%;
+                margin-bottom: 10%;
+                margin-left: 45%;
+            }
+            /*-------------------------------------------------------------Resoulution-----------------------------------------------------*/
+            @media screen and (min-width:1281px) and (max-width:1662px) {
+            .cntrline{
+                margin-top: 18%;
+            }
+            .email_title{
+                float: right;
+                display: flex;
+               justify-content: flex-end;
+               align-items: flex-end;
+                text-align: center;
+            
+            }
+            .school_text{
+                float: right;
+                justify-content: flex-end;
+               align-items: flex-end;
+                text-align: center;
+                margin-right: -28.5%;
+            }
+            .age_text{
+                float: right;
+                justify-content: flex-end;
+               align-items: flex-end;
+                text-align: center;
+                margin-right: -28.5%;
+
+            }
+            
+            }
+            @media screen and (min-width:1411px) and (max-width:1556px) {
+            .cntrline{
+                margin-top: 18%;
+            }
+            .email_title{
+                float: right;
+                display: flex;
+               justify-content: flex-end;
+               align-items: flex-end;
+                text-align: center;
+            
+            }
+            .school_text{
+                float: right;
+                justify-content: flex-end;
+               align-items: flex-end;
+                text-align: center;
+                margin-right: -33.7%;
+            }
+            .age_text{
+                float: right;
+                justify-content: flex-end;
+               align-items: flex-end;
+                text-align: center;
+                margin-right: -33.6%;
+
+            }
+            }
+            
+            /*---------------------------------------------tablet-------------------------------------------------------*/
+            @media screen and (min-device-width:550px) and (max-device-width:1417px) {
+            .profile_title{
+            
+            color: black;
+            padding: fit-content;
+            padding-right: 47%;
+            padding-bottom: 2%;
+            margin-top: 1%;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            
+            }      
+            .profile_name_text{
+            float: right;
+            margin-right: 40%;
+            margin-top: 5%;
+            }
+            .profile_name{
+            float: right;
+            margin-right: 30%;
+            margin-top: 3%;
+            width: max-content;
+            }
+            .comments{
+                float: right;
+            margin-right: -10%;
+            margin-top: 13%;
+            text-align: center;
+            }
+            .question{
+                float: right;
+            margin-right: 2%;
+            margin-top: 13%;
+            text-align: center;
+            }
+            .cntrline{
+                float: right;
+                height: 2px;
+                width: 25%;
+                background-color: #6B0085;
+                padding-left: 7px;
+                padding-right: 7px;
+                margin-top: 20%;
+                margin-right: -20%;
+            }
+            .border{
+                border-color:black;
+                border-style: solid;
+                border-width: 5px;
+            }
+            .profile_std_text{
+                float: right;
+                margin-right: -30%;
+                margin-top: 23%;                   
+            }
+            .urinfo{
+                float: right;
+                margin-right: 20%;
+                margin-top: -5%;
+            }
+            .email_title{
+                float: right;
+            margin-right: 10%;
+            margin-top: 8%;
+            text-align: center;
+            
+            }
+            .school_text{
+                float: right;
+            margin-right: -37.3%;
+            margin-top: 30%;
+            text-align: center;
+
+            }
+            .age_text{
+                float: right;
+            margin-right: -37.3%;
+            margin-top: 32.5%;
+            text-align: center;
+
+            }
+            .newq{
+                    float: right;
+                    margin-right: 25%;
+                    margin-top: 20%;
+                }
+                .card_title{
+                    font-weight: bold;
+                    float: right;
+                    margin-top: 3%;
+                }
+                .card_answer{
+                    margin-top: 3%;         
+                    font-weight: bold;
+                    float: right;
+                }
+                .card_by{
+                    margin-top: 3%;
+                    font-weight: bold;
+                    float: right;
+
+                }
+                .subject{
+                    background-color: #9149a4;
+                    color:white;
+                    margin-top: 3%;
+                    padding: 1.5%;
+                    font-weight: bold;
+                    border-radius: 0.25em;
+                    float: right;
+
+                }
+                .urnewq{
+                    margin-top: -15%;
+                    margin-bottom: 10%;
+                    margin-left: 45%;
+                }
+                }
+
+            
+            
+            /*---------------------------------------------tablet-------------------------------------------------------*/
+            @media screen and (min-device-width:50px) and (max-device-width:551px) {
+            .profile_title{
+            
+            color: black;
+            padding: fit-content;
+            padding-right: 47%;
+            padding-bottom: 2%;
+            margin-top: 1%;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 10px;
+            
+            }      
+            .profile_name_text{
+            float: right;
+            margin-right: 40%;
+            margin-top: 5%;
+            font-size: 10px;
+            }
+            .profile_name{
+            float: right;
+            margin-right: 30%;
+            margin-top: 3%;
+            width: max-content;
+            font-size: 10px;
+            }
+            .comments{
+                float: right;
+            margin-right: -10%;
+            margin-top: 13%;
+            text-align: center;
+            font-size: 10px;
+            }
+            .question{
+                float: right;
+            margin-right: 2%;
+            margin-top: 13%;
+            text-align: center;
+            font-size: 10px;
+            }
+            .cntrline{
+                float: right;
+                height: 2px;
+                width: 25%;
+                background-color: #6B0085;
+                padding-left: 7px;
+                padding-right: 7px;
+                margin-top: 20%;
+                margin-right: -20%;
+                font-size: 10px;
+            }
+            .border{
+                border-color:black;
+                border-style: solid;
+                border-width: 5px;
+            }
+            .profile_std_text{
+                float: right;
+                margin-right: -30%;
+                margin-top: 23%;                   
+            }
+            .urinfo{
+                float: right;
+                margin-right: 20%;
+                margin-top: -5%;
+            }
+            .email_title{
+                float: right;
+            margin-right: 10%;
+            margin-top: 8%;
+            text-align: center;
+            
+            }
+            .school_text{
+                float: right;
+            margin-right: -37.3%;
+            margin-top: 30%;
+            text-align: center;
+
+            }
+            .age_text{
+                float: right;
+            margin-right: -37.3%;
+            margin-top: 32.5%;
+            text-align: center;
+
+            }
+            .newq{
+                    float: right;
+                    margin-right: 2%;
+                    margin-top: 20%;
+                    font-size: 10px;
+                    width: fit-content;
+                    
+                }
+                .card_title{
+                    font-weight: bold;
+                    float: right;
+                    font-size: 20px;
+                    margin-top: 3%;
+                    width: fit-content;
+                    
+                }
+                .card_answer{
+                    margin-top: 3%;         
+                    font-weight: bold;
+                    font-size: 20px;
+                    float: right;
+                    width: fit-content;
+                }
+                .card_by{
+                    margin-top: 3%;
+                    font-weight: bold;
+                    font-size: 20px;
+                    float: right;
+                    width: fit-content;
+
+                }
+                .subject{
+                    background-color: #9149a4;
+                    color:white;
+                    margin-top: 3%;
+                    padding: 1.5%;
+                    font-size: 20px;
+                    font-weight: bold;
+                    border-radius: 0.25em;
+                    float: right;
+                    width: fit-content;
+
+                }
+                .urnewq{
+                    margin-top: -15%;
+                    margin-bottom: 10%;
+                    margin-left: 45%;
+                }
+                }
+
     </style>
     <div>
-        <h2 dir="rtl" class = "profile_title">ملفك الشخصي</h2>
         <div>
             <div class="profile_name_text">
                 <h2>الاسم</h2>
@@ -142,7 +468,8 @@
             <div class="cntrline" ></div>
         <div>
             <div  class="profile_std_text">
-                <h2>معلومات طالب</h2>
+                {%if current_user.kind == "student"%}
+                <h2 class="urinfo">معلومات طالب</h2>
                 <div class="email_title">
                     <h5> {{current_user.email}} :الايميل</h5>
                     </div>
@@ -155,23 +482,40 @@
                     <h5> {{current_user.age}} :العمر</h5>
                     </div>
                 </div>
+                {%elif current_user.kind == "teacher"%}
+                <h2>معلومات معلم</h2>
+                <div class="email_title">
+                    <h5> {{current_user.email}} :الايميل</h5>
+                    </div>
+                </div>
+                <div class="school_text">
+                    <h5> {{current_user.first_subject}} :المادة الاولة</h5>
+                    </div>
+                </div>
+                <div class="age_text">
+                    <h5> {{current_user.second_subject}} :المادة الثانية</h5>
+                    </div>
+                </div>
+                {%endif%}
             </div>
         </div>          
         </div>
-        <div class="newq">
-            <h2 class="card_title "> </h2>
-            <h3 class="card_by">بواسطة: انت </h3> 
-            <h5 class = "subject">{{}}</h5>
-            <h6 class="card_answer"></h6>
 
-        </div> 
+            
 
-        
-        
-        
-        
-        
-        
+        <div class="newq border ">    
+            <h2 class="urnewq ">الاسئلة</h2>  
+            {%for item in post%}
+                {%if item.user.id == current_user.id%}               
+                <div class="qcontainer ">
+                    <h3 class="card_title "> {{item.title}}</h3><br><br><br><br>
+                    <h5 class = "subject">{{item.subject}}</h5><br><br><br><br>
+                    <h6 dir="rtl" class="card_answer">{{item.datetime}} </h6><br><br><br><br>          
+                </div>               
+                {%endif%}
+            {%endfor%}
+        </div>       
     </div>
+
 {%endblock%}
 
