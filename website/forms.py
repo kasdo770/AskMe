@@ -112,7 +112,6 @@ class PostForm(FlaskForm):
                 raise ValidationError("لا يمكن انشاء سؤال بمعلوملات غير كافية ف الموضوع")
 
 
-
     title = StringField(label="العنوان", validators=[Length(max=60)])
     description = TextAreaField(label="الموضوع" )
     subject = SelectField(label="نوع المادة", choices=[('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),
@@ -120,6 +119,9 @@ class PostForm(FlaskForm):
      ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")] )
     create = SubmitField(label="انشاء")
     cancel = SubmitField(label="اغلاق")
+
+
+
 
 
 

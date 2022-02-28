@@ -2,6 +2,7 @@
     <head>
         <title>اسئلة</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -85,19 +86,18 @@
         <div id="sidenavv" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
-            <a href="#" id="profile">بروفايلك</a>
-            <a href="#" id="support">الدعم</a>
+            <a href="/profile" id="profile">بروفايلك</a>
+            <a href="/support" id="support">الدعم</a>
             {% if current_user.kind =="student"%}
             <a href="javascript:void(0)" class="open_filter" onclick="openfilter()">نوع الاسئلة</a>
             <form method="post">
             <select class="subject_input" id="filter" name="filter">
                 <div class="options">
-                <option>اختر</option>
                 <option value="فيزياء">فيزياء</option>
                 <option value="كيمياء">كيمياء</option>
                 <option value="احياء">احياء</option>
                 <option value="الغة العربية">الغة العربية</option>
-                <option value="الغةالانجليزية">الغةالانجليزية</option>
+                <option value="الغةالانجليزية">الغة الانجليزية</option>
                 <option value="الغة الفرنسية">الغة الفرنسية</option>
                 <option value="الغة الايطالية">الغة الايطالية </option>
                 <option value="فلسفة">فلسفة</option>
@@ -127,7 +127,7 @@
         </div>
             <div class="newquestionh1flex">
                 <h1 id="newquestionh1"><b>الاسئلة الجديدة</b></h1>
-                </div>
+            </div>
                 {%for item in post%}
                 
                 <div class="newq">
@@ -259,10 +259,6 @@
                 font-family:Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif;
                 font-size: 18px;
             }
-            #searchbtn{
-                font-size: 16px;
-                display:none;
-            }
             #filter{
                 font-size: 24px;
                 width: 50%;
@@ -303,7 +299,11 @@
                 transition-timing-function: ease-in;
                 transition: 1s;
             }
-            
+            #searchbtn{
+                display: none;
+                margin-left:25%;
+                margin-top:5%;
+            }
             .logo{
                 margin-left: 79%;
                 font-size: 40px;
@@ -371,7 +371,7 @@
                 justify-content: center;
                 align-items: center;
                 margin-top: -1%;
-                margin-bottom: 9%;
+                margin-bottom: 6%;
                 transition-timing-function: ease-in;
                 transition: 0.5s;
 

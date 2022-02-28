@@ -9,8 +9,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Model.db"
 app.config["SECRET_KEY"] = "l2o1msane2saz"
 bcrypts = Bcrypt(app)
 
-
 login_man = LoginManager(app)
 login_man.login_view = "/home"
-login_man.login_message = "لا يمكنك الدخول بدون تسجيل الدخول"
+login_man.login_message = "لا يمكنك الذهاب بدون تسجيل الدخول"
 from website import routes
