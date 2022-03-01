@@ -132,7 +132,8 @@ def LoginPage():
 @app.route("/profile")
 @login_required
 def ProfilePage():
-    return render_template("profile.html", user=current_user)
+    post = Post.query.all()
+    return render_template("profile.html",post=post)
 
 
 @app.route("/mainpage", methods=["POST","GET"])
