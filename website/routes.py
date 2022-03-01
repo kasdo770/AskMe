@@ -96,33 +96,36 @@ def LoginPage():
         if current_user:
             logout_user()
         user = User.query.filter_by(username=form.username.data).first()
-        if user.kind =="student":
-            if user.password_check(thepass=form.password.data):
-                flash(
-                    f" تم تسجيل الدخول بنجاح يا ايها  طالب {form.username.data}",
-                    category="success",
-                ) 
-                login_user(user, remember=True)
-                print(current_user)
-                return redirect(url_for("HomePage"))
+        if user:
+            if user.kind =="student":
+                if user.password_check(thepass=form.password.data):
+                    flash(
+                        f" تم تسجيل الدخول بنجاح يا ايها  طالب {form.username.data}",
+                        category="success",
+                    ) 
+                    login_user(user, remember=True)
+                    print(current_user)
+                    return redirect(url_for("HomePage"))
+                else:
+                    flash("كلمة المرور خاطئا", category="error")
+                    
+            if user.kind == "teacher":
+                if user.password_check(thepass=form.password.data):
+                    flash(
+                        f"تم تسجيل الدخول بنجاح يا ايها مستر {form.username.data}",
+                        category="success",
+                    )
+                    login_user(user, remember=True)
+                    print(current_user)
+                    print("Logged in successfuly")
+                    return redirect(url_for("HomePage"))
+                else:
+                    flash("كلمة المرور خاطئا", category="error")
+                    
             else:
-                flash("كلمة المرور خاطئا", category="error")
-                
-        if user.kind == "teacher":
-            if user.password_check(thepass=form.password.data):
-                flash(
-                    f"تم تسجيل الدخول بنجاح يا ايها مستر {form.username.data}",
-                    category="success",
-                )
-                login_user(user, remember=True)
-                print(current_user)
-                print("Logged in successfuly")
-                return redirect(url_for("HomePage"))
-            else:
-                flash("كلمة المرور خاطئا", category="error")
-                
+                flash("ليس هنالك اي حساب بهذ الاسم", category="error")
         else:
-            flash("ليس هنالك اي حساب بهذ الاسم", category="error")
+            flash("لا يوجد يا مستخدم بهذا الاسم",category="error")
 
     return render_template("Login.html", form=form)
 
@@ -274,5 +277,5 @@ def CreateComment(post_id):
             db.session.commit()
             return redirect(f"/view-post/{post_id}")
         else:
-            flash("ليس هنالك اي سؤال بهذا الاسم")
+            flash("ليس هنالك اي سؤال بهذا الاسم",category="error")
     return render_template("CreateComment.html", form=form)
