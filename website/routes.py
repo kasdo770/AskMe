@@ -89,7 +89,6 @@ def TeacherRegisterPage():
 
 
 @app.route("/login" ,methods = ["POST", "GET"])
-@login_required
 def LoginPage():
     print(current_user)
     form = LoginForm()
@@ -215,11 +214,12 @@ def Delete_Post(id):
 @login_required
 def View_Post(id):
     post = Post.query.filter_by(id=id).first()
+    comment = Comment.query.filter_by(id=post.id)
     if not post:
         flash("هذا السؤال غير موجود من قبل", category="error")
         return redirect(url_for("MainPage"))
     else:
-        return render_template("ViewPost.html", post=post)
+        return render_template("ViewPost.html",comment=comment, post=post)
 
 
 
@@ -261,9 +261,7 @@ def Update_Post(id):
 def CreateComment(post_id):
     form = CommentForm()
     post=""
-    if not form.description.data:
-        flash("لا يمكن انشاء جواب ب موضوع فارغ")
-    else:
+    if form.validate_on_submit:
         post = Post.query.filter_by(id = post_id)
         if post:
             new_comment = Comment(

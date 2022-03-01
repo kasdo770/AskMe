@@ -9,37 +9,26 @@
 
 <div class="info">
     <p class="user">{{post.user.username}} : بواسطة  </p>
-    <p class = "subject">المادة : يهودية</p>     
-    <p class="date">الوقت : 2022 2 22 22:22</p>   
+    <p class = "subject"> المادة: {{post.subject}} </p>     
+    <p class="date">الوقت : {{post.datetime}}</p>   
 </div>
 
 <div class="thequestion">
-    <p id="title">مرحبا معكم مروان تلودي</p>
+    <h3 id="title">{{post.title}}<h3>
     <p id="cntrline" class="firstcntrline"></p>
-    <p id="description">
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-        انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-    </p>
-        
+    <h4 id="description">
+       {{post.description}}
+    </h4>
+    <h6 id="update-description">{{post.update_description}}</h6>
     <p id="cntrline" class="secondcntrline"></p>
 </div>
 
 <p id="replynum">عدد الاجابات : 3</p>
 
 <div class="reply">
-<p id="titleOFreply"> مربحا مكعم موران تلوطي</p>
+<p id="titleOFreply">{{comment.title}}/p>
 <p id="thereply">
-    انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-    انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-    انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة
-    انا بتبع الtutorial سنية سنية و مع ذلك جالي error مش عاوز يتحل بقاله نص ساعة</p>
+    {{comment.description}}</p>
 
 <p id="writerOFreply" dir="rtl">{{post.user.username}} : بواسطة </p>
 <p id="timeOFreply" dir="rtl">2022 2 22 22:22</p>

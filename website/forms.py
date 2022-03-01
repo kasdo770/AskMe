@@ -20,7 +20,7 @@ class CommentForm(FlaskForm):
     title = StringField(
         label="العنوان"
         )
-    description = StringField(
+    description = TextAreaField(
         label="الموضوع" , validators=[DataRequired()]
         )
     create = SubmitField(
