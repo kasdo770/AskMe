@@ -2,7 +2,6 @@ from logging import Filter
 from flask import request
 from flask_login import current_user, login_required, login_user, logout_user
 from website import app,db
-from flask_mail import Message
 from flask import render_template, url_for, redirect,flash
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm
 from website.model import User , ThePost
