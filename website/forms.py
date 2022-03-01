@@ -16,6 +16,20 @@ class LoginForm(FlaskForm):
     )
 
 
+class CommentForm(FlaskForm):
+    title = StringField(
+        label="العنوان"
+        )
+    description = StringField(
+        label="الموضوع" , validators=[DataRequired()]
+        )
+    create = SubmitField(
+        label="انشاء جواب"
+        )
+    cancel = SubmitField(
+        label="اغلاق"
+        )
+
 class StudentRegisterForm(FlaskForm):
     def validate_username(self, username_to_check):
         user = User.query.filter_by(username=username_to_check.data).first()

@@ -3,11 +3,25 @@
     معلوماتك الشخصية
 {%endblock%}
 {% block body %}
+        <button id="backbutton" onclick="window.location.href='http://127.0.0.1:5000/mainpage'">الرجوع</button>
     <style>
         body{
             background-image: linear-gradient(#f5e6ff,#fff);
             height:80vh;
             width:100%;
+        }
+        #backbutton{
+            font-size: 18px;
+            background-color: transparent;
+            color: #6B0085 ;
+            border-color: #6B0085;
+            border-radius: 0.25em;
+            padding: 0.3% 0.6% 0.3% 0.6%;
+            transition-timing-function: ease-in;
+            transition: 0.5s;
+            cursor: pointer;
+            margin-top: 2%;
+            margin-left: 2%;
         }
         .profile_title{
         

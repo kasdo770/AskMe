@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {%block title%}
-    تحديث سؤال
+    انشاء جواب
     
 {%endblock%}
 
@@ -19,7 +19,6 @@
          float: right;
           width: 80%;
           padding:2%;
-          margin-top: 1%;
           margin-right:2%;
      }
     body{
@@ -36,7 +35,7 @@
     .create_post_box{
             margin-left: 30%;
             width: 40%;
-            padding-bottom: 5%;
+            padding-bottom: 35%;
             margin-top: 4%;
             background-color: #ffffff00;
             box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.2), 0 5px 12px 0 rgba(0, 0, 0, 0.19);
@@ -54,37 +53,36 @@
         /*----------------------------------------------Description------------------------------------*/
         .description_text
         {
-          margin-left: 84%;
-          margin-top: 5%;
+          margin:0;
+          margin-right:5.5%;
+          float:right;
           font-weight: bold;
           margin-bottom: 2%;
         }
         .description_input
         {
           width: 90%;
-          padding-bottom: 30%;
+          padding-bottom: 50%;
           text-indent: 1%;
           text-align: right;
-          margin-left:8%;
+          margin-right:5.5%;
         }
-        /*----------------------------------------------Subject------------------------------------*/
-        .subject_text
+        /*------------------------------------------Title---------------------------------------------------*/
+        .title_text
         {
-          float: right;
-          margin-left:2%;
-          margin-top: 6%;
-          margin-right: 2.7%;
+            margin:0;
+          margin-right:4.5%;
+            margin-top:3%;
           font-weight: bold;
-          margin-bottom: 3%;
         }
-        .subject_input
+        .title_input
         {
-          width: 20%;
+          width: 90%;
+          text-indent: 1%;
           text-align: right;
-          margin-top: 5%;
-          margin-left:1%;
-          padding: 1%;
-          margin-bottom: 2%;
+          margin-right:4.5%;
+          margin-bottom:4%;
+          margin-left:8%;
         }
         /*--------------------------------------------Button---------------------------------------------*/
         .button {
@@ -102,12 +100,14 @@
           }
           
             .cancel{
+                margin-top:2%;
                 float: left;
                 background-color: red;
                 opacity: 65%;
                 
             }
             .create{
+                margin-top:2%;
                 background-color: green;
                 opacity: 65%;
                 float: right;
@@ -161,8 +161,11 @@
         @media screen and (min-width:390px) and (max-width:912px) {
             .create_post_box{
                 height: 150%;
-                padding-bottom: 30%;
+                padding-bottom: 80%;
                 width: 100%;
+            }
+            .description_input{
+                padding-bottom: 45%;
             }
 
         }
@@ -175,29 +178,23 @@
             font-weight: bold;
         }
 </style> 
-<form class = "post-form" method="POST">
+<form class = "comment-form" method="POST">
     {{ form.hidden_tag() }}
     {{ form.csrf_token }}
     <div class = "create_post_box">
          <div class = "create_post_title" >
-              <h3 class = "create_post_text ">تحديث سؤال</h3>
+              <h3 class = "create_post_text ">انشاء جواب</h3>
          </div> 
          <div class="input-container">
               <div class="mb-3">
-                   <h3 class="description_text"> تحديث</h3>
-                   {{form.description(dir = "rtl" , class="description_input")}}
-                   <div dir="rtl">
-                    {{form.subject.label(class = " subject_text")}}
-                    {{form.subject(class = "subject_input")}}
-                    </div>
-                    <h6 class = "warning">سيتم حذف اي تحديث كتب مسبقا</h6>
-                    <div>
-                        {{form.crt(class = "submit button create ")}}
-                        {{form.cal(class = "submit button cancel")}}
-                        
-                    </div>
+                  {{form.title.label(class = "title_text")}}
+                  {{form.title(class ="title_input")}}
+
+                  {{form.description.label(class = "description_text")}}
+                    {{form.description(class = "description_input")}}
                 </div>
-                
+                {{form.create(class="create button")}}
+                {{form.cancel(class="cancel button")}}
            </div>
 
     </div>
