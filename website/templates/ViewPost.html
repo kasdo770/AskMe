@@ -50,8 +50,13 @@
 
 }
 
+#description{
+    font-size: 16px;
+    margin-top: 2.2%;
+        
+}
 #title{
-    font-size: 19px;
+    font-size: 20px;
 }
 
 #replynum{
@@ -144,7 +149,7 @@
 }
 
 #cntrline{
-        border-left: 400px solid #6B0085;
+        border-left: 500px solid #6B0085;
         height: 2px;
         transition: 0.3s;
     }
@@ -156,6 +161,44 @@
     margin-top: 6%;
 }
 
+@media screen and (min-device-width:50px) and (max-device-width:820px) {
+
+    .thequestion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40%;
+        margin-bottom: 20%;
+        font-size: 17px;
+        font-weight: 500;
+        max-width: 80%;
+        margin-left: 10%;
+    
+    }
+    .info{
+        float: right;
+        margin-top: 2%;
+        margin-right: 2%;
+        font-weight: bold;
+        font-size: 10px;
+    }
+    
+    #addanswer{
+        font-size: 14px;
+        margin-top: 5%;
+
+    }
+    #back{
+        font-size: 14px;
+    }
+
+    #cntrline{
+        border-left: 350px solid #6B0085;
+        height: 2px;
+        transition: 0.3s;
+    }
+}
 </style>
 
 
