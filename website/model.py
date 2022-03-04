@@ -48,8 +48,7 @@ class Post(db.Model):
 
 class Comment(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    title = db.Column(db.String())
-    description = db.Column(db.String(), nullable=False)
+    description = db.Column(db.String())
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
     post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))

@@ -5,7 +5,7 @@
 {%block body%}                    
 
 <button id="back" onclick="window.location.href ='http://127.0.0.1:5000/mainpage'"> الرجوع</button>
-<button id="addanswer" onclick="window.location.href ='http://127.0.0.1:5000/mainpage'"> اضافة اجابة</button>
+<button id="addanswer" onclick="window.location.href ='http://127.0.0.1:5000/create/comment/{{post.id}}'"> اضافة اجابة</button>
 
 <div class="info">
     <p class="user">{{post.user.username}} : بواسطة  </p>
@@ -26,9 +26,9 @@
 <p id="replynum">عدد الاجابات : 3</p>
 
 <div class="reply">
-<p id="titleOFreply">{{comment.title}}/p>
+<p id="titleOFreply"></p>
 <p id="thereply">
-    {{comment.description}}</p>
+    </p>
 
 <p id="writerOFreply" dir="rtl">{{post.user.username}} : بواسطة </p>
 <p id="timeOFreply" dir="rtl">2022 2 22 22:22</p>
