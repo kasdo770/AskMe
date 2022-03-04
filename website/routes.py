@@ -21,7 +21,11 @@ def cleartable():
 @app.route("/home")
 @app.route("/")
 def HomePage():
-    return render_template("homepage.html")
+    posts = Post.query.all()
+    number_of_posts = 0
+    for post in posts:
+        number_of_posts +=1
+    return render_template("homepage.html",number_of_posts=number_of_posts)
 
 
 
