@@ -84,7 +84,7 @@ def TeacherRegisterPage():
              flash(
                 f"هنالك مشكلة في :  {err_msg}", category="error"
             )
-    return render_template("Teacher_register.html", form=form)
+    return render_template("register_tea.html", form=form)
 
 
 @auth.route("/register/std", methods = ["POST", "GET"])
@@ -112,4 +112,4 @@ def StudentRegisterPage():
                 f"هنالك مشكلة في :  {err_msg}", category="error"
             )
 
-    return render_template("Student_register.html", form=form)
+    return render_template("register_std.html", form=form)
