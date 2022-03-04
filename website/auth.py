@@ -60,10 +60,9 @@ def Logout():
 
 @auth.route("/register/tea", methods = ["POST", "GET"])
 def TeacherRegisterPage():
-    print(current_user)
     form = TeacherRegisterForm()
-
     if form.validate_on_submit():
+        print("ss")
         if current_user:
             logout_user()
         new_teacher = User(
