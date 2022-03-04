@@ -1,5 +1,6 @@
-from website import app,db
+from website import app,db,mail
 from flask import render_template, url_for, redirect,flash
+from flask_mail import Message
 from website.model import User , Post,Comment
 from flask import request
 from .views import views
@@ -21,6 +22,8 @@ def cleartable():
 @app.route("/home")
 @app.route("/")
 def HomePage():
+    msg = Message("pls work",sender=app.config.get('MAIL_USERNAME'), recipients=['lordskasdo@gmail.com'])
+    mail.send(msg)
     return render_template("homepage.html")
 
 
@@ -117,19 +120,19 @@ def Update_Post(id):
 @app.route("/create/comment/<post_id>", methods=["POST","GET"])
 def CreateComment(post_id):
     form = CommentForm()
-    post=""
-    if form.validate_on_submit:
-        post = Post.query.filter_by(id = post_id)
-        if post:
-            new_comment = Comment(
-                title=form.title.data,
-                description=form.description.data,
-                author = current_user.id,
-                post = post_id
-            )
-            db.session.add(new_comment)
-            db.session.commit()
-            return redirect(f"/view-post/{post_id}")
-        else:
-            flash("ليس هنالك اي سؤال بهذا الاسم",category="error")
+    post = Post.query.filter_by(id=post_id)
+    if post:
+        if form.validate_on_submit():
+            if form.cancel.data:
+                return redirect(url_for(f"views.View_Post",id=post_id))
+            elif form.create.data:
+                new_comment = Comment(
+                    description = form.description.data,
+                    author = current_user.id,
+                    post = post_id
+                )
+                db.session.add(new_comment)
+                db.session.commit()
+    else:
+        print("no")
     return render_template("CreateComment.html", form=form)

@@ -10,12 +10,11 @@ views = Blueprint("views", __name__)
 @login_required
 def View_Post(id):
     post = Post.query.filter_by(id=id).first()
-    comment = Comment.query.filter_by(id=post.id)
     if not post:
         flash("هذا السؤال غير موجود من قبل", category="error")
-        return redirect(url_for("MainPage"))
+        return redirect(url_for("views.MainPage"))
     else:
-        return render_template("ViewPost.html",comment=comment, post=post)
+        return render_template("ViewPost.html",post=post)
 
 @views.route("/profile")
 @login_required
