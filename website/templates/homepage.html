@@ -1,35 +1,43 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HomePage</title>
+                                                        <!--bootstrap and css links-->
     <link rel="stylesheet" href="{{url_for('static',filename='/TemplatesCss/homepage.css')}}">
-    <link rel="stylesheet" href="/website/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/website/static/js/bootstrap.min.js">
-</head>
-<body>
-    <div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p>
-</div>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor..</p>
+</head> 
+<body>                                                  <!--navbar-->
+  <nav class="navbar " id="navbar">
+  <div class="container">
+    <button class="btn btn-primary  text-size-2 p-1" id="signin">تسجيل الدخول</button>
+    <div class="d-flex justify-content-end ">
+      <h1 class="text-light" id="logo">
+        اسئلة
+      </h1>
     </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor..</p>
     </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-</div>
+  </nav>
+                                                        <!--1st section-->
+  <section dir="rtl" id="section1" class="mt-4">
+    <div class="container"> 
+      <div class="d-flex align-items-center justify-content-between">
+        <div id="section1text">
+          <div class="boring">
+        <h1 class="h4 mb-3 when" >مرحبا بك في موقع اسئلة</h1>
+        <h1 class="h6 how">فيساعرص بيحب الموقع دا بس نيوتن عرص بيقولك موقع تفاحي
+                       سشسايسعهيشهسعيهعسشايعسلاييهشسيهعسهعايعهشسايعهش  
+        </h1>
+        <h4 id="why">عدد الاسئلة : <span class="" id="num">001</span></h4>
+      </div>
+      </div>
+        <img src="static/study.png" alt="" dir="ltr" width="38%" class="d-sm-block d-none mt-4">
+      </div> 
+  </section>
+
 </body>
 </html>

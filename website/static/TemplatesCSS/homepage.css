@@ -1,0 +1,60 @@
+body {
+  background-image: linear-gradient(#242582, #2F2FA2) !important;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+#navbar {
+  background-color: transparent !important;
+}
+#navbar #logo {
+  color: #F64C72 !important;
+}
+#navbar #signin {
+  background-color: transparent !important;
+  outline: none !important;
+  border: 2px #F64C72 solid;
+}
+
+.how {
+  line-height: 27px !important;
+}
+
+#section1text {
+  color: white !important;
+}
+
+#why {
+  margin-top: 5%;
+  font-size: 20px;
+}
+
+#num {
+  border-bottom: #F64C72 2px solid;
+  border-radius: 0.25em;
+  padding: 0.5%;
+}
+
+@media screen and (max-device-width: 768px) {
+  #navbar {
+    margin-bottom: 15%;
+  }
+
+  * {
+    font-size: 11px;
+  }
+
+  .how {
+    line-height: 20px !important;
+  }
+}
+@media screen and (max-device-width: 574px) {
+  .boring {
+    display: block;
+    text-align: center;
+  }
+
+  * {
+    font-size: 13px;
+  }
+}
