@@ -28,6 +28,8 @@ def HomePage():
         number_of_posts +=1
     if len(str(number_of_posts)) >=4 :
         number_of_post = f"{str(number_of_posts)[:-3]},{str(number_of_posts)[-3:]}"
+    elif len(str(number_of_posts)) >=0:
+        number_of_post = "لا يوجد اي اسئلة"
     else:
         number_of_post = number_of_posts
     return render_template("homepage.html",number_of_posts=number_of_post)
