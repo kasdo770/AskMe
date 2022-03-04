@@ -1,6 +1,5 @@
-from website import app,db,mail
+from website import app,db
 from flask import render_template, url_for, redirect,flash
-from flask_mail import Message
 from website.model import User , Post,Comment
 from flask import request
 from .views import views
@@ -22,8 +21,6 @@ def cleartable():
 @app.route("/home")
 @app.route("/")
 def HomePage():
-    msg = Message("pls work",sender=app.config.get('MAIL_USERNAME'), recipients=['lordskasdo@gmail.com'])
-    mail.send(msg)
     return render_template("homepage.html")
 
 

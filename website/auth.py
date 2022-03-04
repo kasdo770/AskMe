@@ -1,9 +1,7 @@
-from socket import MSG_BCAST
 from flask import Blueprint,redirect,url_for,flash,render_template
 from flask_login import login_required,logout_user,current_user,login_user
-from website import db,mail
+from website import db
 from .model import User,Post,Comment
-from flask_mail import Message
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm,CommentForm
 
 
