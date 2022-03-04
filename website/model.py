@@ -46,6 +46,8 @@ class Post(db.Model):
     comments = db.relationship("Comment", backref="posts", passive_deletes=True)
 
 
+
+
 class Comment(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     description = db.Column(db.String())

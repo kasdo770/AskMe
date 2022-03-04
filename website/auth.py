@@ -25,7 +25,7 @@ def LoginPage():
                     ) 
                     login_user(user, remember=True)
                     print(current_user)
-                    return redirect(url_for("views.HomePage"))
+                    return redirect(url_for("HomePage"))
                 else:
                     flash("كلمة المرور خاطئا", category="error")
                     
@@ -38,7 +38,7 @@ def LoginPage():
                     login_user(user, remember=True)
                     print(current_user)
                     print("Logged in successfuly")
-                    return redirect(url_for("views.HomePage"))
+                    return redirect(url_for("HomePage"))
                 else:
                     flash("كلمة المرور خاطئا", category="error")
                     
@@ -52,10 +52,9 @@ def LoginPage():
 
 
 @auth.route("/logout")
-@login_required
 def Logout():
     logout_user()
-    return redirect(url_for("views.HomePage"))
+    return redirect(url_for("HomePage"))
 
 
 
@@ -79,7 +78,7 @@ def TeacherRegisterPage():
         db.session.add(new_teacher)
         db.session.commit()
         login_user(new_teacher, remember=True)
-        return redirect(url_for("views.HomePage"))
+        return redirect(url_for("HomePage"))
     if form.errors != {}:
         for err_msg in form.errors.values():
              flash(
@@ -106,7 +105,7 @@ def StudentRegisterPage():
         db.session.add(new_student)
         db.session.commit()
         login_user(new_student, remember=True)
-        return render_template("homepage.html")
+        return redirect(url_for("HomePage"))
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(
