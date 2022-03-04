@@ -30,6 +30,9 @@
       .img-body{
         width: fit-content;
       }
+      .btn{
+        float: right;
+      }
       @media screen and (max-device-width:984px) {
         body{
           background-size: 100% 100%;
@@ -60,7 +63,7 @@
                 <br>
                 <br>
                 <br>
-                <form class="register-page" method="POST">
+                <form class="register-page input-group input-group-sm mb-1 btn" method="POST">
                   {{ form.hidden_tag() }}
                   {{ form.csrf_token }}
                   <div class="form-outline mb-1">
