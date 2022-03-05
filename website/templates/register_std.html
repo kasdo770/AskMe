@@ -49,6 +49,7 @@
     </style>
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
+    <script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
 
 </head> 
 <body>
@@ -66,6 +67,7 @@
                 <form class="register-page input-group input-group-sm mb-1 btn" method="POST">
                   {{ form.hidden_tag() }}
                   {{ form.csrf_token }}
+                <div class="row">
                   <div class="form-outline mb-1">
                     {{form.username.label(class="form-label color-text", for="form3Example3cg")}}
                     {{form.username(dir="rtl",class="form-control form-control-lg", id="form3Example3cg")}}
@@ -76,7 +78,8 @@
                     {{form.email(dir="rtl",class="form-control form-control-lg", id="form3Example3cg")}}
                     
                   </div>
-  
+                </div>
+              <div class="row">
                   <div class="form-outline mb-1">
                     {{form.password1.label(class="form-label color-text", for="form3Example3cg")}}
                     {{form.password1(dir="rtl",class="form-control form-control-lg", id="form3Example3cg")}}
@@ -88,6 +91,7 @@
                     {{form.password2(dir="rtl",class="form-control form-control-lg", id="form3Example3cg")}}
                     
                   </div>
+                </div>
                   
                   <div class="form-outline mb-1">
                     {{form.schooltype.label(class="form-label color-text",for="form3Example4cdg")}}
@@ -106,9 +110,7 @@
                   </div>
   
                   <p class="text-center text-muted mt-5 mb-0">هل لديك حساب مسبقا ؟ <a href="{{url_for('auth.LoginPage')}}" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
-  
                 </form>
-  
               </div>
             </div>
           </div>
@@ -119,7 +121,7 @@
  <div>
  </div>
 <style>
-  
+
 </style>
 </body>
 </html>
