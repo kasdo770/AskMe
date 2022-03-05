@@ -54,9 +54,7 @@
         .m-container{
           width: 200%;
           margin-left: 20%;
-          height: 70%;
-          padding-bottom: 20%;
-          
+          height: 100%;     
         }
         body{
         background-image: url("../static/Assets/blue-book-background.jpg");
@@ -139,7 +137,7 @@
                     {{form.submit(class="btn-block btn-lg gradient-custom-4 text-body")}}
                   </div>
   
-                  <p class="text-center text-muted mt-5 mb-0">هل لديك حساب مسبقا ؟ <a href="{{url_for('auth.LoginPage')}}" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
+                  <p class="text-center text-muted mt-2 mb-0">هل لديك حساب مسبقا ؟ <a href="{{url_for('auth.LoginPage')}}" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
                 </form>
               </div>
             </div>
