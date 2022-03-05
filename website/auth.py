@@ -67,10 +67,10 @@ def TeacherRegisterPage():
             logout_user()
         new_teacher = User(
            username=form.username.data,
-           password = form.password1.data,
            email=form.email.data,
+           password = form.password1.data,
            kind="teacher",
-           first_subject=form.first_subject.data,
+           first_subject = form.first_subject.data,
            second_subject = form.second_subject.data
         )
         flash(f" تم انشاء حساب معلم جديد باسم {form.username.data}", category="success")
