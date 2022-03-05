@@ -16,11 +16,12 @@
       .color-text{
         color: black;
         float: right;
-        font-size: 20px;
+        font-size: 15px;
       }
       .color-title{
         color: black;
         float: right;
+        font-size: 22px;
       }
       .m-container{
         float: right;
@@ -52,15 +53,16 @@
       }
       @media  screen  and (min-device-width:1005px) and (max-device-width:1440px) {
         .m-container{
-          width: 200%;
-          margin-left: 20%;
+          width: 100%;
+          margin-left: 15%;
+          margin-right: 3%;
           height: 80%;     
         }
         body{
         background-image: url("../static/Assets/blue-book-background.jpg");
-    background-repeat: no-repeat, no-repeat;
-    background-size: 50% 100%;
-    background-position: left top;
+        background-repeat: no-repeat, no-repeat;
+        background-size: 50% 100%;
+        background-position: left top;
     
       }
       }
@@ -79,9 +81,6 @@
             <div class="card">
               <div class="card-body">
                 <h2 class="text-uppercase text-center mb-3 color-title"> انشاء حساب طالب</h2>
-                <br>
-                <br>
-                <br>
                 <form class="register-page input-group input-group-sm mb-1 btn" method="POST">
                   {{ form.hidden_tag() }}
                   {{ form.csrf_token }}
