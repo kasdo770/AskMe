@@ -13,7 +13,7 @@
 <body>                                                  <!--navbar-->
   <nav class="navbar mt-2 " id="navbar">
   <div class="container">
-    <a href="#" class="btn btn-primary  text-size-2 p-1" id="signin" href="#">تسجيل الدخول</a>
+    <a href="{{url_for('auth.LoginPage')}}" class="btn btn-primary  text-size-2 p-1" id="signin" >تسجيل الدخول</a>
     <div class="d-flex justify-content-end ">
       <h1 class="text-light" id="logo">
         اسئلة
@@ -45,7 +45,7 @@
     <div class="card-body">
       <h5 class="card-title"> معلم</h5>
       <p class="card-text">شهسلتسجيل الدخول هات امك ليلتينه</p>
-      <a href="#" class="btn btn-primary" id="create">انشاء الحساب</a>
+      <a href="{{url_for('auth.TeacherRegisterPage')}}" class="btn btn-primary" id="create">انشاء الحساب</a>
     </div>
   </div>
 
@@ -53,7 +53,7 @@
     <div class="card-body">
       <h5 class="card-title"> تلميذ </h5>
       <p class="card-text">شهلتسجيل الدخول هات اختك ليلهخه</p>
-      <a href="#" class="btn btn-primary" id="create">انشاء الحساب</a>
+      <a href="{{url_for('auth.StudentRegisterPage')}}" class="btn btn-primary" id="create">انشاء الحساب</a>
     </div>
   </div>                                        
 </div>

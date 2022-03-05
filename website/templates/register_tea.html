@@ -54,9 +54,8 @@
                 <br>
                 <br>
                 <br>
-                <form class="register-page" method="POST">
-                  {{ form.hidden_tag() }}
-                  {{ form.csrf_token }}
+                <form>
+  
                     <div class="form-outline mb-2">
                         {{form.username.label(class="form-label color-text", for="form3Example3cg")}}
                         {{form.username(dir="rtl",class="form-control form-control-lg", id="form3Example3cg")}}
@@ -96,7 +95,7 @@
                         {{form.submit(class="btn-block btn-lg gradient-custom-4 text-body")}}
                       </div>
   
-                  <p class="text-center text-muted mt-5 mb-0">هل لديك حساب مسبقا ؟ <a href="#!" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
+                  <p class="text-center text-muted mt-5 mb-0">هل لديك حساب مسبقا ؟ <a href="{{url_for('auth.LoginPage')}}" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
   
                 </form>
   
