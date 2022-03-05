@@ -4,6 +4,11 @@ body {
   background-size: 100%;
 }
 
+.boring {
+  margin-top: 20%;
+  margin-bottom: 30%;
+}
+
 #navbar {
   background-color: transparent !important;
 }
@@ -24,7 +29,7 @@ body {
 }
 
 .how {
-  line-height: 27px !important;
+  line-height: 35px !important;
 }
 
 #section1text {
@@ -34,6 +39,14 @@ body {
 #why {
   margin-top: 5%;
   font-size: 20px;
+}
+
+.when {
+  font-size: 20px !important;
+}
+
+#logo {
+  font-size: 20px !important;
 }
 
 #num {
@@ -69,10 +82,8 @@ body {
 #about {
   margin-top: 30%;
   margin-bottom: 10%;
-  border: 5px #F64C72 solid;
-  padding: 4%;
-  border-radius: 0.5em;
-  background-image: linear-gradient(#242582, #F64C72) !important;
+  padding: 3%;
+  background-image: linear-gradient(#242582, #5700ae) !important;
 }
 
 #us {
@@ -84,10 +95,10 @@ body {
 
 #join {
   text-align: center;
-  color: #fffffff5;
+  color: #F64C72;
   font-size: 26px;
   margin-bottom: -2%;
-  margin-top: 30% !important;
+  margin-top: 20% !important;
 }
 
 #cardsbg {
@@ -100,20 +111,18 @@ body {
   }
 
   * {
-    font-size: 11px;
-  }
-
-  .how {
-    line-height: 20px !important;
+    font-size: 11px !important;
   }
 }
 @media screen and (max-device-width: 574px) {
   .boring {
-    display: block;
     text-align: center;
+    font-size: 10px !important;
+    margin-top: 20%;
+    margin-bottom: 10%;
   }
 
   * {
-    font-size: 13px;
+    font-size: 14px !important;
   }
 }
