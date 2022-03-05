@@ -59,7 +59,9 @@
                 <br>
                 <br>
                 <br>
-                <form>
+                <form method="POST">
+                  {{form.hidden_tag() }}
+                  {{ form.csrf_token }}
                   <div class="form-outline mb-4">
                     {{form.username.label(class="form-label color-text", for="form3Example3cg")}}
                     {{form.username(dir="rtl",class="form-control form-control-lg", id="form3Example3cg")}}
