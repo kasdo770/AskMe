@@ -1,3 +1,157 @@
+$colorz: #242582
+$colora: #553D67
+$colorb: #F64C72
+$colorc: #99738E
+$colorx: #2F2FA2 
 
 
 
+
+body
+    background-image: linear-gradient($colorz,$colorx) !important
+    background-repeat: no-repeat
+    background-size: 100%
+
+
+#navbar
+    background-color: transparent !important
+
+    #logo
+        color: $colorb !important
+
+    #logout
+        background-color: transparent !important
+        outline: none !important
+        border: 2px $colorb solid
+        box-shadow: none !important
+    #logout:hover 
+         background-color: #fa6787 !important
+    #logout:active
+        background-color: #ff1b4c !important
+
+.sidenav 
+
+  height: 100%
+  width: 0
+  position: fixed
+  top: 0
+  left: 0
+  background-image: linear-gradient($colorz,#4d09ba) 
+  overflow-x: hidden
+  transition: 0.5s
+  padding-top: 60px
+
+
+.sidenav a 
+  padding: 8px 8px 8px 32px
+  text-decoration: none
+  font-size: 25px
+  color: #ffffff
+  display: block
+  transition: 0.3s
+  margin-bottom: 2%
+
+.sidenav a:hover 
+  color: #bbbbbb
+
+
+.sidenav .closebtn 
+  position: absolute
+  top: 0
+  right: 25px
+  font-size: 36px
+  margin-left: 50px
+
+#navopen
+    color: #fff
+    border: 2px #f895ab  solid
+    padding: 1px
+    padding-left: 10px
+    padding-right: 10px
+    border-radius: 0.25em
+    &:hover
+        color: $colorb
+        border: 2px $colorb solid
+    &:active
+        color: #000000
+        border: 2px #000 solid
+
+.srch
+    padding: 5px
+    border: 2px #fff solid
+    border-radius: 1em
+    outline: none !important
+    &:hover
+        border: 2px #aeaeae solid
+    &:focus
+        border-radius: 0.25em
+#search
+        background-color: transparent !important
+        outline: none !important
+        border: 2px $colorb solid
+        box-shadow: none !important
+        color: $colorb
+        
+        &:hover 
+            background-color: #fa6787 !important
+            color: #960020
+        &:active
+            background-color: #ff1b4c !important
+
+
+.newq
+    padding-bottom: 2%
+    margin-top: 13%
+    
+
+.newqbrdr
+    border-bottom: 2px #fff solid
+    padding-bottom: 6%
+    margin-bottom: 24%
+
+
+
+
+    
+.zuttons
+        background-color: transparent !important
+        outline: none !important
+        border: 2px $colorb solid !important
+        box-shadow: none !important
+        margin-left: 1%
+        
+        &:hover 
+            background-color: #fa6787 !important
+        &:active
+            background-color: #ff1b4c !important
+
+.cntrline
+    
+    border-left: 600px solid #ffffff
+    height: 2px
+    transition: 0.3s
+    float: right
+    margin-top: 2%
+
+
+@media screen and ( min-device-width:50px) and ( max-device-width:560px)
+   *
+    font-size: 15px !important
+
+    .newq
+        margin-top: 25%
+
+    .newqbrdr
+        padding-bottom: 8%
+        margin-bottom: 35%
+    .zuttons
+        font-size: 12px !important
+        margin-top: 2%
+
+    .srch
+        font-size: 12px !important
+    #search
+        font-size: 10px !important
+
+    #logo
+        font-size: 18px !important
