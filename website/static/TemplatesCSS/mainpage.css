@@ -127,14 +127,12 @@ body {
   background-color: #ff1b4c !important;
 }
 
-.cntrline {
-  border-left: 600px solid #ffffff;
-  height: 2px;
-  transition: 0.3s;
-  float: right;
-  margin-top: 2%;
-}
-
+/**.cntrline
+ *  border-left: 600px solid #ffffff
+ *  height: 2px
+ *  transition: 0.3s
+ *  float: right
+ *  margin-top: 2% **/
 @media screen and (min-device-width: 50px) and (max-device-width: 560px) {
   * {
     font-size: 15px !important;
