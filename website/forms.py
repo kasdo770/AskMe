@@ -138,9 +138,6 @@ class PostForm(FlaskForm):
 
 
 
-
-
-
 class UpdatePostForm(FlaskForm):
     description = TextAreaField(label="الموضوع" )
     subject = SelectField(label="نوع المادة", choices=[('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),

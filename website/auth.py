@@ -36,7 +36,7 @@ def LoginPage():
             if user.kind == "teacher":
                 if user.password_check(thepass=form.password.data):
                     flash(
-                        f"تم تسجيل الدخول بنجاح يا ايها مستر {form.username.data}",
+                        f" تم تسجيل الدخول بنجاح يا مستر {form.username.data} ",
                         category="success",
                     )
                     login_user(user, remember=True)
@@ -131,7 +131,7 @@ def StudentRegisterPage():
         schooltype=form.schooltype.data,
         age = form.age.data
         )
-        flash(f" تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
+        flash(f" تم انشاء حساب طالب جديد باسم {form.username.data} " , category="success")
         db.session.add(new_student)
         db.session.commit()
         link = url_for("auth.ConfirmEmail",token=token,_external=True)

@@ -40,7 +40,9 @@
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         {% if current_user.kind == "student"%}
-        <a href="{{url_for('CreatePostPage')}}" id="newqbtn">سؤال جديد</a>
+          {%if current_user.verified == 1 %}
+            <a href="{{url_for('CreatePostPage')}}" id="newqbtn">سؤال جديد</a>
+          {%endif%}
         {%endif%}
         <a href="{{url_for('views.ProfilePage')}}">الملف الشخصي</a>
         <a href="{{url_for('auth.Logout')}}">تسجيل الخروج</a>
@@ -86,18 +88,16 @@
         });
         </script>
 
-                                                        <!--Header and Search-->
-          
+                                                        <!--Header and Search-->              
           <h3 class="text-center text-light mt-5">الاسئلة الجديدة</h3>
-          <form class="d-flex align-items-center justify-content-center mt-3">
-            <input class=" srch me-2" dir="rtl" placeholder="اضغط للكتابة" >
+          <form method="POST" action="{{url_for('search')}}" class="d-flex align-items-center justify-content-center mt-3">
+            <input id="searchinput" class=" srch me-2" dir="rtl" placeholder="اضغط للكتابة" >
             <button class="btn" id="search" type="submit">بحث</button>
           </form>
 
 
                                                         <!--Questions-->
-
-          {%for item in post%}
+        {%for item in post%}     
         <div class="container newq">
           <div dir="rtl" class=" newqbrdr text-center text-light">
               {%if item.title|length < 35 %}
@@ -121,8 +121,10 @@
                   <div dir="rtl" class="d-flex flex-row justify-content-center align-items-center">
               {%if current_user.id == item.user.id%}
               <button class="btn btn-primary zuttons" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >ألقي نظرة</button>
-              {%else%}
+              {%elif current_user.verified == True%}
               <button class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >اجب عليه</button>
+              {%else%}
+              <button class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >القي نظؤة</button>
               {%endif%}
 
               {%if current_user.id == item.user.id%}
@@ -174,6 +176,7 @@
 
 
               {%endfor%} 
+
                                         
 
 </body>
