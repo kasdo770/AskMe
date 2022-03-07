@@ -1,4 +1,5 @@
 from website import app,db
+from flask_mail import Message
 from flask import render_template, url_for, redirect,flash
 from website.model import User , Post,Comment
 from flask import request

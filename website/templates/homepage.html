@@ -45,7 +45,16 @@
 
                                                             <!--cards-->
   {%if current_user.is_authenticated%}    
-  <a href="{{url_for('views.MainPage')}}" class="btn btn-primary" id="create"> ابدا الان</a>
+  <div class="container-fluid">>
+  <div class="d-flex justify-content-center mt-5 mb-5" id="cardsbg">
+  <div class="card " style="width: 12rem;" id="card">
+    <div class="card-body">
+      <h5 class="card-title"> اهلا بعودتك</h5>
+      <a href="{{url_for('auth.TeacherRegisterPage')}}" class="btn btn-primary" id="create"> ابدا</a>
+    </div>
+  </div>
+  </div>
+  </div>
   {%else%}
   <div class="container-fluid">
     <h1 id="join">انضم لنا</h1>
