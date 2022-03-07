@@ -145,3 +145,6 @@ def CreateComment(post_id):
     else:
         print("no")
     return render_template("CreateComment.html", form=form)
+@app.route("/profile2")
+def Profile2():
+    return render_template("profile2.html")
