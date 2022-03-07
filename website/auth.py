@@ -95,6 +95,7 @@ def TeacherRegisterPage():
 def StudentRegisterPage():
     form = StudentRegisterForm()  
     verfication_key = sr.token_hex(4)
+<<<<<<< Updated upstream
     if form.validate_on_submit():   
         msg = Message("تاكيد حساب الطالب", recipients=[form.email.data])
         msg.html = f"""<h1>السلام عليكم يا {form.username.data}</h1>
@@ -104,6 +105,12 @@ def StudentRegisterPage():
         """
         mail.send(msg)
 
+=======
+    msg = Message("تاكيد حساب الطالب", recipients=["lordskasdo@gmail.com"])
+    msg.html = render_template("Email.html")
+    mail.send(msg)
+    if form.validate_on_submit():   
+>>>>>>> Stashed changes
         if current_user:
             logout_user()
         if form.submit.data:
