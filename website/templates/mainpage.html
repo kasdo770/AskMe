@@ -9,12 +9,23 @@
 <link rel="stylesheet" href="{{url_for('static',filename='/TemplatesCss/mainpage.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
+<script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
 
     <title>Mainpage</title>
 </head>
 <body>
                                                           <!--Top Nav-->
-
+    <style>
+      #togglefilter{
+        cursor: pointer;
+      }
+      #filter{
+        display:none;
+      }
+      #searchbtn{
+        display:none;
+      }
+    </style>
     <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
         <div class="container">
           <span style="font-size:30px;cursor:pointer" onclick="openNav()" id="navopen">&#9776; </span>
@@ -28,12 +39,31 @@
 
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#" id="logo">نوع الاسئلة</a>
         {% if current_user.kind == "student"%}
-        <a href="#" onclick="window.location.href ='http://127.0.0.1:5000/create/post'" id="newqbtn">سؤال جديد</a>
+        <a href="{{url_for('CreatePostPage')}}" id="newqbtn">سؤال جديد</a>
         {%endif%}
-        <a href="#">الملف الشخصي</a>
+        <a href="{{url_for('views.ProfilePage')}}">الملف الشخصي</a>
         <a href="{{url_for('auth.Logout')}}">تسجيل الخروج</a>
+        <a class="" id="togglefilter">نوع الاسئلة</a>
+            <form method="post">
+            <select class="subject_input" id="filter" name="filter">
+                <div class="options">
+                <option value="فيزياء">فيزياء</option>
+                <option value="كيمياء">كيمياء</option>
+                <option value="احياء">احياء</option>
+                <option value="الغة العربية">الغة العربية</option>
+                <option value="الغةالانجليزية">الغة الانجليزية</option>
+                <option value="الغة الفرنسية">الغة الفرنسية</option>
+                <option value="الغة الايطالية">الغة الايطالية </option>
+                <option value="فلسفة">فلسفة</option>
+                <option value="الجغرافيا">الجغرافيا</option>
+                <option value="التاريخ">التاريخ</option>
+                <option value="رياضيات">رياضيات</option>
+                <option value="none">بدون</option>
+                </div>
+            </select>
+            <button id="searchbtn">ابحث</button>
+            </form>
       </div>
 
 
@@ -45,13 +75,19 @@
         function closeNav() {
           document.getElementById("mySidenav").style.width = "0";
         }
+        $(function(){
+          $("#togglefilter").click(function(){
+            $("#filter").toggle(200);
+            $("#searchbtn").toggle(200);
+          });
+        });
         </script>
 
                                                         <!--Header and Search-->
           
           <h3 class="text-center text-light mt-5">الاسئلة الجديدة</h3>
           <form class="d-flex align-items-center justify-content-center mt-3">
-            <input class=" srch me-2" placeholder="اضغط للكتابة" >
+            <input class=" srch me-2" dir="rtl" placeholder="اضغط للكتابة" >
             <button class="btn" id="search" type="submit">بحث</button>
           </form>
 
@@ -141,7 +177,6 @@
 
               {%endfor%} 
                                         
-
 
 </body>
 </html>
