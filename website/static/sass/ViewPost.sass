@@ -31,7 +31,6 @@ body
 
 
 
-
 #title
     margin-top: 4%
     margin-bottom: 5%
@@ -47,4 +46,63 @@ body
     margin-top: 7%
     border-right: 2px $colorb solid
     padding-right: 2%
+
+.inputparent
+    margin-top: 5%
+    border-top: 3px $colorx solid
+    border-bottom: 3px $colorx solid
+    padding-top: 4%
+
+.input
+    color: black
+    width: 60%
+    height: 8em
+    padding: 0.5%
+    margin-bottom: 5%
+    outline: none !important
+    &:focus
+        border: 2px white solid
+        border-radius: 0.50em
+
+
+
+.submit
+
+    margin-right: 3%
+    text-decoration: none
+    color: white !important
+    background-color: transparent
+    border: 2px $colorb solid
+    padding: 0.5% 
+    border-radius: 0.25em
+    margin-top: -6%
+.submit:hover 
+    background-color: #fa6787 !important
+.submit:active
+    background-color: #ff3f69 !important
+
+.edit
+    margin-bottom: 8%
+
+
+
+
+
+
+
+
+@media screen and ( min-device-width:50px) and ( max-device-width:992px)
+    *
+        font-size: 15px !important
+
+    .info
+        margin-bottom: 10%
+
+    #logo
+        font-size: 17px !important
+
+@media screen and ( min-device-width:50px) and ( max-device-width:768px)
+    *
+        font-size: 10px !important
+
 
