@@ -5,27 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-                                                        <!--bootstrap and css links-->
+                                                        <!--links-->
 <link rel="stylesheet" href="{{url_for('static',filename='/TemplatesCss/mainpage.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
 <script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
 
     <title>Mainpage</title>
-</head>
-<body>
-                                                          <!--Top Nav-->
+
     <style>
       #togglefilter{
         cursor: pointer;
       }
       #filter{
-        display:none;
+        display:none;                            /**omar is dumb af**/
       }
       #searchbtn{
         display:none;
       }
     </style>
+    
+</head>
+<body>
+                                                          <!--Top Nav-->
+
     <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
         <div class="container">
           <span style="font-size:30px;cursor:pointer" onclick="openNav()" id="navopen">&#9776; </span>
