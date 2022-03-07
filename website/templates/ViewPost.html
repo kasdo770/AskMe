@@ -1,206 +1,60 @@
-{% extends 'base.html' %}
-{%block title%}
-البوست
-{%endblock%}
-{%block body%}                    
 
-<button id="back" onclick="window.location.href ='http://127.0.0.1:5000/mainpage'"> الرجوع</button>
-<button id="addanswer" onclick="window.location.href ='http://127.0.0.1:5000/create/comment/{{post.id}}'"> اضافة اجابة</button>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewPost</title>
 
-<div class="info">
-    <p class="user">{{post.user.username}} : بواسطة  </p>
-    <p class = "subject"> المادة: {{post.subject}} </p>     
-    <p class="date">الوقت : {{post.datetime}}</p>   
-</div>
+                                                                                <!--links-->
 
-<div class="thequestion">
-    <h3 id="title">{{post.title}}<h3>
-    <p id="cntrline" class="firstcntrline"></p>
-    <h4 id="description">
-       {{post.description}}
-    </h4>
-    <h6 id="update-description">{{post.update_description}}</h6>
-    <p id="cntrline" class="secondcntrline"></p>
-</div>
-
-<p id="replynum">عدد الاجابات : 3</p>
-
-<div class="reply">
-<p id="titleOFreply"></p>
-<p id="thereply">
-    </p>
-
-<p id="writerOFreply" dir="rtl">{{post.user.username}} : بواسطة </p>
-<p id="timeOFreply" dir="rtl">2022 2 22 22:22</p>
-</div>
-
-<style>
-
-
-.reply{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid #a700c9;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    padding: 5%;
-
-}
-
-#description{
-    font-size: 16px;
-    margin-top: 2.2%;
-        
-}
-#title{
-    font-size: 20px;
-}
-
-#replynum{
-    text-align: center;
-    color:#a700c9;
-    font-size: 19px;
-    margin-top: 1%;
-}
-
-.thequestion{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 9%;
-    font-size: 17px;
-    font-weight: 500;
-    max-width: 80%;
-    margin-left: 10%;
-
-}
-
-.likeXdislike{
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
-}
-
-#dislike{
-        display: inline;
-        -moz-transform: scale(-1, -1);
-        -webkit-transform: scale(-1, -1);
-        -o-transform: scale(-1, -1);
-        -ms-transform: scale(-1, -1);
-        transform: scale(-1, -1);
-
-}
-
-.info{
-    float: right;
-    margin-top: 2%;
-    margin-right: 2%;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-
-#back{
-    font-size: 18px;
-    background-color: transparent;
-    color: #6B0085 ;
-    border-color: #6B0085;
-    border-radius: 0.25em;
-    padding: 0.3% 0.6% 0.3% 0.6%;
-    transition-timing-function: ease-in;
-    transition: 0.5s;
-    cursor: pointer;
-    margin-top: 2%;
-    margin-left: 2%;
-}
-
-#addanswer{
-    font-size: 18px;
-    background-color: transparent;
-    color: #6B0085 ;
-    border-color: #6B0085;
-    border-radius: 0.25em;
-    padding: 0.3% 0.6% 0.3% 0.6%;
-    transition-timing-function: ease-in;
-    transition: 0.5s;
-    cursor: pointer;
-    margin-top: 2%;
-    margin-left: 2%;
-}
-
-#back:hover{
-    background-color: #faf6f6;
-}
-
-#back:active{
-    background-color: #a700c9;
-}
-
-#addanswer:hover{
-    background-color: #faf6f6;
-}
-
-#addanswer:active{
-    background-color: #a700c9;
-}
-
-#cntrline{
-        border-left: 500px solid #6B0085;
-        height: 2px;
-        transition: 0.3s;
-    }
-
-.firstcntrline{
-    margin-bottom: 6%;
-}
-.secondcntrline{
-    margin-top: 6%;
-}
-
-@media screen and (min-device-width:50px) and (max-device-width:820px) {
-
-    .thequestion{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 40%;
-        margin-bottom: 20%;
-        font-size: 17px;
-        font-weight: 500;
-        max-width: 80%;
-        margin-left: 10%;
-    
-    }
-    .info{
-        float: right;
-        margin-top: 2%;
-        margin-right: 2%;
-        font-weight: bold;
-        font-size: 10px;
-    }
-    
-    #addanswer{
-        font-size: 14px;
-        margin-top: 5%;
-
-    }
-    #back{
-        font-size: 14px;
-    }
-
-    #cntrline{
-        border-left: 350px solid #6B0085;
-        height: 2px;
-        transition: 0.3s;
-    }
-}
-</style>
+<link rel="stylesheet" href="{{url_for('static',filename='/TemplatesCss/ViewPost.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
+<script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
 
 
 
-{%endblock%}
+</head>
+<body>
+                                                                                <!--Top Nav-->
+
+    <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
+    <div class="container">
+        <a href="" class="btn btn-primary  text-size-2 p-1" id="back" >الرجوع</a>
+        <h1 id="logo">
+        اسئلة
+        </h1>
+    </div>
+    </nav>
+    <div dir="rtl" class="container">
+
+                                                                                <!--user's info-->
+        <div class="info text-light">
+            <h6>بواسطة : امك</h6>
+            <h6>المادة : فيزياء </h6>
+            <h6>التاريخ : 2022 2 22 22:22</h6>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-center flex-column text-light">
+            <h5 id="title">ما هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين</h5>
+            <h6 id="details" dir="rtl">ا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
+                ا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
+                ا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
+                ا هي الاجابة ل22لمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
+                ا هي الاجابة22 للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
+                ا هي الاجابة22 لل222معادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
+                ا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب ترا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنينبيع بلاص خمسه اتنين
+            </h6>
+
+
+
+            <a href="" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
+
+        </div>
+    </div>
+                                                 
+</body>
+</html>
