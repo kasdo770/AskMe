@@ -1,4 +1,4 @@
-from flask import Blueprint,redirect,url_for,flash,render_template
+from flask import Blueprint,redirect, request,url_for,flash,render_template
 from flask_login import login_required,logout_user,current_user,login_user
 from website import db,mail
 from flask_mail import Message
@@ -70,7 +70,6 @@ def TeacherRegisterPage():
         mail.send(msg)
         if current_user:
             logout_user()
-
         new_teacher = User(
            username=form.username.data,
            password = form.password1.data,
@@ -96,29 +95,36 @@ def TeacherRegisterPage():
 def StudentRegisterPage():
     form = StudentRegisterForm()  
     verfication_key = sr.token_hex(4)
-    msg = Message("تاكيد حساب الطالب", recipients=["drtr4p23@gmail.com"])
-    msg.html = f"""<h1>السلام عليكم يا {form.username.data}</h1>
+    if form.validate_on_submit():   
+        msg = Message("تاكيد حساب الطالب", recipients=[form.email.data])
+        msg.html = f"""<h1>السلام عليكم يا {form.username.data}</h1>
         <h3>اهلا بك في موقع اسئلة . للبدء يرجي ادخال الكود الذي امامك 
         في صفحة تسجيل دخول طالب لانشاء حسابك
                     {verfication_key}</h3>
         """
-    mail.send(msg)
-    if form.validate_on_submit():   
+        mail.send(msg)
+
         if current_user:
             logout_user()
-        new_student = User(
-           username=form.username.data,
-           password = form.password1.data,
-           email=form.email.data,
-           kind = "student",
-           schooltype=form.schooltype.data,
-           age = form.age.data
-        )
-        flash(f" تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
-        db.session.add(new_student)
-        db.session.commit()
-        login_user(new_student, remember=True)
-        return redirect(url_for("HomePage"))
+        if form.submit.data:
+            validation = form.validation_input.data
+            if form.validation_btn.data:
+                if validation == verfication_key:
+                    new_student = User(
+                    username=form.username.data,
+                    password = form.password1.data,
+                    email=form.email.data,
+                    kind = "student",
+                    schooltype=form.schooltype.data,
+                    age = form.age.data
+                    )
+                    flash(f" تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
+                    db.session.add(new_student)
+                    db.session.commit()
+                    login_user(new_student, remember=True)
+                    return redirect(url_for("HomePage"))
+                else:
+                    flash("الكود الذي ادخلته غير صحيح")
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(
