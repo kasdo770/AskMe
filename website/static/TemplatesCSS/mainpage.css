@@ -99,7 +99,7 @@ body {
   color: #960020;
 }
 #search:active {
-  background-color: #ff1b4c !important;
+  background-color: #ff3f69 !important;
 }
 
 .newq {
@@ -124,15 +124,25 @@ body {
   background-color: #fa6787 !important;
 }
 .zuttons:active {
-  background-color: #ff1b4c !important;
+  background-color: #ff3f69 !important;
 }
 
-/**.cntrline
- *  border-left: 600px solid #ffffff
- *  height: 2px
- *  transition: 0.3s
- *  float: right
- *  margin-top: 2% **/
+#searchbtn {
+  border-radius: 0.25em;
+  color: white;
+}
+
+#filter {
+  border-radius: 0.25em;
+  outline: none !important;
+  box-shadow: none !important;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+#filter:active {
+  background-color: #ebebeb;
+}
+
 @media screen and (min-device-width: 50px) and (max-device-width: 560px) {
   * {
     font-size: 15px !important;
