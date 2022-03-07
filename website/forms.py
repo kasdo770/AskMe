@@ -65,6 +65,10 @@ class StudentRegisterForm(FlaskForm):
 
     age = StringField(label = "العمر",validators=[Length(min=1,max=2), DataRequired()] )
 
+    validation_input = StringField(label="يرجي ادخال الكود هنا")
+    
+    validation_btn = SubmitField(label="تم")
+
     submit = SubmitField(
         label = "انشاء حساب"
     )
