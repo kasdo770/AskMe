@@ -289,7 +289,7 @@
                                     <div class="row mr-5">
                                         <div class="col-sm-6 text">
                                             <p class=" email-school-margin font-weight-bold remake-text">:مدرستك</p>
-                                            <select class="email-school-margin">
+                                            <select name="schooltype" id="schooltype" class="email-school-margin">
                                                 <div class="email-school-margin remake-text text-muted options">
                                                     <option value="عالمية" > عالمية</option>
                                                     <option value="خاص" > خاص</option>
@@ -301,7 +301,7 @@
                                         </div>
                                         <div class="col-sm-6 text">
                                             <p class="font-weight-bold remake-text">:العمر</p>
-                                            <input dir="rtl" value="{{current_user.age}}" class="remake-text text-muted"></input>
+                                            <input name="age" id="age" dir="rtl" value="{{current_user.age}}" class="remake-text text-muted"></input>
                 
                                         </div>
                                         
@@ -311,8 +311,9 @@
                                     <div class="row mr-5">
                                         <div class="col-sm-6 text">
                                             <p class=" email-school-margin font-weight-bold remake-text">:المادة الاولة</p>
-                                            <select class="email-school-margin">
+                                            <select id="first_subject" name="first_subject" class="email-school-margin">
                                                 <div class="email-school-margin remake-text text-muted options">
+                                                    <option value="{{current_user.first_subject}}" selected disabled hidden>{{current_user.first_subject}}</option>
                                                     <option value="فيزياء">فيزياء</option>
                                                     <option value="كيمياء">كيمياء</option>
                                                     <option value="احياء">احياء</option>
@@ -330,8 +331,9 @@
                                         </div>
                                         <div class="col-sm-6 text">
                                             <p class="font-weight-bold remake-text">:المادة الثانية</p>
-                                            <select>
-                                                <div class="remake-text text-muted options">
+                                            <select id="second_subject" name="second_subject">
+                                                <div class="font-weight-bold remake-text">
+                                                    <option value="{{current_user.second_subject}}" selected disabled hidden>{{current_user.second_subject}}</option>
                                                     <option value="فيزياء">فيزياء</option>
                                                     <option value="كيمياء">كيمياء</option>
                                                     <option value="احياء">احياء</option>

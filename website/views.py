@@ -31,12 +31,13 @@ def ProfilePage():
             flash(" لا يمكنك تعديل من الاسم او الايميل الخاص بك لهذا الاسم او الايميل",category="error")
         else:
             try: 
-                print('wwww')
                 current_user.email = request.form.get('email')
                 current_user.username = request.form.get('username')
                 if current_user.kind == "student":
                     current_user.schooltype = request.form.get('schooltype')
                     current_user.age = request.form.get('age')
+                    print(current_user.age)
+                    print(current_user.schooltype)
                 elif current_user.kind == "teacher":
                     current_user.first_subject = request.form.get('first_subject')
                     current_user.second_subject = request.form.get('second_subject')
