@@ -36,10 +36,7 @@ def HomePage():
     return render_template("homepage.html",number_of_posts=number_of_post)
 
 
-@app.route('/refresh',methods=['POST'])
-def search():
-    if request.method == "POST":
-        searchinput = request.form.get('')
+        
 
 
 @app.route("/create/post", methods=["POST", "GET"])

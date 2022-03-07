@@ -30,6 +30,8 @@ def ProfilePage():
 @login_required
 def MainPage():
     user = User.query.filter_by(id=current_user.id).first()
+    post = Post.query
+    second_post = ""
     if request.method == "POST" and 'filter' in request.form:
         sort_by = request.form.get("filter")
         if sort_by != "none":
@@ -38,9 +40,12 @@ def MainPage():
             post = Post.query.all()
         second_post = ""
     elif request.method == "POST" and 'searchinput' in request.form:
+        print('search')
         _searchinput = request.form['searchinput']
-        post = post.query.filter_by(Post.description.like('%' + _searchinput + '%'))
-        post = post.query.order_by(Post.datetime).all()
+
+        post = post.filter(Post.description.like('%' + _searchinput + '%'))
+        post = post.order_by(Post.datetime).all()
+
     else:
         second_post = ""
         post = ""
