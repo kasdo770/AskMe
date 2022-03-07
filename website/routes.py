@@ -70,7 +70,7 @@ def CreatePostPage():
                 f"هنالك مشكلة في :  {err_msg}", category="error"
             )
 
-    return render_template("CreatePost.html", form=form)
+    return render_template("create-post.html", form=form)
 
 
 
