@@ -7,57 +7,10 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
     <script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
-    <button id="backbutton" onclick="window.location.href='http://127.0.0.1:5000/mainpage'">الرجوع</button>
-    <script>
-         $(function(){
-          $("#changeprofilebtn").click(function(){
-            $("#changeprofile").toggle(600);
-          });
-        });
-    </script>
     <style>
-        #changeprofile{
-            display: none;
-        }
         .margin{
-            margin-top: 10%;
+            margin-top: 18%;
         }
-        #backbutton{
-            font-size: 18px;
-            color: #6B0085 ;
-            border-color: #6B0085;
-            border-radius: 0.25em;
-            padding: 0.3% 0.6% 0.3% 0.6%;
-            transition-timing-function: ease-in;
-            transition: 0.5s;
-            cursor: pointer;
-            margin-top: 2%;
-            margin-left: 2%;
-        }
-       
-        
-
-        
-        .sucbtn{
-        background-color: transparent !important;
-        outline: none !important;
-        border: 2px #F64C72 solid;
-        box-shadow: none !important;
-        margin-bottom:5%;
-        margin-top: -2%;
-        margin-right: 42%;
-        color: black !important;
-        float:right;
-    }
-        .sucbtn:hover{
-        background-color: #fa6787 !important;
-        color: black !important  ;
-        }
-        .sucbtn:active{
-        background-color: #ff1b4c !important;
-        color: black !important ;
-        }
-    
         .color{
             background-color: #F64C72;
         }
@@ -91,7 +44,6 @@
                     color: white;
                     outline: none !important;
                     box-shadow: none !important;
-                    margin-bottom:3%;
             }
             .zuttons:hover {
                     background-color: #9873bd !important;
@@ -122,19 +74,6 @@
                 margin-bottom: 2%;
                 padding-bottom:1% ;
             }
-            .margin-box{     
-          
-                 width:90%;
-            }
-            .remake-text{
-            margin-right:3%;
-            }
-            .email-school-margin{
-                margin-right: 12%;
-            }
-            .name-age-margin{
-                margin-right: 4%;
-            }
     </style>
     <script>
         function openNav() {
@@ -149,7 +88,7 @@
 
 <body class="bg-color">
     <div>
-        <div class="container margin-box">
+        <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10 margin pt-1 shadow">
                     <div class="row z-depth-3">
@@ -157,76 +96,74 @@
                             <div class="card-block text-center text-white height">
                                 <img src = "../static/Assets/profile4.png" class="mt-4 mb-4" width="120px" height="120px" class="rounded-circle mb-4" alt="">
                                 <br>
-                                <button id="changeprofilebtn" class= "zuttons btn btn-primary "> تعديل الحساب</button>
+                                <button class= "zuttons btn btn-primary "  onclick="openNav()"> تعديل الحساب</button>
   
                             </div>
                         </div>
                         <div class="col-sm-8 bg-white rounded-right">
                             <h3 class="mt-3 text-center">معلوماتك الشخصية</h3>
-                            <hr class="badge-primary mt-0 w-0">
+                            <hr class="badge-primary mt-0 w-25">
                             <div class="row">
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold email-school-margin">:ايميلك</p>
-                                    <h6 class="text-muted email-school-margin"> email@gmail.com</h6>
+                                    <p class="font-weight-bold">ايميلك:</p>
+                                    <h6 class="text-muted"> email@gmail.com</h6>
     
                                 </div>
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold name-age-margin">:الاسم</p>
-                                    <h6 class="text-muted name-age-margin">omk</h6>
+                                    <p class="font-weight-bold">الاسم:</p>
+                                    <h6 class="text-muted">omk</h6>
     
                                 </div>
                             </div>
                             <h4 class="mt-3"> </h4>
                             <div class="row">
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold email-school-margin">:مدرستك</p>
-                                    <h6 class="text-muted email-school-margin">halla</h6>
+                                    <p class="font-weight-bold">مدرستك:</p>
+                                    <h6 class="text-muted">halla</h6>
         
                                 </div>
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold name-age-margin ">:العمر</p>
-                                    <h6 class="text-muted name-age-margin">idk123456</h6>
+                                    <p class="font-weight-bold">العمر:</p>
+                                    <h6 class="text-muted">idk123456</h6>
         
                                 </div>
                             </div>
-                            <div class="rewrite">
-                        <div id = "changeprofile">    
-                            <div class="col-sm-18 bg-white rounded-right pb-5">
-                                    <h3 class="mt-3 text-center">تعديل معلوماتك الشخصية</h3>
-                                    <hr class="badge-primary mt-0 w-0">
+                        <!------------------------------------------------------------------------------------------------------------------------------------------------------>                            <div class="rewrite">
+                                <div class="col-sm-16 bg-white rounded-right">
+                                    <h3 class="mt-3 text-center">تعديل على معلوماتك الشخصية</h3>
+                                    <hr class="badge-primary mt-0 w-25">
                                     <div class="row">
                                         <div class="col-sm-6 text">
-                                            <p class=" email-school-margin font-weight-bold remake-text">:ايميلك</p>
-                                            <input dir="rtl" placeholder="email@gmail.com" class=" email-school-margin remake-text text-muted"></input>
+                                            <p class="font-weight-bold">:ايميلك</p>
+                                            <input dir="rtl" placeholder="email@gmail.com" class="text-muted"></input>
             
                                         </div>
                                         <div class="col-sm-6 text">
-                                            <p class="font-weight-bold remake-text">:الاسم</p>
-                                            <input dir="rtl" placeholder="omk" class="remake-text text-muted"></input>
+                                            <p class="font-weight-bold">:الاسم</p>
+                                            <input dir="rtl" placeholder="omk" class="text-muted"></input>
             
                                         </div>
                                     </div>
-
-                                    <div class="row mr-5">
+                                    <h4 class="mt-3"> </h4>
+                                    <div class="row">
                                         <div class="col-sm-6 text">
-                                            <p class=" email-school-margin font-weight-bold remake-text">:مدرستك</p>
-                                            <input dir="rtl" placeholder="halla" class=" email-school-margin remake-text text-muted"></input>
+                                            <p class="font-weight-bold">:مدرستك</p>
+                                            <input dir="rtl" placeholder="halla" class="text-muted"></input>
                 
                                         </div>
                                         <div class="col-sm-6 text">
-                                            <p class="font-weight-bold remake-text">:العمر</p>
-                                            <input dir="rtl" placeholder="idk123456" class="remake-text text-muted"></input>
+                                            <p class="font-weight-bold">:العمر</p>
+                                            <input dir="rtl" placeholder="idk123456" class="text-muted"></input>
                 
                                         </div>
                                         
                                     </div>
-                                    <button class ="btn btn-primary sucbtn">
-                                    
-                                                                            حفظ
+                                    <button>
+                                        حفظ
                                     </button>
                             </div>
                         </div>
-                    </div>
+                        <!------------------------------------------------------------------------------------------------------------------------------------------------------>
                         
                     </div>
                 </div>
