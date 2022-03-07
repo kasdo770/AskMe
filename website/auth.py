@@ -104,7 +104,7 @@ def TeacherRegisterPage():
         link = url_for("auth.ConfirmEmail",token=token,_external=True)
         msg.html = render_template("Email.html",link=link)
         mail.send(msg)
-        return redirect(url_for('MainPage'))
+        return redirect(url_for('views.MainPage'))
     if form.errors != {}:
         for err_msg in form.errors.values():
              flash(
@@ -136,7 +136,7 @@ def StudentRegisterPage():
         link = url_for("auth.ConfirmEmail",token=token,_external=True)
         msg.html = render_template("Email.html",link=link)
         mail.send(msg)
-        return redirect(url_for('MainPage'))
+        return redirect(url_for('views.MainPage'))
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(
