@@ -1,13 +1,15 @@
 from flask import Blueprint,redirect, request,url_for,flash,render_template
 from flask_login import login_required,logout_user,current_user,login_user
-from website import db,mail
+from website import db,mail,urlsafe
+from itsdangerous import SignatureExpired
 from flask_mail import Message
 from .model import User,Post,Comment
 from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm,CommentForm
-import secrets as sr
 
 
 auth = Blueprint("auth", __name__)
+
+
 
 
 @auth.route("/login" ,methods = ["POST", "GET"])
@@ -59,11 +61,23 @@ def Logout():
     return redirect(url_for("HomePage"))
 
 
+@auth.route("/confirm-email/<token>")
+def ConfirmEmail(token):
+    email = urlsafe.loads(token,salt='email-confirm')
+    user = User.query.filter_by(email=email)
+    try:
+        email = urlsafe.loads(token,salt='email-confirm',max_age=60)
+        return redirect(url_for("auth.LoginPage"))
+    except:
+        db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for('HomePage'))
+
+
 
 @auth.route("/register/tea", methods = ["POST", "GET"])
 def TeacherRegisterPage():
     form = TeacherRegisterForm()
-    verfication_key = sr.token_hex(4)
     if form.validate_on_submit():
         msg = Message("تاكيد حساب العلم", recipients=[form.email.data])
         msg.body = "يرجي تاكيد حساب المعلم ب هذا الكود عند صفحة التسجيل"
@@ -94,44 +108,27 @@ def TeacherRegisterPage():
 @auth.route("/register/std", methods = ["POST", "GET"])
 def StudentRegisterPage():
     form = StudentRegisterForm()  
-    verfication_key = sr.token_hex(4)
-<<<<<<< Updated upstream
+    token = urlsafe.dumps(form.email.data,salt="email-confirm")
     if form.validate_on_submit():   
-        msg = Message("تاكيد حساب الطالب", recipients=[form.email.data])
-        msg.html = f"""<h1>السلام عليكم يا {form.username.data}</h1>
-        <h3>اهلا بك في موقع اسئلة . للبدء يرجي ادخال الكود الذي امامك 
-        في صفحة تسجيل دخول طالب لانشاء حسابك
-                    {verfication_key}</h3>
-        """
-        mail.send(msg)
 
-=======
-    msg = Message("تاكيد حساب الطالب", recipients=["lordskasdo@gmail.com"])
-    msg.html = render_template("Email.html")
-    mail.send(msg)
-    if form.validate_on_submit():   
->>>>>>> Stashed changes
+        msg=Message("تاكيد الحساب", recipients=[form.email.data])
+        
         if current_user:
             logout_user()
-        if form.submit.data:
-            validation = form.validation_input.data
-            if form.validation_btn.data:
-                if validation == verfication_key:
-                    new_student = User(
-                    username=form.username.data,
-                    password = form.password1.data,
-                    email=form.email.data,
-                    kind = "student",
-                    schooltype=form.schooltype.data,
-                    age = form.age.data
-                    )
-                    flash(f" تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
-                    db.session.add(new_student)
-                    db.session.commit()
-                    login_user(new_student, remember=True)
-                    return redirect(url_for("HomePage"))
-                else:
-                    flash("الكود الذي ادخلته غير صحيح")
+        new_student = User(
+        username=form.username.data,
+        password = form.password1.data,
+        email=form.email.data,
+        kind = "student",
+        schooltype=form.schooltype.data,
+        age = form.age.data
+        )
+        flash(f" تم انشاء حساب طالب جديد باسم{form.username.data}" , category="success")
+        db.session.add(new_student)
+        db.session.commit()
+        link = url_for("auth.ConfirmEmail",token=token,_external=True)
+        msg.html = render_template("Email.html",link=link)
+        mail.send(msg)
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(

@@ -7,9 +7,6 @@
     <title>تسجيل دخول الطالب</title>
     <style>
       
-      #validation{
-        display:none;
-      }
       body{
         background-image: url("../static/Assets/blue-book-background.jpg");
     background-repeat: no-repeat, no-repeat;
@@ -77,13 +74,6 @@
 
 </head> 
 <body>
-  <script>
-    $(function(){
-      $("#submitbtn").click(function(){
-        $("#validation").show(200);
-      });
-    });
-  </script>
   <section class="vh-100">
     <div class="mask d-flex align-items-center h-100 ">
       <div class=" m-container">
@@ -148,11 +138,6 @@
   
                   <p class="text-center text-muted mt-2 mb-0">هل لديك حساب مسبقا ؟ <a href="{{url_for('auth.LoginPage')}}" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
                 </form>
-                <div id = "validation">
-                  {{form.validation_input.label()}}
-                  {{form.validation_input()}}
-                  {{form.validation_btn()}}
-                </div>
               </div>
             </div>
           </div>

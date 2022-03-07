@@ -3,12 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
+from itsdangerous import URLSafeTimedSerializer
 
 app = Flask(__name__, static_folder="static")
 db = SQLAlchemy(app)
 app.config.from_pyfile("config.cfg")
 bcrypts = Bcrypt(app)
 mail = Mail(app)
+urlsafe = URLSafeTimedSerializer("sksal2foazc21zp")
 
 login_man = LoginManager(app)
 login_man.login_view = "/home"
