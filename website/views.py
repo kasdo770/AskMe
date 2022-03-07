@@ -18,10 +18,32 @@ def View_Post(id):
     else:
         return render_template("ViewPost.html",post=post,form=form)
 
-@views.route("/profile")
+@views.route("/profile", methods=["POST","GET"])
 @login_required
 def ProfilePage():
     post = Post.query.all()
+    if request.method == "POST":
+        email = request.form.get('email')
+        username = request.form.get('username')
+        if email or username:
+            flash("لا يمكنك تعديل لهذا الاسم او الايميل")
+        else:
+            try: 
+                print('wwww')
+                current_user.email = request.form.get('email')
+                current_user.username = request.form.get('username')
+                if current_user.kind == "student":
+                    current_user.schooltype = request.form.get('schooltype')
+                    current_user.age = request.form.get('age')
+                elif current_user.kind == "teacher":
+                    current_user.first_subject = request.form.get('first_subject')
+                    current_user.second_subject = request.form.get('second_subject')
+                flash("لقد تم التعديل بنجاح")
+            except:
+                flash("لا يمكنك تعديل لهذا الاسم او الايميل")
+
+            db.session.commit()
+
     return render_template("profile.html",post=post)
 
 

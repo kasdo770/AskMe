@@ -219,28 +219,48 @@
                             <div class="row">
                                 <div class="col-sm-6 text">
                                     <p class="font-weight-bold email-school-margin">:ايميلك</p>
-                                    <h6 class="text-muted email-school-margin">email@gmail.com</h6> 
+<<<<<<< Updated upstream
+=======
+                                    <h6 class="text-muted email-school-margin"> {{current_user.email}}</h6>
+    
+>>>>>>> Stashed changes
                                 </div>
                                 <div class="col-sm-6 text">
                                     <p class="font-weight-bold name-age-margin">:الاسم</p>
-                                    <h6 class="text-muted name-age-margin">omk</h6>
+                                    <h6 class="text-muted name-age-margin">{{current_user.username}}</h6>
     
                                 </div>
                             </div>
                             <h4 class="mt-3"> </h4>
+                            {%if current_user.kind == "student"%}
                             <div class="row">
                                 <div class="col-sm-6 text">
                                     <p class="font-weight-bold email-school-margin">:مدرستك</p>
-                                    <h6 class="text-muted email-school-margin">halla</h6>
+                                    <h6 class="text-muted email-school-margin">{{current_user.schooltype}}</h6>
         
                                 </div>
                                 <div class="col-sm-6 text">
                                     <p class="font-weight-bold name-age-margin ">:العمر</p>
-                                    <h6 class="text-muted name-age-margin">idk123456</h6>
+                                    <h6 class="text-muted name-age-margin">{{current_user.age}}</h6>
         
                                 </div>
                             </div>
+                            {%else%}
+                            <div class="row">
+                                <div class="col-sm-6 text">
+                                    <p class="font-weight-bold email-school-margin">:المادة الاولة</p>
+                                    <h6 class="text-muted email-school-margin">{{current_user.first_subject}}</h6>
+        
+                                </div>
+                                <div class="col-sm-6 text">
+                                    <p class="font-weight-bold name-age-margin ">:المادة الثانية</p>
+                                    <h6 class="text-muted name-age-margin">{{current_user.second_subject}}</h6>
+        
+                                </div>
+                            </div>
+                            {%endif%}
                             <div class="rewrite">
+                    <form method="POST">
                         <div id = "changeprofile">    
                             <div class="col-sm-18 bg-white rounded-right pb-5">
                                     <h3 class="mt-3 text-center">تعديل معلوماتك الشخصية</h3>
@@ -248,37 +268,88 @@
                                     <div class="row">
                                         <div class="col-sm-6 text">
                                             <p class=" email-school-margin font-weight-bold remake-text">:ايميلك</p>
-                                            <input dir="rtl" placeholder="email@gmail.com" class=" email-school-margin remake-text text-muted"></input>
+                                            <input id = "email" name="email" dir="rtl" value="{{current_user.email}}" class=" email-school-margin remake-text text-muted"></input>
             
                                         </div>
                                         <div class="col-sm-6 text">
                                             <p class="font-weight-bold remake-text">:الاسم</p>
-                                            <input dir="rtl" placeholder="omk" class="remake-text text-muted"></input>
+                                            <input id="username" name="username" dir="rtl" value="{{current_user.username}}" class="remake-text text-muted"></input>
             
                                         </div>
                                     </div>
-
+                                    {%if current_user.kind == "student"%}
                                     <div class="row mr-5">
                                         <div class="col-sm-6 text">
                                             <p class=" email-school-margin font-weight-bold remake-text">:مدرستك</p>
-                                            <input dir="rtl" placeholder="halla" class=" email-school-margin remake-text text-muted"></input>
+                                            <select class="email-school-margin">
+                                                <div class="email-school-margin remake-text text-muted options">
+                                                    <option value="عالمية" > عالمية</option>
+                                                    <option value="خاص" > خاص</option>
+                                                    <option value="لغات" > لغات</option>
+                                                    <option value="عام" > عام</option>
+                                                </div>
+                                            </select>
                 
                                         </div>
                                         <div class="col-sm-6 text">
                                             <p class="font-weight-bold remake-text">:العمر</p>
-                                            <input dir="rtl" placeholder="idk123456" class="remake-text text-muted"></input>
+                                            <input dir="rtl" value="{{current_user.age}}" class="remake-text text-muted"></input>
                 
                                         </div>
                                         
                                     </div>
-                                    <button class ="btn btn-primary sucbtn">
+
+                                    {%else%}
+                                    <div class="row mr-5">
+                                        <div class="col-sm-6 text">
+                                            <p class=" email-school-margin font-weight-bold remake-text">:المادة الاولة</p>
+                                            <select class="email-school-margin">
+                                                <div class="email-school-margin remake-text text-muted options">
+                                                    <option value="فيزياء">فيزياء</option>
+                                                    <option value="كيمياء">كيمياء</option>
+                                                    <option value="احياء">احياء</option>
+                                                    <option value="الغة العربية">الغة العربية</option>
+                                                    <option value="الغةالانجليزية">الغة الانجليزية</option>
+                                                    <option value="الغة الفرنسية">الغة الفرنسية</option>
+                                                    <option value="الغة الايطالية">الغة الايطالية </option>
+                                                    <option value="فلسفة">فلسفة</option>
+                                                    <option value="الجغرافيا">الجغرافيا</option>
+                                                    <option value="التاريخ">التاريخ</option>
+                                                    <option value="رياضيات">رياضيات</option>
+                                                </div>
+                                            </select>
+                
+                                        </div>
+                                        <div class="col-sm-6 text">
+                                            <p class="font-weight-bold remake-text">:المادة الثانية</p>
+                                            <select>
+                                                <div class="remake-text text-muted options">
+                                                    <option value="فيزياء">فيزياء</option>
+                                                    <option value="كيمياء">كيمياء</option>
+                                                    <option value="احياء">احياء</option>
+                                                    <option value="الغة العربية">الغة العربية</option>
+                                                    <option value="الغةالانجليزية">الغة الانجليزية</option>
+                                                    <option value="الغة الفرنسية">الغة الفرنسية</option>
+                                                    <option value="الغة الايطالية">الغة الايطالية </option>
+                                                    <option value="فلسفة">فلسفة</option>
+                                                    <option value="الجغرافيا">الجغرافيا</option>
+                                                    <option value="التاريخ">التاريخ</option>
+                                                    <option value="رياضيات">رياضيات</option>
+                                                    <option value="لا شيء اخر">لا شيء اخر</option>
+                                                </div>
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+                                    {%endif%}
+                                    <button id="submitbtn" name="submitbtn" class ="btn btn-primary sucbtn">
                                     
                                                                             حفظ
                                     </button>
                             </div>
                         </div>
                     </div>
-                        
+                    <form>
                     </div>
                 </div>
             </div>

@@ -60,8 +60,8 @@ class StudentRegisterForm(FlaskForm):
     email = EmailField(
         label="الايميل الاكتروني", validators=[DataRequired(), Length(min=8)]
     )
-    schooltype = SelectField(label='اختار نوع مدرستك', choices=[('international', 'عالمية'), ('private', 'خاص'), ('public', 'عام'),
-    ("language","لغات")])
+    schooltype = SelectField(label='اختار نوع مدرستك', choices=[('عالمية', 'عالمية'), ('خاص', 'خاص'), ('عام', 'عام'),
+    ("لغات","لغات")])
 
     age = StringField(label = "العمر",validators=[Length(min=1,max=2), DataRequired()] )
 
@@ -108,7 +108,7 @@ class TeacherRegisterForm(FlaskForm):
      ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")], validators=[DataRequired()]
     )
     second_subject = SelectField(
-        label="المادة الثانية", choices=[("none", "لا شيء اخر"),('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),
+        label="المادة الثانية", choices=[("لا شيء اخر", "لا شيء اخر"),('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),
     ("الغة العربية","الغة العربية"), ("الغةالانجليزية", "الغةالانجليزية"), ("الغة الفرنسية", "الغة الفرنسية"), ("الغة الايطالية","الغة الايطالية"),
      ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")]
     )
