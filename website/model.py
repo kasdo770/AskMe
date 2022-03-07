@@ -1,5 +1,6 @@
 from flask_login.login_manager import LoginManager
 from website import db, login_man
+from sqlalchemy.sql import expression 
 from website import bcrypts
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -21,6 +22,7 @@ class User(db.Model,UserMixin):
     first_subject = db.Column(db.String())
     second_subject = db.Column(db.String())
     posts = db.relationship("Post",backref="user",passive_deletes=True)
+    verified = db.Column(db.Boolean, default=False)
     comments = db.relationship("Comment", backref="user", passive_deletes=True)
 
     @property

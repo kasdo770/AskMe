@@ -64,20 +64,26 @@ def Logout():
 @auth.route("/confirm-email/<token>")
 def ConfirmEmail(token):
     email = urlsafe.loads(token,salt='email-confirm')
-    user = User.query.filter_by(email=email)
-    try:
-        email = urlsafe.loads(token,salt='email-confirm',max_age=60)
-        return redirect(url_for("auth.LoginPage"))
-    except:
-        db.session.delete(user)
-        db.session.commit()
-        return redirect(url_for('HomePage'))
+    user = User.query.filter_by(email=email).first()
+    if user:
+        try:
+            validationemail = urlsafe.loads(token,salt='email-confirm',max_age=30)
+            user.verified = True
+            db.session.commit()
+            login_user(user)
+            return redirect(url_for("auth.LoginPage"))
+        except SignatureExpired:
+            return redirect(url_for('HomePage'))
+    else:
+        flash('لا يوجد اي يوزر يهذا الاسم')
+    
 
 
 
 @auth.route("/register/tea", methods = ["POST", "GET"])
 def TeacherRegisterPage():
     form = TeacherRegisterForm()
+    token = urlsafe.dumps(form.email.data,salt="email-confirm")
     if form.validate_on_submit():
         msg = Message("تاكيد حساب العلم", recipients=[form.email.data])
         msg.body = "يرجي تاكيد حساب المعلم ب هذا الكود عند صفحة التسجيل"
@@ -93,10 +99,12 @@ def TeacherRegisterPage():
            second_subject = form.second_subject.data
         )
         flash(f" تم انشاء حساب معلم جديد باسم {form.username.data}", category="success")
-        db.session.add(new_teacher) 
+        db.session.add(new_teacher)
         db.session.commit()
-        login_user(new_teacher, remember=True)
-        return redirect(url_for("HomePage"))
+        link = url_for("auth.ConfirmEmail",token=token,_external=True)
+        msg.html = render_template("Email.html",link=link)
+        mail.send(msg)
+        return redirect(url_for('MainPage'))
     if form.errors != {}:
         for err_msg in form.errors.values():
              flash(
@@ -110,7 +118,6 @@ def StudentRegisterPage():
     form = StudentRegisterForm()  
     token = urlsafe.dumps(form.email.data,salt="email-confirm")
     if form.validate_on_submit():   
-
         msg=Message("تاكيد الحساب", recipients=[form.email.data])
         
         if current_user:
@@ -129,6 +136,7 @@ def StudentRegisterPage():
         link = url_for("auth.ConfirmEmail",token=token,_external=True)
         msg.html = render_template("Email.html",link=link)
         mail.send(msg)
+        return redirect(url_for('MainPage'))
     if form.errors != {}:
         for err_msg in form.errors.values():
             flash(
