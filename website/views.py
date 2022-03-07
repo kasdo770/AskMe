@@ -23,10 +23,12 @@ def View_Post(id):
 def ProfilePage():
     post = Post.query.all()
     if request.method == "POST":
-        email = request.form.get('email')
-        username = request.form.get('username')
-        if email or username:
-            flash("لا يمكنك تعديل لهذا الاسم او الايميل")
+        verifyemail = request.form.get('email')
+        verifyusername = request.form.get('username')
+        email = User.query.filter_by(email=verifyemail).first()
+        username = User.query.filter_by(username=verifyusername).first()
+        if username or email:
+            flash(" لا يمكنك تعديل من الاسم او الايميل الخاص بك لهذا الاسم او الايميل",category="error")
         else:
             try: 
                 print('wwww')
@@ -38,9 +40,9 @@ def ProfilePage():
                 elif current_user.kind == "teacher":
                     current_user.first_subject = request.form.get('first_subject')
                     current_user.second_subject = request.form.get('second_subject')
-                flash("لقد تم التعديل بنجاح")
+                flash("لقد تم التعديل بنجاح",category="info")
             except:
-                flash("لا يمكنك تعديل لهذا الاسم او الايميل")
+                flash("لا يمكنك تعديل لهذا الاسم او الايميل",category="error")
 
             db.session.commit()
 

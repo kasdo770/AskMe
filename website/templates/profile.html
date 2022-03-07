@@ -35,12 +35,6 @@
           display: flex;
           justify-content: center;
         }
-         .succes{
-          width: fit-content;
-           background-color: var(--success-button-color);
-           opacity: 90%;
-           color: white;
-         }
          .Info{
           width: fit-content;
            background-color: var(--info-button-color);
@@ -188,6 +182,24 @@
                 margin-right: 4%;
             }
     </style>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}     
+        {% if category =='error' %}
+           <div class="flash-container">
+            <div dir="rtl" class="alert">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              {{message}}
+            </div>
+          </div>
+        {%else%}
+        <div class="flash-container">
+         <div dir="rtl" class="Info">
+             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+             {{message}}
+           </div>
+         </div>
+
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
     <script>
         function openNav() {
           document.getElementById("rewrite").style.height = "250px";
@@ -219,11 +231,7 @@
                             <div class="row">
                                 <div class="col-sm-6 text">
                                     <p class="font-weight-bold email-school-margin">:ايميلك</p>
-<<<<<<< Updated upstream
-=======
                                     <h6 class="text-muted email-school-margin"> {{current_user.email}}</h6>
-    
->>>>>>> Stashed changes
                                 </div>
                                 <div class="col-sm-6 text">
                                     <p class="font-weight-bold name-age-margin">:الاسم</p>
