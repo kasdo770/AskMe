@@ -31,25 +31,19 @@
 
                                                                                 <!--user's info-->
         <div class="info text-light">
-            <h6>بواسطة : امك</h6>
-            <h6>المادة : فيزياء </h6>
-            <h6>التاريخ : 2022 2 22 22:22</h6>
+            <h6>بواسطة : {{post.user.username}}</h6>
+            <h6>المادة : {{post.subject}} </h6>
+            <h6>التاريخ : {{post.datetime}}</h6>
         </div>
     </div>
                                                                                 <!--The Question + Comment field-->
     <div class="container">
         <div class="d-flex align-items-center justify-content-center flex-column text-light">
-            <h5 id="title">ما هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين</h5>
-            <h6 id="details" dir="rtl">ا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                ا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                ا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                ا هي الاجابة ل22لمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                ا هي الاجابة22 للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                ا هي الاجابة22 لل222معادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                ا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب ترا هي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنينبيع بلاص خمسه اتنين
+            <h5 id="title">{{post.title}}</h5>
+            <h6 id="details" dir="rtl">{{post.description}}
             </h6>
 
-            <a href="" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
+            <a href="/update-post/{{post.id}}" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
 
             <div class="container">
                 <div class="d-flex justify-content-end align-items-center flex-row inputparent">

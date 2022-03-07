@@ -50,7 +50,6 @@ def CreatePostPage():
                     title=form.title.data,
                     description=form.description.data,
                     subject = form.subject.data,
-                    update_description = "",
                     author = current_user.id
                 )
                 db.session.add(new_post)
@@ -98,7 +97,6 @@ def Delete_Post(id):
 @app.route("/update-post/<id>", methods=["POST", "GET"])
 @login_required
 def Update_Post(id):
-    filled = False
     post = Post.query.filter_by(id=id).first()
     form = UpdatePostForm()
     if not post:
@@ -109,13 +107,11 @@ def Update_Post(id):
             if form.cal.data:
                 return redirect(url_for("views.MainPage"))
             if form.crt.data:
-                post.update_description = ""
                 db.session.commit()
                 updated_post = Post(
                     id = post.id,
                     title= post.title,
-                    description= post.description,
-                    update_description = form.description.data,
+                    description= form.description.data,
                     subject = form.subject.data,
                     author = current_user.id
                 )
@@ -125,7 +121,7 @@ def Update_Post(id):
                 flash("لقد تم تحديث سؤال بنجاح", category="success")
                 return redirect(url_for("views.MainPage"))
 
-    return render_template("UpdatePost.html", form=form , filled=filled)
+    return render_template("UpdatePost.html", form=form,post=post)
 
         
 @app.route("/create/comment/<post_id>", methods=["POST","GET"])
