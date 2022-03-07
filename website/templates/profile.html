@@ -1,18 +1,29 @@
-{% extends 'base.html' %}
-{%block title%}
-    معلوماتك الشخصية
-{%endblock%}
-{% block body %}
-        <button id="backbutton" onclick="window.location.href='http://127.0.0.1:5000/mainpage'">الرجوع</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
+    <script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
+    <button id="backbutton" onclick="window.location.href='http://127.0.0.1:5000/mainpage'">الرجوع</button>
+    <script>
+         $(function(){
+          $("#changeprofilebtn").click(function(){
+            $("#changeprofile").toggle(600);
+          });
+        });
+    </script>
     <style>
-        body{
-            background-image: linear-gradient(#f5e6ff,#fff);
-            height:80vh;
-            width:100%;
+        #changeprofile{
+            display: none;
+        }
+        .margin{
+            margin-top: 18%;
         }
         #backbutton{
             font-size: 18px;
-            background-color: transparent;
             color: #6B0085 ;
             border-color: #6B0085;
             border-radius: 0.25em;
@@ -23,513 +34,169 @@
             margin-top: 2%;
             margin-left: 2%;
         }
-        .profile_title{
-        
-        color: black;
-        padding: fit-content;
-        padding-right: 47%;
-        padding-bottom: 2%;
-        margin-top: 1%;
-        font-weight: bold;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        
-        }      
-        .profile_name_text{
-        float: right;
-        margin-right: 15%;
-        margin-top: 5%;
+        .color{
+            background-color: #F64C72;
         }
-        .profile_name{
-        float: right;
-        margin-right: 30%;
-        margin-top: 3%;
-        width: max-content;
-        }
-        .comments{
-            float: right;
-        margin-right: -10%;
-        margin-top: 13%;
-        text-align: center;
-        }
-        .question{
-            float: right;
-        margin-right: 2%;
-        margin-top: 13%;
-        text-align: center;
-        }
-        .cntrline{
-            float: right;
-            height: 2px;
-            width: 25%;
-            background-color: #6B0085;
-            padding-left: 7px;
-            padding-right: 7px;
-            margin-top: 17%;
-            margin-right: -20%;
-        }
-        .border{
-            border-color:black;
-            border-style: solid;
-            border-width: 5px;
-        }
-        .profile_std_text{
-            float: right;
-            margin-right: -25%;
-            margin-top: 20%;                   
-        }
-        .urinfo{
-            float: right;
-            margin-right: 20%;
-            margin-top: -5%;
-        }
-        .email_title{
-            float: right;
-        margin-right: 6.5%;
-        margin-top: 8%;
-        text-align: center;
-        
-        }
-        .school_text{
-            float: right;
-        margin-right: -25%;
-        margin-top: 26%;
-        text-align: center;
+        .bg-color{
+            background-color:white;
 
         }
-        .age_text{
-            float: right;
-        margin-right: -25%;
-        margin-top: 28.5%;
-        text-align: center;
-
+        .box-color{
+            background-image: linear-gradient(#242582, #4d09ba); 
         }
-        .newq{
-                float: right;
-                margin-right: 50%;
-                margin-top: -14%;
-            }
-            .card_title{
-                font-weight: bold;
-                float: right;
-                margin-top: 3%;
-            }
-            .card_answer{
-                margin-top: 3%;         
-                font-weight: bold;
-                float: right;
-            }
-            .card_by{
-                margin-top: 3%;
-                font-weight: bold;
-                float: right;
-
-            }
-            .subject{
-                background-color: #9149a4;
-                color:white;
-                margin-top: 3%;
-                padding: 1.5%;
-                font-weight: bold;
-                border-radius: 0.25em;
-                float: right;
-
-            }
-            .urnewq{
-                margin-top: -15%;
-                margin-bottom: 10%;
-                margin-left: 45%;
-            }
-            /*-------------------------------------------------------------Resoulution-----------------------------------------------------*/
-            @media screen and (min-width:1281px) and (max-width:1662px) {
-            .cntrline{
-                margin-top: 18%;
-            }
-            .email_title{
-                float: right;
-                display: flex;
-               justify-content: flex-end;
-               align-items: flex-end;
-                text-align: center;
-            
-            }
-            .school_text{
-                float: right;
-                justify-content: flex-end;
-               align-items: flex-end;
-                text-align: center;
-                margin-right: -28.5%;
-            }
-            .age_text{
-                float: right;
-                justify-content: flex-end;
-               align-items: flex-end;
-                text-align: center;
-                margin-right: -28.5%;
-
-            }
-            
-            }
-            @media screen and (min-width:1411px) and (max-width:1556px) {
-            .cntrline{
-                margin-top: 18%;
-            }
-            .email_title{
-                float: right;
-                display: flex;
-               justify-content: flex-end;
-               align-items: flex-end;
-                text-align: center;
-            
-            }
-            .school_text{
-                float: right;
-                justify-content: flex-end;
-               align-items: flex-end;
-                text-align: center;
-                margin-right: -33.7%;
-            }
-            .age_text{
-                float: right;
-                justify-content: flex-end;
-               align-items: flex-end;
-                text-align: center;
-                margin-right: -33.6%;
-
-            }
-            }
-            
-            /*---------------------------------------------tablet-------------------------------------------------------*/
-            @media screen and (min-device-width:550px) and (max-device-width:1417px) {
-            .profile_title{
-            
-            color: black;
-            padding: fit-content;
-            padding-right: 47%;
-            padding-bottom: 2%;
-            margin-top: 1%;
-            font-weight: bold;
+        .shadow{
+            box-shadow: white;
+        }
+        .height{
+            height: fit-content;
+        }
+        .text{
+            text-align: right;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            
-            }      
-            .profile_name_text{
-            float: right;
-            margin-right: 40%;
-            margin-top: 5%;
-            }
-            .profile_name{
-            float: right;
-            margin-right: 30%;
-            margin-top: 3%;
-            width: max-content;
-            }
-            .comments{
-                float: right;
-            margin-right: -10%;
-            margin-top: 13%;
-            text-align: center;
-            }
-            .question{
-                float: right;
-            margin-right: 2%;
-            margin-top: 13%;
-            text-align: center;
-            }
-            .cntrline{
-                float: right;
-                height: 2px;
-                width: 25%;
-                background-color: #6B0085;
-                padding-left: 7px;
-                padding-right: 7px;
-                margin-top: 20%;
-                margin-right: -20%;
-            }
-            .border{
-                border-color:black;
-                border-style: solid;
-                border-width: 5px;
-            }
-            .profile_std_text{
-                float: right;
-                margin-right: -30%;
-                margin-top: 23%;                   
-            }
-            .urinfo{
-                float: right;
-                margin-right: 20%;
-                margin-top: -5%;
-            }
-            .email_title{
-                float: right;
-            margin-right: 10%;
-            margin-top: 8%;
-            text-align: center;
-            
-            }
-            .school_text{
-                float: right;
-            margin-right: -37.3%;
-            margin-top: 30%;
-            text-align: center;
-
-            }
-            .age_text{
-                float: right;
-            margin-right: -37.3%;
-            margin-top: 32.5%;
-            text-align: center;
-
-            }
-            .newq{
-                    float: right;
-                    margin-right: 25%;
-                    margin-top: 20%;
-                }
-                .card_title{
-                    font-weight: bold;
-                    float: right;
-                    margin-top: 3%;
-                }
-                .card_answer{
-                    margin-top: 3%;         
-                    font-weight: bold;
-                    float: right;
-                }
-                .card_by{
-                    margin-top: 3%;
-                    font-weight: bold;
-                    float: right;
-
-                }
-                .subject{
-                    background-color: #9149a4;
-                    color:white;
-                    margin-top: 3%;
-                    padding: 1.5%;
-                    font-weight: bold;
-                    border-radius: 0.25em;
-                    float: right;
-
-                }
-                .urnewq{
-                    margin-top: -15%;
-                    margin-bottom: 10%;
-                    margin-left: 45%;
-                }
-                }
-
-            
-            
-            /*---------------------------------------------tablet-------------------------------------------------------*/
-            @media screen and (min-device-width:50px) and (max-device-width:551px) {
-            .profile_title{
-            
-            color: black;
-            padding: fit-content;
-            padding-right: 47%;
-            padding-bottom: 2%;
-            margin-top: 1%;
+            font-size: 20px;
             font-weight: bold;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 10px;
-            
-            }      
-            .profile_name_text{
-            float: right;
-            margin-right: 40%;
-            margin-top: 5%;
-            font-size: 10px;
+            border: none;
+        }
+        body {
+            background-color:#2F2FA2 !important;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            }   
+            .zuttons {
+                    background-color: transparent !important;
+                    color: white;
+                    outline: none !important;
+                    box-shadow: none !important;
             }
-            .profile_name{
-            float: right;
-            margin-right: 30%;
-            margin-top: 3%;
-            width: max-content;
-            font-size: 10px;
+            .zuttons:hover {
+                    background-color: #9873bd !important;
             }
-            .comments{
-                float: right;
-            margin-right: -10%;
-            margin-top: 13%;
-            text-align: center;
-            font-size: 10px;
+            .zuttons:active {
+                    background-color: #793bb6 !important;
+                    outline: none !important;
+                    box-shadow: none !important;
             }
-            .question{
-                float: right;
-            margin-right: 2%;
-            margin-top: 13%;
-            text-align: center;
-            font-size: 10px;
-            }
-            .cntrline{
-                float: right;
-                height: 2px;
-                width: 25%;
-                background-color: #6B0085;
-                padding-left: 7px;
-                padding-right: 7px;
-                margin-top: 20%;
-                margin-right: -20%;
-                font-size: 10px;
-            }
-            .border{
-                border-color:black;
-                border-style: solid;
-                border-width: 5px;
-            }
-            .profile_std_text{
-                float: right;
-                margin-right: -30%;
-                margin-top: 23%;                   
-            }
-            .urinfo{
-                float: right;
-                margin-right: 20%;
-                margin-top: -5%;
-            }
-            .email_title{
-                float: right;
-            margin-right: 10%;
-            margin-top: 8%;
-            text-align: center;
-            
-            }
-            .school_text{
-                float: right;
-            margin-right: -37.3%;
-            margin-top: 30%;
-            text-align: center;
+            .rewrite-open{
+                background-color: rgb(211, 211, 211);
+                height: 0;
+                width: 100%;
 
+                
             }
-            .age_text{
+            .rewrite{
+                background-color: rgb(211, 211, 211);
+                height: 0px;
+                width: 100%;
                 float: right;
-            margin-right: -37.3%;
-            margin-top: 32.5%;
-            text-align: center;
 
+                
             }
-            .newq{
-                    float: right;
-                    margin-right: 2%;
-                    margin-top: 20%;
-                    font-size: 10px;
-                    width: fit-content;
-                    
-                }
-                .card_title{
-                    font-weight: bold;
-                    float: right;
-                    font-size: 20px;
-                    margin-top: 3%;
-                    width: fit-content;
-                    
-                }
-                .card_answer{
-                    margin-top: 3%;         
-                    font-weight: bold;
-                    font-size: 20px;
-                    float: right;
-                    width: fit-content;
-                }
-                .card_by{
-                    margin-top: 3%;
-                    font-weight: bold;
-                    font-size: 20px;
-                    float: right;
-                    width: fit-content;
-
-                }
-                .subject{
-                    background-color: #9149a4;
-                    color:white;
-                    margin-top: 3%;
-                    padding: 1.5%;
-                    font-size: 20px;
-                    font-weight: bold;
-                    border-radius: 0.25em;
-                    float: right;
-                    width: fit-content;
-
-                }
-                .urnewq{
-                    margin-top: -15%;
-                    margin-bottom: 10%;
-                    margin-left: 45%;
-                }
-                }
-
+            form input{
+                text-align: right;
+                margin-right: 1%;
+                margin-bottom: 2%;
+                padding-bottom:1% ;
+            }
     </style>
+    <script>
+        function openNav() {
+          document.getElementById("rewrite").style.height = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("rewrite").style.height = "0";
+        }
+    </script>
+</head>
+
+<body class="bg-color">
     <div>
-        <div>
-            <div class="profile_name_text">
-                <h2>الاسم</h2>
-                <div class="profile_name">
-                    <h5>
-                        {{current_user.username}}
-                    </h5>            
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 margin pt-1 shadow">
+                    <div class="row z-depth-3">
+                        <div class="col-sm-4 box-color rounded-left">
+                            <div class="card-block text-center text-white height">
+                                <img src = "../static/Assets/profile4.png" class="mt-4 mb-4" width="120px" height="120px" class="rounded-circle mb-4" alt="">
+                                <br>
+                                <button id="changeprofilebtn" class= "zuttons btn btn-primary "> تعديل الحساب</button>
+  
+                            </div>
+                        </div>
+                        <div class="col-sm-8 bg-white rounded-right">
+                            <h3 class="mt-3 text-center">معلوماتك الشخصية</h3>
+                            <hr class="badge-primary mt-0 w-25">
+                            <div class="row">
+                                <div class="col-sm-6 text">
+                                    <p class="font-weight-bold">:ايميلك</p>
+                                    <h6 class="text-muted"> email@gmail.com</h6>
+    
+                                </div>
+                                <div class="col-sm-6 text">
+                                    <p class="font-weight-bold">:الاسم</p>
+                                    <h6 class="text-muted">omk</h6>
+    
+                                </div>
+                            </div>
+                            <h4 class="mt-3"> </h4>
+                            <div class="row">
+                                <div class="col-sm-6 text">
+                                    <p class="font-weight-bold">:مدرستك</p>
+                                    <h6 class="text-muted">halla</h6>
+        
+                                </div>
+                                <div class="col-sm-6 text">
+                                    <p class="font-weight-bold">:العمر</p>
+                                    <h6 class="text-muted">idk123456</h6>
+        
+                                </div>
+                            </div>
+                            <div class="rewrite">
+                        <div id = "changeprofile">    
+                            <div class="col-sm-16 bg-white rounded-right">
+                                    <h3 class="mt-3 text-center">تعديل على معلوماتك الشخصية</h3>
+                                    <hr class="badge-primary mt-0 w-25">
+                                    <div class="row">
+                                        <div class="col-sm-6 text">
+                                            <p class="font-weight-bold">:ايميلك</p>
+                                            <input dir="rtl" placeholder="email@gmail.com" class="text-muted"></input>
+            
+                                        </div>
+                                        <div class="col-sm-6 text">
+                                            <p class="font-weight-bold">:الاسم</p>
+                                            <input dir="rtl" placeholder="omk" class="text-muted"></input>
+            
+                                        </div>
+                                    </div>
+                                    <h4 class="mt-3"> </h4>
+                                    <div class="row">
+                                        <div class="col-sm-6 text">
+                                            <p class="font-weight-bold">:مدرستك</p>
+                                            <input dir="rtl" placeholder="halla" class="text-muted"></input>
+                
+                                        </div>
+                                        <div class="col-sm-6 text">
+                                            <p class="font-weight-bold">:العمر</p>
+                                            <input dir="rtl" placeholder="idk123456" class="text-muted"></input>
+                
+                                        </div>
+                                        
+                                    </div>
+                                    <button>
+                                        حفظ
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    </div>
                 </div>
             </div>
-            <div class="comments">
-                <h4>التعليقات</h4>
-                <!-- the backend thing for the numbers -->
-                <h4>15</h4>
-            </div>
-            <div class="question">
-                <h4>الاسئلة</h4>
-                <!-- the backend thing for the numbers -->
-                <h4>18</h4>
-            </div>
-            <div class="cntrline" ></div>
-        <div>
-            <div  class="profile_std_text">
-                {%if current_user.kind == "student"%}
-                <h2 class="urinfo">معلومات طالب</h2>
-                <div class="email_title">
-                    <h5> {{current_user.email}} :الايميل</h5>
-                    </div>
-                </div>
-                <div class="school_text">
-                    <h5> {{current_user.schooltype}} :المدرسة</h5>
-                    </div>
-                </div>
-                <div class="age_text">
-                    <h5> {{current_user.age}} :العمر</h5>
-                    </div>
-                </div>
-                {%elif current_user.kind == "teacher"%}
-                <h2>معلومات معلم</h2>
-                <div class="email_title">
-                    <h5> {{current_user.email}} :الايميل</h5>
-                    </div>
-                </div>
-                <div class="school_text">
-                    <h5> {{current_user.first_subject}} :المادة الاولة</h5>
-                    </div>
-                </div>
-                <div class="age_text">
-                    <h5> {{current_user.second_subject}} :المادة الثانية</h5>
-                    </div>
-                </div>
-                {%endif%}
-            </div>
-        </div>          
         </div>
 
-            
-
-        <div class="newq border ">    
-            <h2 class="urnewq ">الاسئلة</h2>  
-            {%for item in post%}
-                {%if item.user.id == current_user.id%}               
-                <div class="qcontainer ">
-                    <h3 class="card_title "> {{item.title}}</h3><br><br><br><br>
-                    <h5 class = "subject">{{item.subject}}</h5><br><br><br><br>
-                    <h6 dir="rtl" class="card_answer">{{item.datetime}} </h6><br><br><br><br>          
-                </div>               
-                {%endif%}
-            {%endfor%}
-        </div>       
+        
     </div>
-
-{%endblock%}
-
+    </div>
+    
+</body>
+</html>
