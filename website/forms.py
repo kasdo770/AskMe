@@ -28,9 +28,6 @@ class CommentForm(FlaskForm):
     create = SubmitField(
         label="انشاء جواب"
         )
-    cancel = SubmitField(
-        label="اغلاق"
-        )
 
 class StudentRegisterForm(FlaskForm):
     def validate_username(self, username_to_check):

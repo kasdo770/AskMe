@@ -159,7 +159,9 @@
                                 <div class="row">
     
                                     {{form.description.label(class = "description_text")}}
-                                    {{form.description(id="description" dir = "rtl" , class="description_input")}}
+                                    <textarea id="desc" name="desc" rows="12" dir="rtl">
+                                        {{post.description}}
+                                    </textarea>
                                     <div dir="rtl" class="mb-3">
                                         {{form.subject.label(class = " subject_text")}}
                                         {{form.subject(class = "subject_input")}}

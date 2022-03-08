@@ -7,16 +7,25 @@ from website.forms import CommentForm
 views = Blueprint("views", __name__)
 
 
-@views.route("/view-post/<id>")
+@views.route("/view-post/<id>",methods=['POST','GET'])
 @login_required
 def View_Post(id):
     post = Post.query.filter_by(id=id).first()
+    comments = Comment.query.filter_by(post=post.id).all()
     form = CommentForm()
     if not post:
         flash("هذا السؤال غير موجود من قبل", category="error")
         return redirect(url_for("views.MainPage"))
     else:
-        return render_template("ViewPost.html",post=post,form=form)
+        if form.create.data:
+            new_comment = Comment(
+                description = form.description.data,
+                author = current_user.id,
+                post = id
+            )
+            db.session.add(new_comment)
+            db.session.commit()
+        return render_template("ViewPost.html",post=post,form=form,comment=comments)
 
 @views.route("/profile", methods=["POST","GET"])
 @login_required

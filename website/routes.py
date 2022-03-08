@@ -107,11 +107,10 @@ def Update_Post(id):
             if form.cal.data:
                 return redirect(url_for("views.MainPage"))
             if form.crt.data:
-                db.session.commit()
                 updated_post = Post(
                     id = post.id,
                     title= post.title,
-                    description= form.description.data,
+                    description= request.form.get('desc') ,
                     subject = form.subject.data,
                     author = current_user.id
                 )

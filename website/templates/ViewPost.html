@@ -44,33 +44,31 @@
             </h6>
 
             <a href="/update-post/{{post.id}}" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
-
             <div class="container">
-                <div class="d-flex justify-content-end align-items-center flex-row inputparent">
-                    <a href="" class="submit">اضافة الاجابة</a> {{form.description(dir="rtl" , class="input" , id="" , placeholder="اضغط هنا لاضافة اجابة")}} 
-                </div>  
+                    <form class="d-flex justify-content-end align-items-center flex-row inputparent", method="POST">
+                    {{form.create(class="submit")}} 
+                    {{form.description(default = "",dir="rtl" , class="input" , id="" , placeholder="اضغط هنا لاضافة اجابة")}} 
+                    </form>
             </div>
         </div>
-    </div>
+    </div>                  
+                            <h4 class="text-center text-light my-5">: الاجابات</h4>
+                            {%for item in comment%}
                             <div class="container">
-                                <h4 class="text-center text-light my-5">: الاجابات</h4>
-                                <div dir="rtl" class="d-flex justify-items-start align-items-center-flex-column">
-                                    <div class="info text-light">
-                                        <h6>#1</h6>
-                                        <h6>بواسطة : امك</h6>
-                                        <h6>المادة : فيزياء </h6>
-                                        <h6>التاريخ : 2022 2 22 22:22</h6>
+                        
+                                    <div dir="rtl" class="d-flex justify-items-start align-items-center-flex-column">
+                                        <div class="info text-light">
+                                            <h6>#{{item.id}}</h6>
+                                            <h6>بواسطة : {{item.user.username}} </h6>
+                                            <h6>التاريخ : {{item.datetime}}   </h6>
+                                        </div>
                                     </div>
-                                </div>
-                                <h6 class="text-light text-center " style="line-height: 30px; margin-bottom: 20%; margin-top: 7%">
+                                    <h6 class="text-light text-center " style="line-height: 30px; margin-bottom: 10%; margin-top: 7%">
 
-                                    ي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                                    ا هي الاجابة ل2ي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                                    ا هي الاجابة ل2ي الاجابة للمعادلة ا ب تربيع يساوي ا ب تربيع بلاص خمسه اتنين
-                                    ا هي الاجابة ل2
+                                        {{item.description}}
 
-                                </h6>
-
-                            </div>             
+                                    </h6>
+                            </div>  
+                            {%endfor%}           
 </body> 
 </html>
