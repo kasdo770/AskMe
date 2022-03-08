@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل دخول</title>
     <style>
+      :root{
+        --first-background-gradient:#f5e6ff;
+        --last-background-gradient:#fff;
+        --header:#000;
+        --header-text:#1C1C1C;
+        --footer:#2D2D2D;
+        --button-color:#6B0085;
+        --button-color-hover:#6a0085cb;
+        --button-color-active:#5c0272;
+        --alert-button-color:#ed4337;
+        --success-button-color:#53A653;
+        --info-button-color:#b39800;
+      }
       body{
         background-image: url("../static/Assets/books.png");
     background-repeat: no-repeat, no-repeat;
@@ -39,12 +52,72 @@
           width: 100%;
           margin-left: 10%;
         }
-
+        
       }
+       /* _______________________________________Error Button_____________________________________________ */
+       .flash-container{
+        display: flex;
+        justify-content: center;
+      }
+       .succes{
+        width: fit-content;
+         background-color: var(--success-button-color);
+         opacity: 90%;
+         color: white;
+       }
+       .Info{
+        width: fit-content;
+         background-color: var(--info-button-color);
+         opacity: 90%;
+         color: white;
+       }
+       .alert{
+        width: fit-content;
+         background-color: var(--alert-button-color);
+         opacity: 90%;
+         color: white;
+       }
+       .closebtn {
+         margin-left: 15px;
+         color: white;
+         font-weight: bold;
+         float: right;
+         font-size: 22px;
+         line-height: 20px;
+         cursor: pointer;
+         transition: 0.3s;
+       }
+       .closebtn:hover {
+         color: black;
+       }
     </style>
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      {% if category =='success' %}
+          <div class="flash-container">
+           <div dir="rtl" class="succes">
+             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+             {{message}}
+           </div>
+         </div>
+         {% elif category =='error' %}
+         <div class="flash-container">
+          <div dir="rtl" class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+          </div>
+        </div>
+      {%else%}
+      <div class="flash-container">
+       <div dir="rtl" class="Info">
+           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+           {{message}}
+         </div>
+       </div>
 
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
 </head> 
 <body>
   <section class="vh-100 ">
@@ -76,7 +149,7 @@
                     {{form.submit(class="btn-block btn-lg gradient-custom-4 text-body")}}
                   </div>
   
-                  <p class="text-center text-muted mt-5 mb-0">لا تملك حساب ؟ <a href="/mainpage" class="fw-bold text-body"><u>انضم لنا</u></a></p>
+                  <p class="text-center text-muted mt-5 mb-0">لا تملك حساب ؟ <a href="{{url_for('HomePage')}}" class="fw-bold text-body"><u>انضم لنا</u></a></p>
   
                 </form>
   

@@ -20,6 +20,21 @@
         --success-button-color:#53A653;
         --info-button-color:#b39800;
       }
+      /*------------------------------------------------------buttons-------------------------------------------------------------*/
+      .zuttons {
+        background-color: transparent !important;
+        outline: none !important;
+        border: 2px #F64C72 solid !important;
+        box-shadow: none !important;
+        margin-left: 1%;
+      }
+      .zuttons:hover {
+        background-color: #fa6787 !important;
+      }
+      .zuttons:active {
+        background-color: #ff3f69 !important;
+      }
+
           /* _______________________________________Error Button_____________________________________________ */
       .flash-container{
         display: flex;
@@ -217,7 +232,7 @@
                   
   
                   <div class="d-flex justify-content-center mt-4">
-                    {{form.submit(class="btn-block btn-lg gradient-custom-4 text-body", id ="submitbtn")}}
+                    {{form.submit(class="btn-btn-primary btn-block btn-lg gradient-custom-4 text-body", class ="zuttons")}}
                   </div>
   
                   <p class="text-center text-muted mt-2 mb-0">هل لديك حساب مسبقا ؟ <a href="{{url_for('auth.LoginPage')}}" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
