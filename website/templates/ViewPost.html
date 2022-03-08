@@ -17,7 +17,8 @@
 
 </head>
 <body>
-                                                                                <!--Top Nav-->
+    <script>
+    </script>                                                                               <!--Top Nav-->
 
     <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
     <div class="container">
@@ -47,7 +48,7 @@
             <div class="container">
                     <form class="d-flex justify-content-end align-items-center flex-row inputparent", method="POST">
                     {{form.create(class="submit")}} 
-                    {{form.description(default = "",dir="rtl" , class="input" , id="" , placeholder="اضغط هنا لاضافة اجابة")}} 
+                    {{form.description(default = "",dir="rtl" , class="input" , id="answerinput" , placeholder="اضغط هنا لاضافة اجابة")}} 
                     </form>
             </div>
         </div>
@@ -58,7 +59,6 @@
                         
                                     <div dir="rtl" class="d-flex justify-items-start align-items-center-flex-column">
                                         <div class="info text-light">
-                                            <h6>#{{item.id}}</h6>
                                             <h6>بواسطة : {{item.user.username}} </h6>
                                             <h6>التاريخ : {{item.datetime}}   </h6>
                                         </div>

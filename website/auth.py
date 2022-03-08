@@ -67,7 +67,7 @@ def ConfirmEmail(token):
     user = User.query.filter_by(email=email).first()
     if user:
         try:
-            validationemail = urlsafe.loads(token,salt='email-confirm',max_age=30)
+            validationemail = urlsafe.loads(token,salt='email-confirm',max_age=300)
             user.verified = True
             db.session.commit()
             login_user(user)
