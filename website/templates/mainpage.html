@@ -128,7 +128,7 @@
               {%elif current_user.verified == True%}
               <button class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >اجب عليه</button>
               {%else%}
-              <button class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >القي نظؤة</button>
+              <button class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >القي نظرة</button>
               {%endif%}
 
               {%if current_user.id == item.user.id%}
