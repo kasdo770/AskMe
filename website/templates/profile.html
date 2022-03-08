@@ -176,10 +176,14 @@
             margin-right:3%;
             }
             .email-school-margin{
-                margin-right: 12%;
+                margin-right: 4%;
             }
             .name-age-margin{
                 margin-right: 4%;
+            }
+            .verify{
+                float: left;
+                margin-left: 15%;
             }
     </style>
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
@@ -230,7 +234,21 @@
                             <hr class="badge-primary mt-0 w-0">
                             <div class="row">
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold email-school-margin">:ايميلك</p>
+                                    <div>
+                                        
+                                        <p class="font-weight-bold email-school-margin">:ايميلك
+                                              <!--add if statement verified or no-->
+                                            <a href=""><!-------add the place he need to verify in-->
+                                            <img src="../static/Assets/verified.png" class="verify" width="30px" height="30px">
+                                            </a>
+                                            <!-----
+                                            <img src="../static/Assets/unverified.png" class="verify" width="30px" height="30px">
+                                            -->
+                                            
+                                            </p> 
+                                       
+                                    </div>
+                                    
                                     <h6 class="text-muted email-school-margin"> {{current_user.email}}</h6>
                                 </div>
                                 <div class="col-sm-6 text">

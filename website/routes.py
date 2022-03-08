@@ -121,4 +121,7 @@ def Update_Post(id):
                 return redirect(url_for("views.MainPage"))
 
     return render_template("UpdatePost.html", form=form,post=post)
+@app.route("/verify")
+def Verify():
+    return render_template("verify.html")
 
