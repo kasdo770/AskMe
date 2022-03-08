@@ -122,26 +122,3 @@ def Update_Post(id):
 
     return render_template("UpdatePost.html", form=form,post=post)
 
-        
-@app.route("/create/comment/<post_id>", methods=["POST","GET"])
-def CreateComment(post_id):
-    form = CommentForm()
-    post = Post.query.filter_by(id=post_id)
-    if post:
-        if form.validate_on_submit():
-            if form.cancel.data:
-                return redirect(url_for(f"views.View_Post",id=post_id))
-            elif form.create.data:
-                new_comment = Comment(
-                    description = form.description.data,
-                    author = current_user.id,
-                    post = post_id
-                )
-                db.session.add(new_comment)
-                db.session.commit()
-    else:
-        print("no")
-    return render_template("CreateComment.html", form=form)
-@app.route("/profile2")
-def Profile2():
-    return render_template("profile2.html")

@@ -27,6 +27,43 @@
         --success-button-color:#53A653;
         --info-button-color:#b39800;
       }
+      /* _______________________________________Error Button_____________________________________________ */
+      .flash-container{
+        display: flex;
+        justify-content: center;
+      }
+       .succes{
+        width: fit-content;
+         background-color: var(--success-button-color);
+         opacity: 90%;
+         color: white;
+       }
+       .Info{
+        width: fit-content;
+         background-color: var(--info-button-color);
+         opacity: 90%;
+         color: white;
+       }
+       .alert{
+        width: fit-content;
+         background-color: var(--alert-button-color);
+         opacity: 90%;
+         color: white;
+       }
+       .closebtn {
+         margin-left: 15px;
+         color: white;
+         font-weight: bold;
+         float: right;
+         font-size: 22px;
+         line-height: 20px;
+         cursor: pointer;
+         transition: 0.3s;
+       }
+       .closebtn:hover {
+         color: black;
+       }
+
     </style>
        {% with messages = get_flashed_messages(with_categories=true) %} {% if
          messages %} {% for category, message in messages %}
