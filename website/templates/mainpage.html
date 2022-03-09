@@ -108,6 +108,9 @@
       #searchbtn{
         display:none;
       }
+      .color{
+        background-color: white;
+      }
     </style>
     
 </head>
@@ -116,10 +119,13 @@
 
     <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
         <div class="container">
-          <span style="font-size:30px;cursor:pointer" onclick="openNav()" id="navopen">&#9776; </span>
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()" id="navopen">&#9776; </span>    
+          
           <h1 id="logo">
             اسئلة
+
           </h1>
+          
         </div>
       </nav>
 
@@ -128,12 +134,13 @@
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         {% if current_user.kind == "student"%}
-          {%if current_user.verified == 0 %}
+          {%if current_user.verified == 1 %}
             <a href="{{url_for('CreatePostPage')}}" id="newqbtn">سؤال جديد</a>
           {%endif%}
         {%endif%}
         <a href="{{url_for('views.ProfilePage')}}">الملف الشخصي</a>
         <a href="{{url_for('auth.Logout')}}">تسجيل الخروج</a>
+        
         
         <a class="" id="togglefilter">نوع الاسئلة</a>
         <div class="container">

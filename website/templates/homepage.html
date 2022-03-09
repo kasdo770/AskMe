@@ -63,6 +63,10 @@
      .closebtn:hover {
        color: black;
      }
+     .logo{
+      margin-top: 10%;
+      margin-right: 5%;
+     }
      </style>
      {% with messages = get_flashed_messages(with_categories=true) %} {% if
        messages %} {% for category, message in messages %}
@@ -97,15 +101,19 @@
                                                   <!--navbar-->
   <nav class="navbar mt-2 " id="navbar">
   <div class="container">
+    
     {%if current_user.is_authenticated%} 
     <a href="{{url_for('auth.Logout')}}" class="btn btn-primary  text-size-2 p-1" id="signin" >تسجيل الخروج</a>
     {%else%}
     <a href="{{url_for('auth.LoginPage')}}" class="btn btn-primary  text-size-2 p-1" id="signin" >تسجيل الدخول</a>
     {%endif%}
     <div class="d-flex justify-content-end ">
-      <h1 class="text-light" id="logo">
+      <img src = "../static/Assets/logo.png" class="logo mr-4 mt-4 logo" width="100px" height="80px" class="rounded-circle mb-4" alt="">    
+      <br>
+      <h1 class="logo mt-5 text-light" id="logo">
         اسئلة
       </h1>
+      
     </div>
     </div>
   </nav>

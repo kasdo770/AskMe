@@ -1,3 +1,4 @@
+from functools import reduce
 from flask import Blueprint,redirect, request,url_for,flash,render_template
 from flask_login import login_required,logout_user,current_user,login_user
 from website import db,mail,urlsafe
@@ -66,18 +67,36 @@ def ConfirmEmail(token):
     email = urlsafe.loads(token,salt='email-confirm')
     user = User.query.filter_by(email=email).first()
     if user:
-        try:
-            validationemail = urlsafe.loads(token,salt='email-confirm',max_age=300)
-            user.verified = True
-            db.session.commit()
-            login_user(user)
-            return redirect(url_for("auth.LoginPage"))
-        except SignatureExpired:
-            return redirect(url_for('HomePage'))
+        if current_user.username == user.username:
+            print(current_user.username)
+            print(user.username)
+            try:
+                validationemail = urlsafe.loads(token,salt='email-confirm',max_age=20)
+                user.verified = True
+                db.session.commit()
+                login_user(user)
+                return redirect(url_for("auth.VerifyEmail",id=current_user.id))
+            except SignatureExpired:
+                login_user(user)
+                return redirect(url_for('auth.VerifyEmail',id=current_user.id))
+        else:
+            flash("انت لست صاحب هذا الحساب")
     else:
         flash('لا يوجد اي يوزر يهذا الاسم')
     
 
+@auth.route("/verify-mail/<id>")
+def VerifyEmail(id):
+    user = User.query.filter_by(id=id).first()
+    if user.verified == 0:
+        token = urlsafe.dumps(current_user.email,salt='email-confirm')
+        msg = Message("تاكيد حسابك", recipients=[current_user.email])
+        link = url_for("auth.ConfirmEmail",token=token,_external=True)
+        msg.html = render_template("Email.html",link=link)
+        mail.send(msg)
+    elif user.verified == 1:
+        return render_template("verify.html")
+    return render_template("verify.html")
 
 
 @auth.route("/register/tea", methods = ["POST", "GET"])

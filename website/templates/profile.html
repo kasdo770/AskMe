@@ -237,14 +237,13 @@
                                     <div>
                                         
                                         <p class="font-weight-bold email-school-margin">:ايميلك
-                                              <!--add if statement verified or no-->
-                                            <a href=""><!-------add the place he need to verify in-->
-                                            <img src="../static/Assets/verified.png" class="verify" width="30px" height="30px">
-                                            </a>
-                                            <!-----
-                                            <img src="../static/Assets/unverified.png" class="verify" width="30px" height="30px">
-                                            -->
-                                            
+                                            {% if current_user.verified == 1 %}
+                                                <img src="../static/Assets/verified.png" class="verify" width="30px" height="30px">
+                                            {%else%}
+                                            <a href="/verify-mail/{{current_user.id}}"><!-------add the place he need to verify in-->
+                                                <img src="../static/Assets/unverified.png" class="verify" width="30px" height="30px">
+                                            </a> 
+                                            {%endif%}  
                                             </p> 
                                        
                                     </div>

@@ -1,6 +1,6 @@
 from flask import Blueprint,redirect,url_for,render_template,request,flash
 from flask_login import login_required,logout_user,current_user
-from website import db
+from website import db,urlsafe
 from .model import Post,User,Comment
 from website.forms import CommentForm
 
@@ -32,12 +32,14 @@ def View_Post(id):
 def ProfilePage():
     post = Post.query.all()
     if request.method == "POST":
-        verifyemail = request.form.get('email')
         verifyusername = request.form.get('username')
-        email = User.query.filter_by(email=verifyemail).first()
-        username = User.query.filter_by(username=verifyusername).first()
-        if username or email:
-            flash(" لا يمكنك تعديل من الاسم او الايميل الخاص بك لهذا الاسم او الايميل",category="error")
+        user = User.query.filter_by(username=verifyusername).first()
+
+
+        if user and user.username != current_user.username:
+            flash(" لا يمكنك تعديل من الاسم الخاص بك لهذا الاسم ",category="error")
+        if user.email and user.email != current_user.email:
+            flash(" لا يمكنك تعديل من الايميل الخاص بك لهذا الايميل",category="error")
         else:
             try: 
                 current_user.email = request.form.get('email')
@@ -45,18 +47,19 @@ def ProfilePage():
                 if current_user.kind == "student":
                     current_user.schooltype = request.form.get('schooltype')
                     current_user.age = request.form.get('age')
-                    print(current_user.age)
-                    print(current_user.schooltype)
                 elif current_user.kind == "teacher":
                     current_user.first_subject = request.form.get('first_subject')
-                    current_user.second_subject = request.form.get('second_subject')
-                flash("لقد تم التعديل بنجاح",category="info")
+                    current_user.second_subject = request.form.get('second_subject')  
+
+                current_user.verified = False
+                flash("لقد تم التعديل بنجاح", category="info")
             except:
                 flash("لا يمكنك تعديل لهذا الاسم او الايميل",category="error")
 
             db.session.commit()
 
     return render_template("profile.html",post=post)
+
 
 
 
