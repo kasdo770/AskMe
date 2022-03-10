@@ -120,11 +120,12 @@
     <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
         <div class="container">
           <span style="font-size:30px;cursor:pointer" onclick="openNav()" id="navopen">&#9776; </span>    
-          
+          <img src = "../static/Assets/logo3.png" class="logo mr-4 mt-4 logo" width="100px" height="80px" class="rounded-circle mb-4" alt="">
           <h1 id="logo">
             اسئلة
 
           </h1>
+          
           
         </div>
       </nav>
@@ -140,6 +141,7 @@
         {%endif%}
         <a href="{{url_for('views.ProfilePage')}}">الملف الشخصي</a>
         <a href="{{url_for('auth.Logout')}}">تسجيل الخروج</a>
+        
         
         
         <a class="" id="togglefilter">نوع الاسئلة</a>
