@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='/TemplatesCss/ViewPost.css')}}">
     <script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
-    <a href="/mainpage" class="btn btn-primary  text-size-2 p-1 ml-3 mt-3" id="back" >الرجوع</a>
+    <a href="/mainpage" class="btn btn-primary  text-size-2 p-1 ml-3 mt-3 leave" id="back" >الرجوع</a>
     <script>
          $(function(){
           $("#changeprofilebtn").click(function(){
@@ -61,6 +61,9 @@
          .closebtn:hover {
            color: black;
          }
+         .leave{
+             margin-left: 3%;
+         }
          </style>
     <style>
         #changeprofile{
@@ -94,6 +97,7 @@
         margin-top: -2%;
         margin-right: 42%;
         color: black !important;
+        border-color:#9e3148 !important ;
         float:right;
     }
         .sucbtn:hover{
