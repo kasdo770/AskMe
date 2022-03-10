@@ -5,7 +5,7 @@ from website import db,mail,urlsafe
 from itsdangerous import SignatureExpired
 from flask_mail import Message
 from .model import User,Post,Comment
-from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm,CommentForm
+from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, PostForm, UpdatePostForm
 
 
 auth = Blueprint("auth", __name__)

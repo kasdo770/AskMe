@@ -17,8 +17,79 @@
 
 </head>
 <body>
-    <script>
-    </script>                                                                               <!--Top Nav-->
+    <style> 
+
+        :root{
+          --first-background-gradient:#f5e6ff;
+          --last-background-gradient:#fff;
+          --header:#000;
+          --header-text:#1C1C1C;
+          --footer:#2D2D2D;
+          --button-color:#6B0085;
+          --button-color-hover:#6a0085cb;
+          --button-color-active:#5c0272;
+          --alert-button-color:#ed4337;
+          --success-button-color:#53A653;
+          --info-button-color:#b39800;
+        }
+            /* _______________________________________Error Button_____________________________________________ */
+        .flash-container{
+          display: flex;
+          justify-content: center;
+        }
+         .succes{
+          width: fit-content;
+           background-color: var(--success-button-color);
+           opacity: 90%;
+           color: white;
+         }
+         .alert{
+          width: fit-content;
+           background-color: var(--alert-button-color);
+           opacity: 90%;
+           color: white;
+         }
+         .closebtn {
+           margin-left: 15px;
+           color: white;
+           font-weight: bold;
+           float: right;
+           font-size: 22px;
+           line-height: 20px;
+           cursor: pointer;
+           transition: 0.3s;
+         }
+         .closebtn:hover {
+           color: black;
+         }
+         </style>
+         {% with messages = get_flashed_messages(with_categories=true) %} {% if
+           messages %} {% for category, message in messages %}
+           {% if category =='success' %}
+               <div class="flash-container">
+                <div dir="rtl" class="succes">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  {{message}}
+                </div>
+              </div>
+              {% elif category =='error' %}
+              <div class="flash-container">
+               <div dir="rtl" class="alert">
+                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                 {{message}}
+               </div>
+             </div>
+           {%else%}
+           <div class="flash-container">
+            <div dir="rtl" class="Info">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{message}}
+              </div>
+            </div>
+   
+           {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+                                                                              <!--Top Nav-->
 
     <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
     <div class="container">
@@ -46,15 +117,20 @@
 
             <a href="/update-post/{{post.id}}" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
             <div class="container">
-                    <form class="d-flex justify-content-end align-items-center flex-row inputparent", method="POST">
-                    {{form.create(class="submit")}} 
-                    {{form.description(default = "",dir="rtl" , class="input" , id="answerinput" , placeholder="اضغط هنا لاضافة اجابة")}} 
+                    <form method="POST">
+                        <div  class="d-flex justify-content-end align-items-center flex-row inputparent">
+                            <button class="submit mx-5">
+                                انشاء الاجابة
+                            </button>
+                            <textarea id="desc" name="desc" class="input" dir="rtl" rows="8" cols="100" placeholder="اكتب هنا للاجابة"></textarea>
+                        </div>
                     </form>
             </div>
         </div>
     </div>                  
                             <h4 class="text-center text-light my-5">: الاجابات</h4>
                             {%for item in comment%}
+                            {%if item.user.kind == "teacher"%}
                             <div class="container">
                         
                                     <div dir="rtl" class="d-flex justify-items-start align-items-center-flex-column">
@@ -69,6 +145,22 @@
 
                                     </h6>
                             </div>  
+                            {%else%}
+                            <div class="container">
+                        
+                                <div dir="rtl" class="d-flex justify-items-start align-items-center-flex-column">
+                                    <div class="info text-light">
+                                        <h6>بواسطة : {{item.user.username}} </h6>
+                                        <h6>التاريخ : {{item.datetime}}   </h6>
+                                    </div>
+                                </div>
+                                <h6 class="text-light text-center " style="line-height: 30px; margin-bottom: 10%; margin-top: 7%">
+
+                                    {{item.description}}
+
+                                </h6>
+                            </div>  
+                            {%endif%}
                             {%endfor%}           
 </body> 
 </html>

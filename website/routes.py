@@ -6,7 +6,7 @@ from flask import request
 from .views import views
 from .auth import auth
 from flask_login import login_required,current_user
-from website.forms import StudentRegisterForm,TeacherRegisterForm,CommentForm,PostForm,LoginForm,UpdatePostForm
+from website.forms import StudentRegisterForm,TeacherRegisterForm,PostForm,LoginForm,UpdatePostForm
 
 
 #temporay function

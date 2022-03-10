@@ -2,7 +2,6 @@ from flask import Blueprint,redirect,url_for,render_template,request,flash
 from flask_login import login_required,logout_user,current_user
 from website import db,urlsafe
 from .model import Post,User,Comment
-from website.forms import CommentForm
 
 views = Blueprint("views", __name__)
 
@@ -10,22 +9,40 @@ views = Blueprint("views", __name__)
 @views.route("/view-post/<id>",methods=['POST','GET'])
 @login_required
 def View_Post(id):
+    number_of_comments = 0
     post = Post.query.filter_by(id=id).first()
     comments = Comment.query.filter_by(post=post.id).all()
-    form = CommentForm()
+    user_comments = Comment.query.filter_by(author=current_user.id).all()
+    print(user_comments)
+    if user_comments:
+            for comment in comments:
+                number_of_comments = number_of_comments + 1
+                print(comment)
     if not post:
         flash("هذا السؤال غير موجود من قبل", category="error")
         return redirect(url_for("views.MainPage"))
     else:
-        if form.create.data:
-            new_comment = Comment(
-                description = form.description.data,
-                author = current_user.id,
-                post = id
-            )
-            db.session.add(new_comment)
-            db.session.commit()
-        return render_template("ViewPost.html",post=post,form=form,comment=comments)
+                
+        if number_of_comments <= 2:
+            if request.method == "POST":
+                description = request.form.get('desc')
+                if len(str(description)) != 0:
+                    new_comment = Comment(
+                        description=description,
+                        author=current_user.id,
+                        post=post.id
+                    )
+                    db.session.add(new_comment)
+                    db.session.commit()
+                    return redirect(url_for("views.View_Post",id=post.id))
+                else:
+                    flash("لا يمكنك انشاء اجابة فارغة", category="error")
+        else:
+            description = request.form.get('desc')
+            if len(str(description)) != 0:
+                flash("لا يمكنك انشاء اكثر من 3 اجابات", category="error")
+    return render_template("ViewPost.html",post=post,comment=comments)
+            
 
 @views.route("/profile", methods=["POST","GET"])
 @login_required

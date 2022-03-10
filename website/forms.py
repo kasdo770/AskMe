@@ -16,18 +16,6 @@ class LoginForm(FlaskForm):
     )
 
 
-class CommentForm(FlaskForm):
-    def validate_description(self,description_to_check):
-        if self.create.data:
-            if len(str(description_to_check.data)) <= 0:
-                raise ValidationError("لا يمكن انشاء اجابة فارغة")
-                
-    description = TextAreaField(
-        label="الموضوع" 
-        )
-    create = SubmitField(
-        label="انشاء جواب"
-        )
 
 class StudentRegisterForm(FlaskForm):
     def validate_username(self, username_to_check):
