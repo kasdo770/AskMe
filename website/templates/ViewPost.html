@@ -62,6 +62,21 @@
          .closebtn:hover {
            color: black;
          }
+         .margin-box{     
+          text-align: right;
+          width:150%;
+     }
+     .right{
+         float: right;
+     }
+     .text{
+            text-align: right;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            width: 100%;
+        }
          </style>
          {% with messages = get_flashed_messages(with_categories=true) %} {% if
            messages %} {% for category, message in messages %}
@@ -91,7 +106,7 @@
 
                                                                               <!--Top Nav-->
 
-<<<<<<< Updated upstream
+
     <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
     <div class="container">
         <a href="/mainpage" class="btn btn-primary  text-size-2 p-1" id="back" >الرجوع</a>
@@ -102,20 +117,34 @@
     </nav>
     <div dir="rtl" class="container">
 
-                                                                                <!--user's info-->
-        <div class="info text-light">
-            <h6>بواسطة : {{post.user.username}}</h6>
-            <h6>المادة : {{post.subject}} </h6>
-            <h6>التاريخ : {{post.datetime}}</h6>
+                                                                                
+
+        <!--user's info-->
+        <div class="container margin-box">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 margin pt-1 shadow">
+                        <div class="col-sm-4 box-color rounded-left right">
+                                <div class="info text-light">
+                                    <h5 id="title" dir="rtl">{{post.title}}</h5>
+
+                                    <div class="col-sm-10 text">
+                                        <h6>بواسطة : {{post.user.username}}</h6>
+                                        <h6>التاريخ : {{post.datetime}}</h6>
+                                    </div>
+                                    
+                                    <h6>المادة : {{post.subject}} </h6>
+                                      
+                                </div>     
+                                  
+                        </div>
+                </div> 
+            </div>
         </div>
                                                                                 <!--The Question + Comment field-->
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-center flex-column text-light text-break">
-            <h5 id="title">{{post.title}}</h5>
-            <h6 id="details" dir="rtl">{{post.description}}
-            </h6>
 
+            {% if current_user.id == post.user.id%}
             <a href="/update-post/{{post.id}}" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
+            {%endif%}
             <div class="container">
                     <form method="POST">
                         <div class="d-flex mx-5 align-items-center flex-row inputparent">
