@@ -90,6 +90,22 @@
        .closebtn:hover {
          color: black;
        }
+       /*------------------------------------------------------buttons-------------------------------------------------------------*/
+      .zuttons {
+        background-color: transparent !important;
+        outline: none !important;
+        border: 2px #F64C72 solid !important;
+        box-shadow: none !important;
+        margin-left: 1%;
+        border-radius: 0.25em;
+        margin-top: 4%;
+      }
+      .zuttons:hover {
+        background-color: #fa6787 !important;
+      }
+      .zuttons:active {
+        background-color: #ff3f69 !important;
+      }
     </style>
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
@@ -146,7 +162,7 @@
                     
                   </div>
                   <div class="d-flex justify-content-center">
-                    {{form.submit(class="btn-block btn-lg gradient-custom-4 text-body")}}
+                    {{form.submit(class="btn-block btn-lg gradient-custom-4 text-body zuttons")}}
                   </div>
   
                   <p class="text-center text-muted mt-5 mb-0">لا تملك حساب ؟ <a href="{{url_for('HomePage')}}" class="fw-bold text-body"><u>انضم لنا</u></a></p>

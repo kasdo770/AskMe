@@ -95,8 +95,16 @@
         .text-margin{
             margin-right: 10%;
         }
-        @media screen and (max-device-width:402px) {
-
+        .des-width{
+            width: fit-content;
+        }
+        @media screen and (max-device-width:575px) {
+            .container-box{
+                padding-bottom: 5%;
+            }
+            .des-width{
+            width: 100%
+        }
             
         }
          </style>
@@ -145,7 +153,7 @@
         <div class="container margin-box">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10 margin pt-1 shadow box-color">
-                        <div class="col-sm-4 box-color rounded-left right">
+                        <div class="col-sm-4 box-color rounded-left right box-margin">
                                 <div class="info text-light container-box">
                                     <h5 id="title" dir="rtl">{{post.title}}</h5>
                                     <div style="display: flex;">
@@ -168,7 +176,7 @@
                                                                                 <!--The Question + Comment field-->
 
             {% if current_user.id == post.user.id%}
-            <a href="/update-post/{{post.id}}" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
+            <a href="/update-post/{{post.id}}" class="btn btn-primary edit" id="back" style="margin-top: 3%; margin-left: 50%;">تعديل السؤال</a>
             {%endif%}
             <div class="container">
                     <form method="POST">

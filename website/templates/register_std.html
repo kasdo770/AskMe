@@ -165,6 +165,13 @@
     
       }
       }
+      .margin-right{
+        margin-right: 14%;
+      }
+      .button{
+        padding: 2%;
+        border-radius: 0.25em;
+      }
     </style>
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
@@ -200,12 +207,12 @@
               
               <div class="d-flex flex-row-reverse">
                   
-                  <div class=" mb-2 col-lg-6 ">
+                  <div class=" mb-2 col-lg-5 ">
                     {{form.password1.label(class="form-label color-text", for="form3Example3cg")}}
                     {{form.password1(dir="rtl",class="form-control form-control-lg", id="form3Example3cg")}}
                     
                   </div>
-                  <div class=" mb-2 mr-2 col-lg-6 ">
+                  <div class=" mb-2 col-lg-5 margin-right">
                     {{form.password2.label(class="form-label color-text")}}
                     {{form.password2(dir="rtl",class="form-control form-control-lg")}}
                    
@@ -216,12 +223,12 @@
             </div>
                   <div class="form-group">
                     <div class="d-flex flex-row-reverse">
-                      <div class="form-outline mb-2 col-6">
+                      <div class="form-outline mb-2 col-5">
                         {{form.age.label(class="form-label color-text",for="form3Example4cdg")}}
                         {{form.age(class = "form-control form-control-lg", dir="rtl", id="form3Example4cdg")}}
                         
                       </div>
-                      <div class="form-outline mb-2 col-6">
+                      <div class="form-outline mb-2 col-5 margin-right">
                         {{form.schooltype.label(class="form-label color-text",for="form3Example4cdg")}}
                         {{form.schooltype(class = "form-control form-control-lg", dir="rtl", id="form3Example4cdg")}}
                         
@@ -232,7 +239,7 @@
                   
   
                   <div class="d-flex justify-content-center mt-4">
-                    {{form.submit(class="btn-btn-primary btn-block btn-lg gradient-custom-4 text-body", class ="zuttons")}}
+                    {{form.submit(class="btn-btn-primary btn-block btn-lg gradient-custom-4 text-body", class ="zuttons button")}}
                   </div>
   
                   <p class="text-center text-muted mt-2 mb-0">هل لديك حساب مسبقا ؟ <a href="{{url_for('auth.LoginPage')}}" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
