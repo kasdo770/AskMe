@@ -91,6 +91,7 @@
 
                                                                               <!--Top Nav-->
 
+<<<<<<< Updated upstream
     <nav class="navbar navbar-light bg-light mt-2" id="navbar"> 
     <div class="container">
         <a href="/mainpage" class="btn btn-primary  text-size-2 p-1" id="back" >الرجوع</a>
@@ -107,6 +108,26 @@
             <h6>المادة : {{post.subject}} </h6>
             <h6>التاريخ : {{post.datetime}}</h6>
         </div>
+=======
+    <h4 class="text-center text-light my-5">الاجابات :</h4>
+    {%for item in comment%}
+    <div class="container">   
+      <div
+        dir="rtl"
+        class="d-flex align-items-center flex-row"
+      >
+        <div class=" text-light">
+          <h6>بواسطة : {{item.user.username}}</h6>
+          <h6>التاريخ : {{item.datetime}}</h6>
+
+      </div>
+      <h6
+        class="text-light text-center"
+        style="line-height: 30px; margin-bottom: 10%; margin-top: 7%"
+      >
+        {{item.description}}
+      </h6>
+>>>>>>> Stashed changes
     </div>
                                                                                 <!--The Question + Comment field-->
     <div class="container">
