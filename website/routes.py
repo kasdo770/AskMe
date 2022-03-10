@@ -98,26 +98,29 @@ def Delete_Post(id):
 @login_required
 def Update_Post(id):
     post = Post.query.filter_by(id=id).first()
-    form = UpdatePostForm()
-    if not post:
-        flash("هذا السؤال غير موجود من قبل", category="error")
-        return redirect(url_for("views.MainPage"))
+    if current_user.id != post.user.id:
+        flash("انت لا تملك الصلاحية ل تعديل السؤال . فقط السائِل يملك هذه الصلاحية", category="error")
+        return redirect(url_for('views.MainPage'))
     else:
-        if form.validate_on_submit():
-            if form.cal.data:
-                return redirect(url_for("views.MainPage"))
-            if form.crt.data:
-                updated_post = Post(
-                    id = post.id,
-                    title= post.title,
-                    description= request.form.get('desc') ,
-                    subject = form.subject.data,
-                    author = current_user.id
-                )
-                db.session.delete(post)
-                db.session.merge(updated_post)
-                db.session.commit()
-                flash("لقد تم تحديث سؤال بنجاح", category="success")
-                return redirect(url_for("views.MainPage"))
-
-    return render_template("UpdatePost.html", form=form,post=post)
+        form = UpdatePostForm()
+        if not post:
+            flash("هذا السؤال غير موجود من قبل", category="error")
+            return redirect(url_for("views.MainPage"))
+        else:
+                if form.validate_on_submit():
+                    if form.cal.data:
+                        return redirect(url_for("views.MainPage"))
+                    if form.crt.data:
+                        updated_post = Post(
+                            id = post.id,
+                            title= post.title,
+                            description= request.form.get('desc') ,
+                            subject = form.subject.data,
+                            author = current_user.id
+                        )
+                        db.session.delete(post)
+                        db.session.merge(updated_post)
+                        db.session.commit()
+                        flash("لقد تم تحديث سؤال بنجاح", category="success")
+                        return redirect(url_for("views.MainPage"))
+        return render_template("UpdatePost.html", form=form,post=post)

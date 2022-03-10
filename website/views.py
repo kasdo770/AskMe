@@ -9,22 +9,15 @@ views = Blueprint("views", __name__)
 @views.route("/view-post/<id>",methods=['POST','GET'])
 @login_required
 def View_Post(id):
-    number_of_comments = 0
     post = Post.query.filter_by(id=id).first()
     comments = Comment.query.filter_by(post=post.id).all()
-    user_comments = Comment.query.filter_by(author=current_user.id).all()
-    print(user_comments)
-    if user_comments:
-            for comment in comments:
-                number_of_comments = number_of_comments + 1
-                print(comment)
+    user_comments = Comment.query.filter_by(author=current_user.id).count()
     if not post:
         flash("هذا السؤال غير موجود من قبل", category="error")
         return redirect(url_for("views.MainPage"))
-    else:
-                
-        if number_of_comments <= 2:
-            if request.method == "POST":
+    else:              
+        if request.method == "POST":
+            if user_comments <= 2:
                 description = request.form.get('desc')
                 if len(str(description)) != 0:
                     new_comment = Comment(
@@ -37,10 +30,9 @@ def View_Post(id):
                     return redirect(url_for("views.View_Post",id=post.id))
                 else:
                     flash("لا يمكنك انشاء اجابة فارغة", category="error")
-        else:
-            description = request.form.get('desc')
-            if len(str(description)) != 0:
-                flash("لا يمكنك انشاء اكثر من 3 اجابات", category="error")
+            else:
+                flash("لا يمكنك انشاء اكثر من 3 اسئلة", category="error")
+
     return render_template("ViewPost.html",post=post,comment=comments)
             
 
