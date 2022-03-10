@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='/TemplatesCss/ViewPost.css')}}">
     <script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
-    <button id="backbutton" onclick="window.location.href='http://127.0.0.1:5000/mainpage'">الرجوع</button>
+    <a href="/mainpage" class="btn btn-primary  text-size-2 p-1 ml-3 mt-3" id="back" >الرجوع</a>
     <script>
          $(function(){
           $("#changeprofilebtn").click(function(){
@@ -133,19 +134,17 @@
             background-size: 100%;
             }   
             .zuttons {
-                    background-color: transparent !important;
-                    color: white;
-                    outline: none !important;
-                    box-shadow: none !important;
-                    margin-bottom:3%;
+                background-color: transparent !important;
+                outline: none !important;
+                border: 2px #F64C72 solid !important;
+                box-shadow: none !important;
+                margin-left: 1%;
             }
             .zuttons:hover {
-                    background-color: #9873bd !important;
+                background-color: #fa6787 !important;
             }
             .zuttons:active {
-                    background-color: #793bb6 !important;
-                    outline: none !important;
-                    box-shadow: none !important;
+                background-color: #ff3f69 !important;
             }
             .rewrite-open{
                 background-color: rgb(211, 211, 211);
