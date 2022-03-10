@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ViewPost</title>
 
-    <!--links-->
+                                                                                <!--links-->
 
     <link
       rel="stylesheet"
@@ -22,7 +22,7 @@
     <script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
   </head>
   <body>
-    <script></script>
+
     <!--Top Nav-->
 
     <nav class="navbar navbar-light bg-light mt-2" id="navbar">
@@ -34,20 +34,24 @@
       </div>
     </nav>
     <div dir="rtl" class="container">
-      <!--user's info-->
-      <div class="info text-light">
-        <h6>بواسطة : {{post.user.username}}</h6>
-        <h6>المادة : {{post.subject}}</h6>
-        <h6>التاريخ : {{post.datetime}}</h6>
-      </div>
-    </div>
-    <!--The Question + Comment field-->
+
+                                                                                <!--The Question + Comment field-->
     <div class="container">
       <div
-        class="d-flex align-items-center justify-content-center flex-column text-light text-break"
+        class=" text-light px-5 question"
       >
-        <h5 id="title">{{post.title}}</h5>
+        <h5 id="title" dir="rtl" >{{post.title}}</h5>
+        <div class="d-flex flex-row justify-content-start ">
+            <p style="margin-top: 4%;">  <p style="color: #F64C72;" id="undertitle">المادة : </p> {{post.user.username}}   </p>
+            <p style="margin-top: 4%;" id="undertitle">  <p style="color: #F64C72;" id="undertitle">التاريخ : </p> {{post.datetime}}   </p>
+        </div>  
         <h6 id="details" dir="rtl">{{post.description}}</h6>
+
+
+        <div class=" text-light d-flex flex-row justify-content-start">
+            <p style="margin-top: 4%;">  <p style="color: #F64C72;" id="undertitle">المادة: </p> {{post.subject}}   </p>
+          </div>
+        </div>
 
         <a
           href="/update-post/{{post.id}}"
@@ -56,20 +60,8 @@
           style="margin-top: 3%"
           >تعديل السؤال</a
         >
-        <div class="container">
-          <form
-            class="d-flex justify-content-end align-items-center flex-row inputparent"
-            ,
-            method="POST"
-          >
-            {{form.create(class="submit")}} {{form.description(default =
-            "",dir="rtl" , class="input" , id="answerinput" , placeholder="اضغط
-            هنا لاضافة اجابة")}}
-          </form>
-        </div>
-      </div>
-    </div>
-    <h4 class="text-center text-light my-5">: الاجابات</h4>
+
+    <h4 class="text-center text-light my-5">الاجابات :</h4>
     {%for item in comment%}
     <div class="container">
       <div
@@ -89,5 +81,17 @@
       </h6>
     </div>
     {%endfor%}
+    <div class="container">
+        <form
+          class="d-flex justify-content-end align-items-center flex-row inputparent"
+          ,
+          method="POST"
+        >
+          {{form.create(class="submit")}} {{form.description(default =
+          "",dir="rtl" , class="input" , id="answerinput" , placeholder="اضغط هنا لاضافة اجابة")}}
+        </form>
+      </div>
+    </div>
+  </div>
   </body>
 </html>
