@@ -62,7 +62,8 @@
          .closebtn:hover {
            color: black;
          }
-         .margin-box{     
+         .margin-box{
+             
           text-align: right;
           width:150%;
      }
@@ -83,9 +84,20 @@
         }
         .container-box{
             width: 150%;
+            
         }
         .red{
             color: red;
+        }
+        .box-color{
+            background-color: #32338b;     
+        }
+        .text-margin{
+            margin-right: 10%;
+        }
+        @media screen and (max-device-width:402px) {
+
+            
         }
          </style>
          {% with messages = get_flashed_messages(with_categories=true) %} {% if
@@ -132,13 +144,13 @@
         <!--user's info-->
         <div class="container margin-box">
             <div class="row d-flex justify-content-center">
-                <div class="col-md-10 margin pt-1 shadow">
+                <div class="col-md-10 margin pt-1 shadow box-color">
                         <div class="col-sm-4 box-color rounded-left right">
                                 <div class="info text-light container-box">
                                     <h5 id="title" dir="rtl">{{post.title}}</h5>
-                                    <div style="display: flex; justify-content: space-between;">
+                                    <div style="display: flex;">
                                         <p>بواسطة : <h6 class="red"> {{post.user.username}}</h6></p>
-                                        <p>التاريخ : <h6  class="red"> {{post.datetime}}</h6></p>
+                                        <p class="text-margin">التاريخ : <h6  class="red" > {{post.datetime}}</h6></p>
                                       </div>
                                       <h7 class="mt-5">
                                           {{post.description}}
