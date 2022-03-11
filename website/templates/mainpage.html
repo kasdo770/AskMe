@@ -217,10 +217,10 @@
               {%elif item.title|length > 35 and item.title|length < 45 %}
               <h3 class="card_title d-flex justify-content-center mx-1"> {{item.title}}</h3>
               {%elif item.title|length < 65 and item.title|length > 45 %}
-              <h5 class="card_title d-flex justify-content-center mx-1"> {{item.title}}</h5>
+              <h3 class="card_title d-flex justify-content-center mx-1"> {{item.title}}</h3>
               {%endif%}
               {%if current_user.id == item.user.id%}
-              <h3 class="card_by d-flex justify-content-center mx-1">بواسطة: انت </h3> 
+              <h5 class="card_by d-flex justify-content-center mx-1">بواسطة: انت </h5> 
               
               
               {%else%}
@@ -265,7 +265,7 @@
                     {%elif item.title|length > 35 and item.title|length < 45 %}
                     <h3 class="card_title d-flex justify-content-center mx-1"> {{item.title}}</h3>
                     {%elif item.title|length < 65 and item.title|length > 45 %}
-                    <h5 class="card_title d-flex justify-content-center mx-1"> {{item.title}}</h5>
+                    <h3 class="card_title d-flex justify-content-center mx-1"> {{item.title}}</h3>
                     {%endif%}
                     {%if current_user.id == item.user.id%}
                     <h5 class="card_by d-flex justify-content-center mx-1">بواسطة: انت </h5> 
