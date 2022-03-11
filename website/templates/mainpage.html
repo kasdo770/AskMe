@@ -234,9 +234,9 @@
               {%if current_user.id == item.user.id%}
               <button class="btn btn-primary zuttons" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >ألقي نظرة</button>
               {%elif current_user.verified == True%}
-              <button class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >اجب عليه</button>
+              <button style="margin-top:1% !important;" class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >اجب عليه</button>
               {%else%}
-              <button class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >القي نظرة</button>
+              <button style="margin-top:1% !important;" class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >القي نظرة</button>
               {%endif%}
 
               {%if current_user.id == item.user.id%}
@@ -245,11 +245,23 @@
               {%endif%}
 
               {% if current_user.verified == 1 %}
-              <form method="POST">
-                <div class="verify-div">
+              <form method="POST" style="margin-bottom:0% !important;">
+                  {%if current_user.id == item.user.id%}
+                  <div class="verify-div">
                 <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
                 <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
               </div>
+                {%elif current_user.verified == True%}
+                <div class="verify-div" style="margin-top:20% !important;">
+                  <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
+                  <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
+                </div>
+                {%else%}
+                <div class="verify-div" style="margin-top:20% !important;">
+                  <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
+                  <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
+                </div>
+                {%endif%}
               </form>
               {%endif%}
                    </div>

@@ -120,7 +120,6 @@ def MainPage():
 
     elif request.method == "POST" and 'searchinput' in request.form:
         _searchinput = request.form['searchinput']
-
         post = post.filter(Post.description.like('%' + _searchinput + '%'))
         post = post.order_by(Post.datetime).all()
 
