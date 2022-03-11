@@ -24,6 +24,7 @@ class User(db.Model,UserMixin):
     posts = db.relationship("Post",backref="user",passive_deletes=True)
     verified = db.Column(db.Boolean, default=False)
     comments = db.relationship("Comment", backref="user", passive_deletes=True)
+    likes = db.relationship("Like", backref="user", passive_deletes=True)
 
     @property
     def password(self):
@@ -43,11 +44,17 @@ class Post(db.Model):
     description = db.Column(db.String(), nullable=False)
     subject = db.Column(db.String())
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    number_of_likes = db.Column(db.Integer())
     author = db.Column(db.Integer(), db.ForeignKey("user.id",ondelete="CASCADE"))
     comments = db.relationship("Comment", backref="posts", passive_deletes=True)
+    likes = db.relationship("Like", backref="posts", passive_deletes=True)
 
 
-
+class Like(db.Model):
+    id = db.Column(db.Integer(),primary_key=True)
+    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
+    post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))
 
 class Comment(db.Model):
     id = db.Column(db.Integer(), primary_key=True)

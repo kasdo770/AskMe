@@ -50,7 +50,8 @@ def CreatePostPage():
                     title=form.title.data,
                     description=form.description.data,
                     subject = form.subject.data,
-                    author = current_user.id
+                    author = current_user.id,
+                    number_of_likes=0
                 )
                 db.session.add(new_post)
                 db.session.commit()

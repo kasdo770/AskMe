@@ -161,6 +161,7 @@
                 <option value="الجغرافيا">الجغرافيا</option>
                 <option value="التاريخ">التاريخ</option>
                 <option value="رياضيات">رياضيات</option>
+                <option value="mostliked">الاكثر اعجابا</option>
                 <option value="none">بدون</option>
                 </div>
             </select>
@@ -197,7 +198,15 @@
                                                         <!--Questions-->
         {%for item in post%}     
         <div class="container newq">
+          {% if current_user.verified == 0 %}
+          <form method="POST">
+          <a href="/like-post/{{item.id}}">Up arrow</a>
+          <h6 style="color:white;" class='mx-4'>{{item.likes|length}}</h6>
+          <a href="/dislike-post/{{item.id}}">Down arrow</a>
+          </form>
+          {%endif%}
           <div dir="rtl" class=" newqbrdr text-center text-light">
+            
               {%if item.title|length < 35 %}
               <h2 class="card_title d-flex justify-content-center mx-1"> {{item.title}}</h2>
               {%elif item.title|length > 35 and item.title|length < 45 %}
@@ -270,9 +279,9 @@
       
                          </div>
                   
-                </div>
+              </div>
 
-
+                
               {%endfor%} 
 
                                         

@@ -68,10 +68,8 @@ def ConfirmEmail(token):
     user = User.query.filter_by(email=email).first()
     if user:
         if current_user.username == user.username:
-            print(current_user.username)
-            print(user.username)
             try:
-                validationemail = urlsafe.loads(token,salt='email-confirm',max_age=20)
+                validationemail = urlsafe.loads(token,salt='email-confirm',max_age=300)
                 user.verified = True
                 db.session.commit()
                 login_user(user)
@@ -95,7 +93,7 @@ def VerifyEmail(id):
         msg.html = render_template("Email.html",link=link)
         mail.send(msg)
     elif user.verified == 1:
-        return render_template("verify.html")
+        return redirect(url_for("views.ProfilePage",id=current_user.id))
     return render_template("verify.html")
 
 
