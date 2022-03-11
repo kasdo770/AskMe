@@ -66,7 +66,7 @@ class SupportForm(FlaskForm):
             if len(str(title_to_check.data)) < 10:
                 raise ValidationError("لا يمكن انشاء سؤال بمعلوملات غير كافية ف العنوان")
 
-    title = StringField(label="عنوان المشكلة", validators=[Length(max=60),DataRequired()])
+    title = StringField(label="عنوان الطلب", validators=[Length(max=60),DataRequired()])
     description = TextAreaField(label="الموضوع", validators=[DataRequired()] )
     subjects =  SelectField(
         label="نوع طلبك", choices=[("'مشكلة في الحساب'",'مشكلة في الحساب'),("اقتراح","اقتراح"),('عطل فني','عطل فني')]
