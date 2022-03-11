@@ -27,9 +27,8 @@ body {
 }
 
 #title {
-  font-size: 25px !important;
   padding-bottom: 1.5%;
-  padding-top: 4%;
+  padding-top: 3%;
 }
 
 #undertitle {
@@ -38,30 +37,35 @@ body {
 
 #details {
   line-height: 35px;
-  margin-top: 4%;
-  margin-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 6%;
 }
 
 .info {
-  margin-top: 4%;
-  padding-right: 2%;
-  margin-left: 6%;
-  margin-right: 4%;
-  padding-bottom: 4%;
+  margin-top: 0.5%;
 }
 
 .question {
   margin-top: 10%;
   background-color: #FFFFFF10;
   border-radius: 0.25em;
-  padding: 1%;
+  padding: 5%;
 }
 
 .inputparent {
   margin-top: 5%;
-  border-top: 3px #2F2FA2 solid;
-  border-bottom: 3px #2F2FA2 solid;
   padding-top: 4%;
+  border-top: 2px #2F2FA2 solid;
+  margin-right: 1%;
+}
+
+.comment {
+  margin-bottom: 3%;
+}
+
+.infocmnt {
+  border-right: 2px #F64C72 solid;
+  padding-right: 2%;
 }
 
 .input {
@@ -101,24 +105,16 @@ body {
 }
 
 @media screen and (min-device-width: 50px) and (max-device-width: 992px) {
-  * {
-    font-size: 15px !important;
+  .question {
+    margin-top: 15% !important;
   }
 
   .info {
-    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   #logo {
-    font-size: 17px !important;
-  }
-}
-@media screen and (min-device-width: 50px) and (max-device-width: 768px) {
-  * {
-    font-size: 10px !important;
-  }
-
-  #title {
-    font-size: 12px !important;
+    font-size: 20px !important;
   }
 }
