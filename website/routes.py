@@ -1,7 +1,7 @@
 from website import app,db,mail
 from flask_mail import Message
 from flask import render_template, url_for, redirect,flash
-from website.model import User , Post,Comment,Problem
+from website.model import Like, User , Post,Comment,Problem
 from flask import request
 from .views import views
 from .auth import auth

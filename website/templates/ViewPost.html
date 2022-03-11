@@ -114,12 +114,13 @@
             <h6 id="details" dir="rtl" class="h5">{{post.description}}
             </h6>
             <h6 class="h6"><span style="color: #F64C72;">التاريخ :</span> {{post.datetime}}</h6>
-
-
-        </div>
+</div>
+            {%if current_user.id == post.user.id%}
+        
         <a href="/update-post/{{post.id}}" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
-    </div>      
-
+        
+    {%endif%}
+</div>  
               <h3 class="text-center text-light my-5">الاجابات :</h3>
               {% for item in teacher_comments%}
                 {%if item.user.kind == "teacher"%}

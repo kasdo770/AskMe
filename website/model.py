@@ -21,8 +21,8 @@ class User(db.Model,UserMixin):
     age = db.Column(db.String())
     first_subject = db.Column(db.String())
     second_subject = db.Column(db.String())
-    posts = db.relationship("Post",backref="user",passive_deletes=True)
     verified = db.Column(db.Boolean, default=False)
+    posts = db.relationship("Post",backref="user",passive_deletes=True)
     comments = db.relationship("Comment", backref="user", passive_deletes=True)
     likes = db.relationship("Like", backref="user", passive_deletes=True)
 
@@ -44,7 +44,7 @@ class Post(db.Model):
     description = db.Column(db.String(), nullable=False)
     subject = db.Column(db.String())
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
-    author = db.Column(db.Integer(), db.ForeignKey("user.id",ondelete="CASCADE"))
+    author = db.Column(db.Integer(), db.ForeignKey("user.id",ondelete="CASCADE"),nullable=False)
     comments = db.relationship("Comment", backref="posts", passive_deletes=True)
     likes = db.relationship("Like", backref="posts", passive_deletes=True)
 
