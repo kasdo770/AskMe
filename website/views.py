@@ -13,7 +13,7 @@ def Likes(post_id):
 
     like = Like.query.filter_by(author=current_user.id,post = post_id).first()
 
-    if current_user.verified == 0:
+    if current_user.verified == 1:
         if not post:
             flash("هذا السؤال غير موجود من قبل", category="error")
         elif like:
@@ -45,7 +45,7 @@ def View_Post(id):
         return redirect(url_for("views.MainPage"))
     else:
         if request.method == "POST":
-            if current_user.verified == 0:
+            if current_user.verified == 1:
                 if user_comments <= 2:
                     description = request.form.get('desc')
                     if len(str(description)) != 0:

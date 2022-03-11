@@ -11,8 +11,6 @@ from website.forms import StudentRegisterForm, LoginForm,TeacherRegisterForm, Po
 auth = Blueprint("auth", __name__)
 
 
-
-
 @auth.route("/login" ,methods = ["POST", "GET"])
 def LoginPage():
     print(current_user)
@@ -90,7 +88,7 @@ def VerifyEmail(id):
         token = urlsafe.dumps(current_user.email,salt='email-confirm')
         msg = Message("تاكيد حسابك", recipients=[current_user.email])
         link = url_for("auth.ConfirmEmail",token=token,_external=True)
-        msg.html = render_template("Email.html",link=link)
+        msg.html = render_template("Email.html",link=link,user=user)
         mail.send(msg)
     elif user.verified == 1:
         return redirect(url_for("views.ProfilePage",id=current_user.id))
@@ -119,7 +117,7 @@ def TeacherRegisterPage():
         db.session.add(new_teacher)
         db.session.commit()
         link = url_for("auth.ConfirmEmail",token=token,_external=True)
-        msg.html = render_template("Email.html",link=link)
+        msg.html = render_template("Email.html",link=link,user=new_teacher)
         mail.send(msg)
         login_user(new_teacher)
         return redirect(url_for('views.MainPage'))
@@ -152,7 +150,7 @@ def StudentRegisterPage():
         db.session.add(new_student)
         db.session.commit()
         link = url_for("auth.ConfirmEmail",token=token,_external=True)
-        msg.html = render_template("Email.html",link=link)
+        msg.html = render_template("Email.html",link=link,user=new_student)
         mail.send(msg)
         login_user(new_student)
         return redirect(url_for('views.MainPage'))

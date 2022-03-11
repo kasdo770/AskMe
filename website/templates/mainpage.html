@@ -244,7 +244,7 @@
               <button class="btn btn-primary zuttons" onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" >تعديل</button>
               {%endif%}
 
-              {% if current_user.verified == 0 %}
+              {% if current_user.verified == 1 %}
               <form method="POST">
                 <div class="verify-div">
                 <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
