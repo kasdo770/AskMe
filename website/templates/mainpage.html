@@ -200,9 +200,8 @@
         <div class="container newq">
           {% if current_user.verified == 0 %}
           <form method="POST">
-          <a href="/like-post/{{item.id}}">Up arrow</a>
-          <h6 style="color:white;" class='mx-4'>{{item.likes|length}}</h6>
-          <a href="/dislike-post/{{item.id}}">Down arrow</a>
+          <a id="like-button-{{item.id}}" href="/like-post/{{item.id}}">Up arrow</a>
+          <h6 style="color:white;" class='mx-4' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
           </form>
           {%endif%}
           <div dir="rtl" class=" newqbrdr text-center text-light">

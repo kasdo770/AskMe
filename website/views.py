@@ -7,47 +7,27 @@ views = Blueprint("views", __name__)
 
 
 @views.route('/like-post/<post_id>',methods=["POST","GET"])
+@login_required
 def Likes(post_id):
-    post = Post.query.filter_by(id = post_id)
-
-    like = Like.query.filter_by(author=current_user.id,post = post_id).first()
-
-    if current_user.verified == 0:
-        if not post:
-            flash("هذا السؤال غير موجود من قبل", category="error")
-            return redirect(url_for("views.MainPage"))
-        elif like:
-            flash('لا يمكنك الاعجاب مرتين لنفس السؤال',category="error")
-            return redirect(url_for("views.MainPage"))
-        else:
-            new_like = Like(author = current_user.id , post = post_id)
-            db.session.add(new_like)
-            db.session.commit()
-            return redirect(url_for('views.MainPage'))
-    else:
-        flash("يجب عليك تفعيل الحساب ل وضع اعجاب", category="info")   
-        return redirect(url_for('views.MainPage')) 
-
-@views.route('/dislike-post/<post_id>',methods=['POST','GET'])
-def DisLike(post_id):
     post = Post.query.filter_by(id = post_id).first()
+
     like = Like.query.filter_by(author=current_user.id,post = post_id).first()
+
     if current_user.verified == 0:
         if not post:
             flash("هذا السؤال غير موجود من قبل", category="error")
-            return redirect(url_for("views.MainPage"))
-        elif not like:
-
-            flash("انت لم تعلق لهذا السؤال من قبل",category="info")
-            return redirect(url_for("views.MainPage"))
-        else:
+        elif like:
             db.session.delete(like)
             db.session.commit()
-        
-        return redirect(url_for('views.MainPage'))
+        else:
+            new_like = Like(author = current_user.id , post = post_id)
+
+            db.session.add(new_like)
+            db.session.commit()
     else:
         flash("يجب عليك تفعيل الحساب ل وضع اعجاب", category="info")   
-        return redirect(url_for('views.MainPage')) 
+        
+    return redirect(url_for('views.MainPage')) 
 
 
 
@@ -121,28 +101,21 @@ def ProfilePage():
 def MainPage():
     user = User.query.filter_by(id=current_user.id).first()
     post = Post.query
-    like = Like.query.count()
+    like = Like.query
     second_post = ""
+    ordered_by_post = True
     if request.method == "POST" and 'filter' in request.form:
         sort_by = request.form.get("filter")
         if sort_by != "none":
             post = Post.query.filter_by(subject=sort_by)
         elif sort_by == "none":
             post = Post.query.all()
-        elif sort_by == "mostliked":
-            theposts = Post.query.all()
-            for item in theposts:
-                ordered_items = item.order_by(len(item))
-                post = ordered_items
-                
         second_post = ""
+
     elif request.method == "POST" and 'searchinput' in request.form:
         _searchinput = request.form['searchinput']
 
         post = post.filter(Post.description.like('%' + _searchinput + '%'))
-        for item in post:
-                ordered_items = item.order_by(len(item))
-                post = ordered_items
         post = post.order_by(Post.datetime).all()
 
     else:

@@ -1,4 +1,4 @@
-from website import app,db
+from website import app,db,mail
 from flask_mail import Message
 from flask import render_template, url_for, redirect,flash
 from website.model import User , Post,Comment
@@ -125,3 +125,9 @@ def Update_Post(id):
                         flash("لقد تم تحديث سؤال بنجاح", category="success")
                         return redirect(url_for("views.MainPage"))
         return render_template("UpdatePost.html", form=form,post=post)
+
+
+
+@app.route('/support/<id>')
+def Support(id):
+    
