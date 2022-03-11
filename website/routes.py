@@ -6,7 +6,7 @@ from flask import request
 from .views import views
 from .auth import auth
 from flask_login import login_required,current_user
-from website.forms import StudentRegisterForm,TeacherRegisterForm,PostForm,LoginForm,UpdatePostForm
+from website.forms import StudentRegisterForm,TeacherRegisterForm,PostForm,LoginForm,UpdatePostForm,SupportForm
 
 
 #temporay function
@@ -130,4 +130,14 @@ def Update_Post(id):
 
 @app.route('/support/<id>')
 def Support(id):
-    
+    form = SupportForm()
+    user = User.query.filter_by(id=id)
+    msg = Message('الدعم',sender=user.email,recipients=["askme9210@gmail.com"])
+    msg.body = (f'''
+    العنوان : {form.title.data}
+    -------------------------------------
+    {form.description.data}
+    ''')
+    mail.send(msg)
+
+    return render_template('Support.html')
