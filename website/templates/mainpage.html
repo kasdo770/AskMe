@@ -210,14 +210,7 @@
                                                         <!--Questions-->
         {%for item in post%}     
         <div class="container newq">
-          {% if current_user.verified == 1 %}
-          <form method="POST">
-            <div class="verify-div">
-            <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
-            <h6 style="color:white;" class='mx-4' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
-          </div>
-          </form>
-          {%endif%}
+
           <div dir="rtl" class=" newqbrdr text-center text-light">
             
               {%if item.title|length < 35 %}
@@ -236,7 +229,7 @@
               {%endif%}                
               <h5 class = "subject d-flex justify-content-center mx-1">{{item.subject}}</h5>     
               <h6 class="card_answer d-flex justify-content-center mx-1">{{item.datetime}}</h6>   
-
+            
 
                   <div dir="rtl" class="d-flex flex-row justify-content-center align-items-center">
               {%if current_user.id == item.user.id%}
@@ -252,6 +245,14 @@
               <button class="btn btn-primary zuttons" onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" >تعديل</button>
               {%endif%}
 
+              {% if current_user.verified == 0 %}
+              <form method="POST">
+                <div class="verify-div">
+                <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
+                <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
+              </div>
+              </form>
+              {%endif%}
                    </div>
             
           </div>
