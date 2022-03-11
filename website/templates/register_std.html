@@ -172,6 +172,32 @@
         padding: 2%;
         border-radius: 0.25em;
       }
+      .wait{
+        cursor: wait;
+      }
+      
+      @media screen and (min-device-width:1005px) and (max-device-width:1199px) {
+        .m-container{
+          width: 80%;
+          margin-left: 30%;
+          margin-right: 3%;
+          height: 80%;     
+        }
+      }
+      @media screen and (min-device-width:984px) and (max-device-width:1004px) {
+        .m-container{
+          width: 80%;
+          margin-left: 30%;
+          margin-right: 3%;
+          height: 80%;     
+        }
+        body{
+          background-image: url("../static/Assets/blue-book-background.jpg");
+        background-repeat: no-repeat, no-repeat;
+        background-size: 45% 100%;
+        background-position: left top;
+        }
+      }
     </style>
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
@@ -238,10 +264,12 @@
                     </div>
                   </div>
                   
-  
-                  <div class="d-flex justify-content-center mt-4">
-                    {{form.submit(class="btn-btn-primary btn-block btn-lg gradient-custom-4 text-body", class ="zuttons button")}}
-                  </div>
+                  
+                    <div class="d-flex justify-content-center mt-4">
+                        {{form.submit(class="btn-btn-primary btn-block btn-lg gradient-custom-4 text-body", class ="zuttons button")}}
+                    </div>
+                  
+                  
   
                   <p class="text-center text-muted mt-2 mb-0">هل لديك حساب مسبقا ؟ <a href="{{url_for('auth.LoginPage')}}" class="fw-bold text-body"><u>ارجع اليه</u></a></p>
                 </form>

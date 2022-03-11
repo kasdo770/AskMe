@@ -102,9 +102,9 @@
          <style>
       body{
         background-image: url("../static/Assets/tea.jpg");
-    background-repeat: no-repeat, no-repeat;
-    background-size: 65% 100%;
-    background-position: left top;
+        background-repeat: no-repeat, no-repeat;
+        background-size: 65% 100%;
+        background-position: left top;
       }
       .color-text{
         color: black;
@@ -159,7 +159,23 @@
         background-position: left top;
       }
     }
-
+    @media screen and (min-device-width:1005px) and (max-device-width:1199px) {
+        .m-container{
+          width: 80%;
+          margin-left: 30%;
+          margin-right: 3%;
+          height: 100%;     
+        }
+      }
+      @media screen and (min-device-width:984px) and (max-device-width:1004px) {
+        .m-container{
+          width: 80%;
+          margin-left: 30%;
+          margin-right: 3%;
+          height: 100%;     
+        }
+      }
+      
 
     </style>
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
