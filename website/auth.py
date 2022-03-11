@@ -25,19 +25,19 @@ def LoginPage():
             if user.kind =="student":
                 if user.password_check(thepass=form.password.data):
                     flash(
-                        f" تم تسجيل الدخول بنجاح يا ايها  طالب {form.username.data}",
+                        f" تم تسجيل الدخول بنجاح يا {form.username.data}",
                         category="success",
                     ) 
                     login_user(user, remember=True)
                     print(current_user)
                     return redirect(url_for("HomePage"))
                 else:
-                    flash("كلمة المرور خاطئا", category="error")
+                    flash("كلمة المرور خاطئة", category="error")
                     
             if user.kind == "teacher":
                 if user.password_check(thepass=form.password.data):
                     flash(
-                        f" تم تسجيل الدخول بنجاح يا مستر {form.username.data} ",
+                        f" تم تسجيل الدخول بنجاح يا {form.username.data} ",
                         category="success",
                     )
                     login_user(user, remember=True)
@@ -45,12 +45,12 @@ def LoginPage():
                     print("Logged in successfuly")
                     return redirect(url_for("HomePage"))
                 else:
-                    flash("كلمة المرور خاطئا", category="error")
+                    flash("كلمة المرور خاطئة", category="error")
                     
             else:
-                flash("ليس هنالك اي حساب بهذ الاسم", category="error")
+                flash("ليس هنالك اي حساب بهذا الاسم", category="error")
         else:
-            flash("لا يوجد يا مستخدم بهذا الاسم",category="error")
+            flash("لا يوجد أي مستخدم بهذا الاسم",category="error")
 
     return render_template("Login.html", form=form)
 
@@ -80,7 +80,7 @@ def ConfirmEmail(token):
         else:
             flash("انت لست صاحب هذا الحساب")
     else:
-        flash('لا يوجد اي يوزر يهذا الاسم')
+        flash('لا يوجد اي مستخدم بهذا الاسم')
     
 
 @auth.route("/verify-mail/<id>")
@@ -102,8 +102,8 @@ def TeacherRegisterPage():
     form = TeacherRegisterForm()
     token = urlsafe.dumps(form.email.data,salt="email-confirm")
     if form.validate_on_submit():
-        msg = Message("تاكيد حساب العلم", recipients=[form.email.data])
-        msg.body = "يرجي تاكيد حساب المعلم ب هذا الكود عند صفحة التسجيل"
+        msg = Message("تاكيد حساب المعلم", recipients=[form.email.data])
+        msg.body = "يرجي تاكيد حساب المعلم بهذا الكود عند صفحة التسجيل"
         mail.send(msg)
         if current_user:
             logout_user()

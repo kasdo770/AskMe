@@ -97,7 +97,7 @@
         margin-top: -2%;
         margin-right: 42%;
         color: black !important;
-        border-color:#9e3148 !important ;
+        border-color:#F64C72 !important ;
         float:right;
     }
         .sucbtn:hover{
@@ -228,7 +228,7 @@
                             <div class="card-block text-center text-white height">
                                 <img src = "../static/Assets/profile4.png" class="mt-4 mb-4" width="120px" height="120px" class="rounded-circle mb-4" alt="">
                                 <br>
-                                <button id="changeprofilebtn" class= "zuttons btn btn-primary "> تعديل الحساب</button>
+                                <button id="changeprofilebtn" class= "zuttons btn btn-primary my-2"> تعديل الحساب</button>
   
                             </div>
                         </div>
@@ -239,7 +239,7 @@
                                 <div class="col-sm-6 text">
                                     <div>
                                         
-                                        <p class="font-weight-bold email-school-margin">:ايميلك
+                                        <p class="font-weight-bold email-school-margin">: الايميل
                                             {% if current_user.verified == 1 %}
                                                 <img src="../static/Assets/verified.png" class="verify" width="30px" height="30px">
                                             {%else%}
@@ -254,7 +254,7 @@
                                     <h6 class="text-muted email-school-margin"> {{current_user.email}}</h6>
                                 </div>
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold name-age-margin">:الاسم</p>
+                                    <p class="font-weight-bold name-age-margin">: الاسم</p>
                                     <h6 class="text-muted name-age-margin">{{current_user.username}}</h6>
     
                                 </div>
@@ -263,12 +263,12 @@
                             {%if current_user.kind == "student"%}
                             <div class="row">
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold email-school-margin">:مدرستك</p>
+                                    <p class="font-weight-bold email-school-margin">: المدرسة</p>
                                     <h6 class="text-muted email-school-margin">{{current_user.schooltype}}</h6>
         
                                 </div>
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold name-age-margin ">:العمر</p>
+                                    <p class="font-weight-bold name-age-margin ">: العمر</p>
                                     <h6 class="text-muted name-age-margin">{{current_user.age}}</h6>
         
                                 </div>
@@ -276,12 +276,12 @@
                             {%else%}
                             <div class="row">
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold email-school-margin">:المادة الاولة</p>
+                                    <p class="font-weight-bold email-school-margin">: المادة الاولي </p>
                                     <h6 class="text-muted email-school-margin">{{current_user.first_subject}}</h6>
         
                                 </div>
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold name-age-margin ">:المادة الثانية</p>
+                                    <p class="font-weight-bold name-age-margin ">: المادة الثانية</p>
                                     <h6 class="text-muted name-age-margin">{{current_user.second_subject}}</h6>
         
                                 </div>
@@ -295,12 +295,12 @@
                                     <hr class="badge-primary mt-0 w-0">
                                     <div class="row">
                                         <div class="col-sm-6 text">
-                                            <p class=" email-school-margin font-weight-bold remake-text">:ايميلك</p>
+                                            <p class=" email-school-margin font-weight-bold remake-text">: الايميل </p>
                                             <input id = "email" name="email" dir="rtl" value="{{current_user.email}}" class=" email-school-margin remake-text text-muted"></input>
             
                                         </div>
                                         <div class="col-sm-6 text">
-                                            <p class="font-weight-bold remake-text">:الاسم</p>
+                                            <p class="font-weight-bold remake-text">: الاسم</p>
                                             <input id="username" name="username" dir="rtl" value="{{current_user.username}}" class="remake-text text-muted"></input>
             
                                         </div>
@@ -308,19 +308,19 @@
                                     {%if current_user.kind == "student"%}
                                     <div class="row mr-5">
                                         <div class="col-sm-6 text">
-                                            <p class=" email-school-margin font-weight-bold remake-text">:مدرستك</p>
+                                            <p class=" email-school-margin font-weight-bold remake-text">: المدرسة</p>
                                             <select name="schooltype" id="schooltype" class="email-school-margin">
                                                 <div class="email-school-margin remake-text text-muted options">
                                                     <option value="عالمية" > عالمية</option>
                                                     <option value="خاص" > خاص</option>
-                                                    <option value="لغات" > لغات</option>
+                                                    <option value="للغات" > للغات</option>
                                                     <option value="عام" > عام</option>
                                                 </div>
                                             </select>
                 
                                         </div>
                                         <div class="col-sm-6 text">
-                                            <p class="font-weight-bold remake-text">:العمر</p>
+                                            <p class="font-weight-bold remake-text">: العمر</p>
                                             <input name="age" id="age" dir="rtl" value="{{current_user.age}}" class="remake-text text-muted"></input>
                 
                                         </div>
@@ -330,17 +330,17 @@
                                     {%else%}
                                     <div class="row mr-5">
                                         <div class="col-sm-6 text">
-                                            <p class=" email-school-margin font-weight-bold remake-text">:المادة الاولة</p>
+                                            <p class=" email-school-margin font-weight-bold remake-text">: المادة الاولي</p>
                                             <select id="first_subject" name="first_subject" class="email-school-margin">
                                                 <div class="email-school-margin remake-text text-muted options">
                                                     <option value="{{current_user.first_subject}}" selected disabled hidden>{{current_user.first_subject}}</option>
                                                     <option value="فيزياء">فيزياء</option>
                                                     <option value="كيمياء">كيمياء</option>
                                                     <option value="احياء">احياء</option>
-                                                    <option value="الغة العربية">الغة العربية</option>
-                                                    <option value="الغةالانجليزية">الغة الانجليزية</option>
-                                                    <option value="الغة الفرنسية">الغة الفرنسية</option>
-                                                    <option value="الغة الايطالية">الغة الايطالية </option>
+                                                    <option value="اللغة العربية">اللغة العربية</option>
+                                                    <option value="اللغةالانجليزية">اللغة الانجليزية</option>
+                                                    <option value="اللغة الفرنسية">اللغة الفرنسية</option>
+                                                    <option value="اللغة الايطالية">اللغة الايطالية </option>
                                                     <option value="فلسفة">فلسفة</option>
                                                     <option value="الجغرافيا">الجغرافيا</option>
                                                     <option value="التاريخ">التاريخ</option>
@@ -357,10 +357,10 @@
                                                     <option value="فيزياء">فيزياء</option>
                                                     <option value="كيمياء">كيمياء</option>
                                                     <option value="احياء">احياء</option>
-                                                    <option value="الغة العربية">الغة العربية</option>
-                                                    <option value="الغةالانجليزية">الغة الانجليزية</option>
-                                                    <option value="الغة الفرنسية">الغة الفرنسية</option>
-                                                    <option value="الغة الايطالية">الغة الايطالية </option>
+                                                    <option value="اللغة العربية">اللغة العربية</option>
+                                                    <option value="اللغةالانجليزية">اللغة الانجليزية</option>
+                                                    <option value="اللغة الفرنسية">اللغة الفرنسية</option>
+                                                    <option value="اللغة الايطالية">اللغة الايطالية </option>
                                                     <option value="فلسفة">فلسفة</option>
                                                     <option value="الجغرافيا">الجغرافيا</option>
                                                     <option value="التاريخ">التاريخ</option>
@@ -372,7 +372,7 @@
                                         
                                     </div>
                                     {%endif%}
-                                    <button id="submitbtn" name="submitbtn" class ="btn btn-primary sucbtn">
+                                    <button id="submitbtn" name="submitbtn" class ="btn btn-primary sucbtn my-1">
                                     
                                                                             حفظ
                                     </button>

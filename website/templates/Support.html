@@ -103,6 +103,7 @@
           margin-right:2%;
           color: black;
           background-color: transparent;
+          border-radius: 0.25em;
      }
         body {
             background-color:#2F2FA2 !important;
@@ -172,6 +173,7 @@
           width: 90%;
           text-align: right;
           margin-left:6%;
+          color: black;
  
         }
         /*----------------------------------------------Description------------------------------------*/
@@ -214,21 +216,17 @@
           color: black;     
         }
         .margin{
-            margin-left: 25%;
+            margin-left: 20%;
             
         }
-        .border{
-            border-radius: 2%;
-            border-color: black;
-            border-style:solid;
-            border-width: 200%;
-        }
         .box-color{
-            background-color: #32338b;
+            background-color: white;
+            border-radius: 0.25em;
         }
         .black{
             color: black;
         }
+        
         @media screen and (max-device-width:575px) {
           .margin{
             margin-left: 0;
@@ -242,24 +240,25 @@
             {{ form.hidden_tag()}}
             {{ form.csrf_token }}
             <div class="container">
-                <div class="row d-flex justify-contenet-center align-item-center">
-                    <div class="col-md-8 pt-5 margin">
+                <div class="row d-flex justify-contenet-center align-center">
+                    <div class="col-md-8 pt-5  margin">
                         <div class="row z-depth-3 ">
-                            <div class="col-sm-8 bg-white rounded-right box-color border ">
-                                <h3 class="mt-3 text-center black">تعديل السؤال</h3>
+                            <div class="col-sm-9 bg-white rounded-right box-color border ">
+                                <h3 class="mt-3 text-center black">انشاء سؤال</h3>
                                 <div class="row">
+                                    
+                                    {{form.title.label( class = "title_text")}}
+                                    {{form.title(dir = "rtl", class="title_input")}}
     
                                     {{form.description.label(class = "description_text")}}
-                                    <textarea id="desc" name="desc" rows="12" dir="rtl">
-                                        {{post.description}}
-                                    </textarea>
+                                    {{form.description(dir = "rtl" , class="description_input")}}
                                     <div dir="rtl" class="mb-3">
                                         {{form.subject.label(class = " subject_text")}}
                                         {{form.subject(class = "subject_input")}}
                                     </div>
                                     <div>
-                                        {{form.crt(class ="btn btn-primary zuttons-suc ")}}
-                                        {{form.cal(class ="btn btn-primary zuttons-can")}}
+                                        {{form.create(class ="btn btn-primary zuttons-suc ")}}
+                                        {{form.cancel(class ="btn btn-primary zuttons-can")}}
                                     </div>
         
                                 </div>    
