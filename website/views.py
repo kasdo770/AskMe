@@ -26,7 +26,6 @@ def Likes(post_id):
             db.session.commit()
     else:
         flash("يجب عليك تفعيل الحساب ل وضع اعجاب", category="info")   
-        
     return redirect(url_for('views.MainPage')) 
 
 
@@ -37,28 +36,35 @@ def View_Post(id):
     post = Post.query.filter_by(id=id).first()
     comments = Comment.query.filter_by(post=post.id).all()
     user_comments = Comment.query.filter_by(author=current_user.id).count()
+    teacher_ordered_comments = []
+    for comment in comments:
+        if comment.user.kind == "teacher":
+            teacher_ordered_comments.append(comment)
     if not post:
         flash("هذا السؤال غير موجود من قبل", category="error")
         return redirect(url_for("views.MainPage"))
     else:
         if request.method == "POST":
-            if user_comments <= 2:
-                description = request.form.get('desc')
-                if len(str(description)) != 0:
-                    new_comment = Comment(
-                        description=description,
-                        author=current_user.id,
-                        post=post.id
-                    )
-                    db.session.add(new_comment)
-                    db.session.commit()
-                    return redirect(url_for("views.View_Post",id=post.id))
+            if current_user.verified == 1:
+                if user_comments <= 2:
+                    description = request.form.get('desc')
+                    if len(str(description)) != 0:
+                        new_comment = Comment(
+                            description=description,
+                            author=current_user.id,
+                            post=post.id
+                        )
+                        db.session.add(new_comment)
+                        db.session.commit()
+                        return redirect(url_for("views.View_Post",id=post.id))
+                    else:
+                        flash("لا يمكنك انشاء اجابة فارغة", category="error")
                 else:
-                    flash("لا يمكنك انشاء اجابة فارغة", category="error")
+                    flash("لا يمكنك انشاء اكثر من 3 اسئلة", category="error")
             else:
-                flash("لا يمكنك انشاء اكثر من 3 اسئلة", category="error")
+                flash("لا يمكنك الاجابة علي السؤال بدون تفعيل حسابك",category="error" )
 
-    return render_template("ViewPost.html",post=post,comment=comments)
+    return render_template("ViewPost.html",post=post,comment=comments,teacher_comments = teacher_ordered_comments)
 
 @views.route("/profile", methods=["POST","GET"])
 @login_required
@@ -101,15 +107,15 @@ def ProfilePage():
 def MainPage():
     user = User.query.filter_by(id=current_user.id).first()
     post = Post.query
-    like = Like.query
     second_post = ""
-    ordered_by_post = True
     if request.method == "POST" and 'filter' in request.form:
         sort_by = request.form.get("filter")
         if sort_by != "none":
+            ordered = False
             post = Post.query.filter_by(subject=sort_by)
         elif sort_by == "none":
-            post = Post.query.all()
+            ordered = False
+            post = Post.query.all()               
         second_post = ""
 
     elif request.method == "POST" and 'searchinput' in request.form:

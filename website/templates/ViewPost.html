@@ -118,40 +118,18 @@
 
         </div>
         <a href="/update-post/{{post.id}}" class="btn btn-primary edit" id="back" style="margin-top: 3%;">تعديل السؤال</a>
-    </div>                
+    </div>      
+
               <h3 class="text-center text-light my-5">الاجابات :</h3>
-              {%for item in comment%}
-              {%if item.user.kind == "teacher"%}
+              {% for item in teacher_comments%}
+                {%if item.user.kind == "teacher"%}
               <div class="container">
                 <div class="d-flex flex-column shadow p-5 comment">
 
                   
                   <div class="infocmnt d-flex flex-column justify-content-start text-light my-4 mb-5">
-                    <h6 ><span style="color: #F64C72;" >بواسطة : </span>{{post.user.username}}</h6>
-                    <h6 ><span style="color: #F64C72;">التاريخ :</span> {{post.datetime}}</h6>
-                  </div>
-
-                  
-                  <h6 class="text-light text-break h5" style="line-height: 27px;">
-
-                      {{item.description}} 
-
-                  </h6>
-                  
-                </div>
-              </div>  
-
-
-
-              </div>  
-              {%elif item.user.kind == "student"%}
-              <div class="container">
-                <div class="d-flex flex-column shadow p-5 comment">
-
-                  
-                  <div class="infocmnt d-flex flex-column justify-content-start text-light my-4 mb-5">
-                    <h6 ><span style="color: #F64C72;">بواسطة : </span>{{post.user.username}}</h6>
-                    <h6 ><span style="color: #F64C72;">التاريخ :</span> {{post.datetime}}</h6>
+                    <h6 ><span style="color: #F64C72;"> بواسطة الاستاذ: </span>{{item.user.username}}</h6>
+                    <h6 ><span style="color: #F64C72;">التاريخ :</span> {{item.datetime}}</h6>
                   </div>
 
                   
@@ -160,16 +138,46 @@
                       {{item.description}} 
 
                   </h6>
-                  
-                </div>
-                <a href="" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
-              </div>  
-
+                </div>  
+                  {% if current_user.id == item.user.id%}
+                
+                <a href="/delete-comment/{{item.id}}/{{post.id}}" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
+            {%endif%}
+        </div>
 
 
 
 
               
+              {%endif%}
+              {%endfor%}    
+              {%for item in comment%}
+              {% if item.user.kind == "student"%}
+              <div class="container">
+                <div class="d-flex flex-column shadow p-5 comment">
+
+                  
+                  <div class="infocmnt d-flex flex-column justify-content-start text-light my-4 mb-5">
+                    <h6 ><span style="color: #F64C72;">بواسطة : </span>{{item.user.username}}</h6>
+                    <h6 ><span style="color: #F64C72;">التاريخ :</span> {{item.datetime}}</h6>
+                  </div>
+
+                  
+                  <h6 class="text-light text-break h5" style="line-height: 53px;">
+
+                    {{item.description}} 
+
+
+                </div>
+                  </h6>
+                  {% if current_user.id == item.user.id%}
+                    <a href="/delete-comment/{{item.id}}/{{post.id}}" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
+                    {%endif%}
+            </div>
+
+
+
+
               {%endif%}
               {%endfor%}  
 

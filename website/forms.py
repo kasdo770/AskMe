@@ -69,7 +69,7 @@ class SupportForm(FlaskForm):
     title = StringField(label="عنوان المشكلة", validators=[Length(max=60),DataRequired()])
     description = TextAreaField(label="الموضوع", validators=[DataRequired()] )
     subjects =  SelectField(
-        label="نوع مشكلتك", choices=[("'مشكلة في الحساب'",'مشكلة في الحساب'),("اقتراح","اقتراح"),('عطل فني','عطل فني')]
+        label="نوع طلبك", choices=[("'مشكلة في الحساب'",'مشكلة في الحساب'),("اقتراح","اقتراح"),('عطل فني','عطل فني')]
     )
 
     create = SubmitField(label="ارسال")

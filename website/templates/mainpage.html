@@ -111,6 +111,20 @@
       .color{
         background-color: white;
       }
+      .verify{
+        opacity: 100%;
+            }
+      .verify:hover{
+        opacity: 80%;
+      }
+      .verify:active{
+        opacity: 60%;
+        color: rgba(0, 0, 0, 0.151);
+      }
+      .verify-div{
+        margin-top: 2%;
+                cursor: pointer;
+      }
     </style>
     
 </head>
@@ -134,20 +148,14 @@
 
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        {% if current_user.kind == "student"%}
-          {%if current_user.verified == 0 %}
-            <a href="{{url_for('CreatePostPage')}}" id="newqbtn">سؤال جديد</a>
-          {%endif%}
-        {%endif%}
+        <a href="{{url_for('CreatePostPage')}}" id="newqbtn">سؤال جديد</a>
         <a href="{{url_for('views.ProfilePage')}}">الملف الشخصي</a>
         <a href="{{url_for('auth.Logout')}}">تسجيل الخروج</a>
         
         
-        {% if current_user.kind == "student"%}
-          {%if current_user.verified == 0 %}
-          <a href="{{url_for('Support')}}">الدعم </a>
+          {%if current_user.verified == 1 %}
+            <a href="{{url_for('Support')}}">الدعم </a>
           {%endif%}
-        {%endif%}
         <a class="" id="togglefilter">نوع الاسئلة</a>
         <div class="container">
             <form method="post">
@@ -165,7 +173,6 @@
                 <option value="الجغرافيا">الجغرافيا</option>
                 <option value="التاريخ">التاريخ</option>
                 <option value="رياضيات">رياضيات</option>
-                <option value="mostliked">الاكثر اعجابا</option>
                 <option value="none">بدون</option>
                 </div>
             </select>
@@ -203,10 +210,12 @@
                                                         <!--Questions-->
         {%for item in post%}     
         <div class="container newq">
-          {% if current_user.verified == 0 %}
+          {% if current_user.verified == 1 %}
           <form method="POST">
-          <a id="like-button-{{item.id}}" href="/like-post/{{item.id}}">Up arrow</a>
-          <h6 style="color:white;" class='mx-4' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
+            <div class="verify-div">
+            <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
+            <h6 style="color:white;" class='mx-4' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
+          </div>
           </form>
           {%endif%}
           <div dir="rtl" class=" newqbrdr text-center text-light">

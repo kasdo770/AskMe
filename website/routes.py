@@ -36,40 +36,56 @@ def HomePage():
     return render_template("homepage.html",number_of_posts=number_of_post)
 
 
+@app.route('/delete-comment/<comment_id>/<post_id>')
+def DeleteComment(comment_id,post_id):
+    post = Post.query.filter_by(id=post_id).first()
+    comment = Comment.query.filter_by(id=comment_id).first()
+    if not post:
+        flash("هذا السؤال غير موجود")
+    elif not comment:
+        flash('هذه الاحابة غير موجودة ')
+    elif current_user.id != comment.user.id:
+        flash('انت لست صاحب الاجابة, لا تملك صلاحية لحذفها')
+    else:
+        db.session.delete(comment)
+        db.session.commit()
+    return redirect(url_for('views.View_Post',id=post.id))
         
 
 
 @app.route("/create/post", methods=["POST", "GET"])
 @login_required
 def CreatePostPage():
-    if current_user.kind == "student":
-        form = PostForm()
-        if form.validate_on_submit():
-            if form.create.data:
-                new_post = Post(
-                    title=form.title.data,
-                    description=form.description.data,
-                    subject = form.subject.data,
-                    author = current_user.id,
-                    number_of_likes=0
+    form = PostForm()
+    if current_user.verified == 0:
+        if current_user.kind == "student":
+            if form.validate_on_submit():
+                if form.create.data:
+                    new_post = Post(
+                        title=form.title.data,
+                        description=form.description.data,
+                        subject = form.subject.data,
+                        author = current_user.id,
+                    )
+                    db.session.add(new_post)
+                    db.session.commit()
+                    flash("لقد تم انشاء سؤال بنجاح", category="success")
+                    return redirect(url_for("views.MainPage"))
+
+                elif form.cancel.data:
+                    return redirect(url_for("views.MainPage"))
+        elif current_user.kind == "teacher":
+            flash("لا يمكنك انشاء سؤال ب حساب معلم",category="error")
+            return redirect(url_for("views.MainPage"))
+
+        if form.errors != {}:
+            for err_msg in form.errors.values():
+                flash(
+                    f"هنالك مشكلة في :  {err_msg}", category="error"
                 )
-                db.session.add(new_post)
-                db.session.commit()
-                flash("لقد تم انشاء سؤال بنجاح", category="success")
-                return redirect(url_for("views.MainPage"))
-
-            elif form.cancel.data:
-                return redirect(url_for("views.MainPage"))
-    elif current_user.kind == "teacher":
-        flash("لا يمكنك انشاء سؤال ب حساب معلم",category="error")
-        return redirect(url_for("views.MainPage"))
-
-    if form.errors != {}:
-        for err_msg in form.errors.values():
-            flash(
-                f"هنالك مشكلة في :  {err_msg}", category="error"
-            )
-
+    else:
+        flash('لا يمكنك انشاء سؤال بدون تفعيل حسابك')
+        return redirect(url_for('views.MainPage'))
     return render_template("create-post.html", form=form)
 
 
@@ -98,12 +114,12 @@ def Delete_Post(id):
 @app.route("/update-post/<id>", methods=["POST", "GET"])
 @login_required
 def Update_Post(id):
+    form = UpdatePostForm()
     post = Post.query.filter_by(id=id).first()
     if current_user.id != post.user.id:
         flash("انت لا تملك الصلاحية ل تعديل السؤال . فقط السائِل يملك هذه الصلاحية", category="error")
         return redirect(url_for('views.MainPage'))
     else:
-        form = UpdatePostForm()
         if not post:
             flash("هذا السؤال غير موجود من قبل", category="error")
             return redirect(url_for("views.MainPage"))
@@ -155,6 +171,7 @@ def Support():
                                     نوع مشكلتك : <b>{form.subjects.data}<b>
             ''')
             mail.send(msg)
+            return redirect(url_for('views.MainPage'))
         else:
             return redirect(url_for('views.MainPage'))
     return render_template('Support.html',form=form)
