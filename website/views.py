@@ -45,7 +45,7 @@ def View_Post(id):
         return redirect(url_for("views.MainPage"))
     else:
         if request.method == "POST":
-            if current_user.verified == 1:
+            if current_user.verified == 0:
                 if user_comments <= 2:
                     description = request.form.get('desc')
                     if len(str(description)) != 0:

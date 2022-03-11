@@ -12,7 +12,6 @@ def load_user(user_id):
 
 
 class User(db.Model,UserMixin):
-    __tablename__ = 'User'
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(), nullable=False, unique=True)
     email = db.Column(db.String(), nullable=False, unique=True)
@@ -40,27 +39,24 @@ class User(db.Model,UserMixin):
 
 
 class Post(db.Model):
-    __tablename__ = 'Post'
     id = db.Column(db.Integer(), primary_key=True)
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
     subject = db.Column(db.String())
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer(), db.ForeignKey("user.id",ondelete="CASCADE"),nullable=False)
-    comments = db.relationship("Comment", backref="posts", passive_deletes=True,cascade="all, delete-orphan")
-    likes = db.relationship("Like", backref="posts", passive_deletes=True,cascade="all, delete-orphan")
+    comments = db.relationship("Comment", backref="posts", cascade="all, delete-orphan")
+    likes = db.relationship("Like", backref="posts", cascade="all, delete-orphan")
 
 
 
 class Like(db.Model):
-    __tablename__ = 'Like'
     id = db.Column(db.Integer(),primary_key=True)
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
     post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))
 
 class Comment(db.Model):
-    __tablename__ = 'Comment'
     id = db.Column(db.Integer(), primary_key=True)
     description = db.Column(db.String())
     datetime= db.Column(db.DateTime(timezone=True), default=func.now())
