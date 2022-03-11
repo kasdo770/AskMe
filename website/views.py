@@ -77,7 +77,7 @@ def ProfilePage():
 
         if user and user.username != current_user.username:
             flash(" لا يمكنك تعديل من الاسم الخاص بك لهذا الاسم ",category="error")
-        if user.email and user.email != current_user.email:
+        if user and user.email != current_user.email:
             flash(" لا يمكنك تعديل من الايميل الخاص بك لهذا الايميل",category="error")
         else:
             try: 
