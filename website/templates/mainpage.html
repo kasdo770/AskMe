@@ -143,7 +143,11 @@
         <a href="{{url_for('auth.Logout')}}">تسجيل الخروج</a>
         
         
-        
+        {% if current_user.kind == "student"%}
+          {%if current_user.verified == 0 %}
+          <a href="{{url_for('Support')}}">الدعم </a>
+          {%endif%}
+        {%endif%}
         <a class="" id="togglefilter">نوع الاسئلة</a>
         <div class="container">
             <form method="post">
@@ -168,6 +172,7 @@
             <button id="searchbtn" class="zuttons">ابحث</button>
             </form>
           </div>
+
       </div>
 
 

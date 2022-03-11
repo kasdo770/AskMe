@@ -1,7 +1,7 @@
 from website import app,db,mail
 from flask_mail import Message
 from flask import render_template, url_for, redirect,flash
-from website.model import User , Post,Comment
+from website.model import User , Post,Comment,Problem
 from flask import request
 from .views import views
 from .auth import auth
@@ -128,16 +128,33 @@ def Update_Post(id):
 
 
 
-@app.route('/support/<id>')
-def Support(id):
+@app.route('/support',methods=['POST','GET'])
+def Support():
     form = SupportForm()
-    user = User.query.filter_by(id=id)
-    msg = Message('الدعم',sender=user.email,recipients=["askme9210@gmail.com"])
-    msg.body = (f'''
-    العنوان : {form.title.data}
-    -------------------------------------
-    {form.description.data}
-    ''')
-    mail.send(msg)
+    user = User.query.filter_by(id=current_user.id).first()
+    if form.validate_on_submit():
+        if form.create.data:
+            new_problem = Problem(
+                description = form.description.data,
+                title = form.title.data,
+                subject = form.subjects.data,
+                author = user.id,
+            )
+            db.session.add(new_problem)
+            db.session.commit()
+            msg = Message('الدعم',sender=user.email,recipients=["askme9210@gmail.com"])
+            msg.html = (f'''
+            </h1>العنوان : {form.title.data}<h1>
+            <br>
+            <h3 style="font-weight:italic";>
+            <i>
+            {form.description.data}
+            </i>
+            </h3>
 
-    return render_template('Support.html')
+                                    نوع مشكلتك : <b>{form.subjects.data}<b>
+            ''')
+            mail.send(msg)
+        else:
+            return redirect(url_for('views.MainPage'))
+    return render_template('Support.html',form=form)

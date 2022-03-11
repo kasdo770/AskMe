@@ -48,6 +48,13 @@ class Post(db.Model):
     comments = db.relationship("Comment", backref="posts", passive_deletes=True)
     likes = db.relationship("Like", backref="posts", passive_deletes=True)
 
+class Problem(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    title = db.Column(db.String(), nullable=False)
+    description = db.Column(db.String(), nullable=False)
+    subject = db.Column(db.String(), nullable=False)
+    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
 
 class Like(db.Model):
     id = db.Column(db.Integer(),primary_key=True)

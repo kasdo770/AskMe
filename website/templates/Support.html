@@ -207,7 +207,7 @@
         }
         .subject_input
         {
-          width: 20%;
+          width: 30%;
           text-align: right;
           margin-top: 3%;
           margin-left:0%;
@@ -226,7 +226,6 @@
         .black{
             color: black;
         }
-        
         @media screen and (max-device-width:575px) {
           .margin{
             margin-left: 0;
@@ -253,8 +252,8 @@
                                     {{form.description.label(class = "description_text")}}
                                     {{form.description(dir = "rtl" , class="description_input")}}
                                     <div dir="rtl" class="mb-3">
-                                        {{form.subject.label(class = " subject_text")}}
-                                        {{form.subject(class = "subject_input")}}
+                                        {{form.subjects.label(class = " subject_text")}}
+                                        {{form.subjects(class = "subject_input")}}
                                     </div>
                                     <div>
                                         {{form.create(class ="btn btn-primary zuttons-suc ")}}
