@@ -1,5 +1,6 @@
+from ast import Lambda
 import profile
-from flask import Blueprint,redirect,url_for,render_template,request,flash
+from flask import Blueprint,redirect,url_for,render_template,request,flash,jsonify
 from flask_login import login_required,logout_user,current_user
 from website import db,urlsafe
 from .model import Post,User,Comment,Like
@@ -11,12 +12,10 @@ views = Blueprint("views", __name__)
 @login_required
 def Likes(post_id):
     post = Post.query.filter_by(id = post_id).first()
-
     like = Like.query.filter_by(author=current_user.id,post = post_id).first()
-
-    if current_user.verified == 1:
+    if current_user.verified == 0:
         if not post:
-            flash("هذا السؤال غير موجود من قبل", category="error")
+            return jsonify({'error':'السؤال غير موجود'}, 400)
         elif like:
             db.session.delete(like)
             db.session.commit()
@@ -27,7 +26,8 @@ def Likes(post_id):
             db.session.commit()
     else:
         flash("يجب عليك تفعيل الحساب ل وضع اعجاب", category="info")   
-    return redirect(url_for('views.MainPage')) 
+        
+    return jsonify({"likes":len(post.likes) , "liked" : current_user.id in map(lambda x: x.author , post.likes)})
 
 
 

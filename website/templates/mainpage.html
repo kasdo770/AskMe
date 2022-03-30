@@ -246,21 +246,21 @@
               <button class="btn btn-primary zuttons" onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" >تعديل</button>
               {%endif%}
 
-              {% if current_user.verified == 1 %}
+              {% if current_user.verified == 0 %}
               <form method="POST" style="margin-bottom:0% !important;">
                   {%if current_user.id == item.user.id%}
                   <div class="verify-div">
-                <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
+                <img onclick='like("{{item.id}}")' id="like-button-{{item.id}}" src="../static/Assets/thumbs unfill.png" class="verify like" width="50px" height="50px">
                 <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
               </div>
                 {%elif current_user.verified == True%}
                 <div class="verify-div" style="margin-top:20% !important;">
-                  <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
+                  <img onclick='like("{{item.id}}")' id="like-button-{{item.id}}" src="../static/Assets/thumbs unfill.png" class="verify like" width="50px" height="50px">
                   <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
                 </div>
                 {%else%}
                 <div class="verify-div" style="margin-top:20% !important;">
-                  <a  href="/like-post/{{item.id}}"><img src="../static/Assets/thumbs unfill.png" class="verify" width="50px" height="50px"></a>
+                  <img onclick='like("{{item.id}}")' id="like-button-{{item.id}}" src="../static/Assets/thumbs unfill.png" class="verify like" width="50px" height="50px">
                   <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
                 </div>
                 {%endif%}
@@ -312,6 +312,6 @@
               {%endfor%} 
 
                                         
-
+              <script type="text/javascript" src="{{ url_for('static',filename='templatejs/like.js')}}"></script>
 </body>
 </html>
