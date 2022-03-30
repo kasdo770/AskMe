@@ -13,7 +13,7 @@ views = Blueprint("views", __name__)
 def Likes(post_id):
     post = Post.query.filter_by(id = post_id).first()
     like = Like.query.filter_by(author=current_user.id,post = post_id).first()
-    if current_user.verified == 0:
+    if current_user.verified == 1:
         if not post:
             return jsonify({'error':'السؤال غير موجود'}, 400)
         elif like:
@@ -23,9 +23,7 @@ def Likes(post_id):
             new_like = Like(author = current_user.id , post = post_id)
 
             db.session.add(new_like)
-            db.session.commit()
-    else:
-        flash("يجب عليك تفعيل الحساب ل وضع اعجاب", category="info")   
+            db.session.commit() 
         
     return jsonify({"likes":len(post.likes) , "liked" : current_user.id in map(lambda x: x.author , post.likes)})
 

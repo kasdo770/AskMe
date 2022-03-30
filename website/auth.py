@@ -101,7 +101,7 @@ def TeacherRegisterPage():
     token = urlsafe.dumps(form.email.data,salt="email-confirm")
     if form.validate_on_submit():
         msg = Message("تاكيد حساب المعلم", recipients=[form.email.data])
-        msg.body = "يرجي تاكيد حساب المعلم بهذا الكود عند صفحة التسجيل"
+        msg.html = render_template('Email.html')
         mail.send(msg)
         if current_user:
             logout_user()

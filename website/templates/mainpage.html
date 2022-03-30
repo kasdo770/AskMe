@@ -13,7 +13,8 @@
 
     <title>Mainpage</title>
 
-    <style>
+    <style> 
+
       :root{
         --first-background-gradient:#f5e6ff;
         --last-background-gradient:#fff;
@@ -27,7 +28,7 @@
         --success-button-color:#53A653;
         --info-button-color:#b39800;
       }
-      /* _______________________________________Error Button_____________________________________________ */
+          /* ______________Error Button________________ */
       .flash-container{
         display: flex;
         justify-content: center;
@@ -35,12 +36,6 @@
        .succes{
         width: fit-content;
          background-color: var(--success-button-color);
-         opacity: 90%;
-         color: white;
-       }
-       .Info{
-        width: fit-content;
-         background-color: var(--info-button-color);
          opacity: 90%;
          color: white;
        }
@@ -63,8 +58,7 @@
        .closebtn:hover {
          color: black;
        }
-
-    </style>
+       </style>
        {% with messages = get_flashed_messages(with_categories=true) %} {% if
          messages %} {% for category, message in messages %}
          {% if category =='success' %}
@@ -90,14 +84,7 @@
           </div>
  
          {% endif %} {% endfor %} {% endif %} {% endwith %}
-         <style>
-
-
-
-
-
-
-
+    <style>
 
       #togglefilter{
         cursor: pointer;
@@ -246,7 +233,7 @@
               <button class="btn btn-primary zuttons" onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" >تعديل</button>
               {%endif%}
 
-              {% if current_user.verified == 0 %}
+              {% if current_user.verified == 1 %}
               <form method="POST" style="margin-bottom:0% !important;">
                   {%if current_user.id == item.user.id%}
                   <div class="verify-div">
