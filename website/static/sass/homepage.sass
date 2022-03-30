@@ -1,9 +1,30 @@
-$colorz: #242582
-$colora: #553D67
-$colorb: #F64C72
-$colorc: #99738E
-$colorx: #2F2FA2 
+/--------------------------------------------------------------------------------Variables---------------------------------------------------------------/
 
+$colorz: #242582
+$colorz-light:#4d09ba
+$colora:  #553D67
+$colorb:  #F64C72
+$colorc:  #99738E
+$colorx:  #2F2FA2
+$nav-log-hov:#fa6787
+$nav-log-act:#ff3f69
+$white:#ffffff
+$5-white:#fffffff5
+$b-white:#bbbbbb
+$eb-white:#ebebeb
+$black:#000
+$nav-op-border:#f895ab
+$srch-hover:#aeaeae
+$button-hov:#fa6787
+$button-act:#ff3f69
+$bg-create:#2F2FA2
+$create-btn-hov:#4242af
+$create-btn-act:#2c2cbb
+$about:#5700ae
+
+
+
+/--------------------------------------------------------------------------------------------------------------------------------------------------------/
 
 
 
@@ -42,9 +63,9 @@ body
         box-shadow: none !important
         
         &:hover 
-            background-color: #fa6787 !important
+            background-color: $button-hov !important
         &:active
-            background-color: #ff1b4c !important
+            background-color: $button-act !important
 
 
 
@@ -52,7 +73,7 @@ body
         line-height: 35px !important
 
 #section1text
-    color: #fffffff5 !important
+    color: $5-white !important
 
 
 #why
@@ -72,7 +93,7 @@ body
 #card
     text-align: center
     margin-top: 5%
-    background-color: #fffffff5
+    background-color: $5-white
     color: black
     margin-right: 5%
     margin-left: 5%
@@ -80,24 +101,24 @@ body
 
     
 #create
-    background-color: #2F2FA2 !important
+    background-color: $bg-create !important
     border: none
     box-shadow: none !important
     
     &:hover
-            background-color: #4242af !important
+            background-color: $create-btn-hov !important
     &:active
-            background-color: #2c2cbb !important
+            background-color: $create-btn-act !important
 #about
     margin-top: 30%
     margin-bottom: 10%
     padding: 3%
-    background-image: linear-gradient($colorz,#5700ae) !important
-    border: 2px #5700ae solid
+    background-image: linear-gradient($colorz, $about) !important
+    border: 2px $about solid
 
 #us
     text-align: center
-    color: #fffffff5
+    color: $5-white
     margin-bottom: 5%
     font-size: 26px
 
@@ -114,7 +135,7 @@ body
 
     
 .card-text
-    border-top: 1px #5700ae solid
+    border-top: 1px $about solid
     padding-top: 2%
 
 

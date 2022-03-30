@@ -1,8 +1,24 @@
+/--------------------------------------------------------------------------------Variables---------------------------------------------------------------/
+
 $colorz: #242582
-$colora: #553D67
-$colorb: #F64C72
-$colorc: #99738E
-$colorx: #2F2FA2 
+$colorz-light:#4d09ba
+$colora:  #553D67
+$colorb:  #F64C72
+$colorc:  #99738E
+$colorx:  #2F2FA2
+$nav-log-hov:#fa6787
+$nav-log-act:#ff3f69
+$white:#ffffff
+$black:#000
+$b-white:#bbbbbb
+$eb-white:#ebebeb
+$nav-op-border:#f895ab
+$srch-hover:#aeaeae
+$button-hov:#fa6787
+$button-act:#ff3f69
+
+
+/--------------------------------------------------------------------------------------------------------------------------------------------------------/
 
 
 
@@ -25,9 +41,9 @@ body
         border: 2px $colorb solid
         box-shadow: none !important
     #logout:hover 
-         background-color: #fa6787 !important
+         background-color: $nav-log-hov !important
     #logout:active
-        background-color: #ff3f69 !important
+        background-color: $nav-log-act !important
 
 .sidenav 
 
@@ -36,7 +52,7 @@ body
   position: fixed
   top: 0
   left: 0
-  background-image: linear-gradient($colorz,#4d09ba) 
+  background-image: linear-gradient($colorz,$colorz-light) 
   overflow-x: hidden
   transition: 0.5s
   padding-top: 60px
@@ -46,13 +62,13 @@ body
   padding: 8px 8px 8px 32px
   text-decoration: none
   font-size: 25px
-  color: #ffffff
+  color: $white
   display: block
   transition: 0.3s
   margin-bottom: 2%
 
 .sidenav a:hover 
-  color: #bbbbbb
+  color: $b-white
 
 
 .sidenav .closebtn 
@@ -63,8 +79,8 @@ body
   margin-left: 50px
 
 #navopen
-    color: #fff
-    border: 2px #f895ab  solid
+    color: $white
+    border: 2px $nav-op-border  solid
     padding: 1px
     padding-left: 10px
     padding-right: 10px
@@ -73,16 +89,16 @@ body
         color: $colorb
         border: 2px $colorb solid
     &:active
-        color: #000000
-        border: 2px #000 solid
+        color: $black
+        border: 2px $black solid
 
 .srch
     padding: 5px
-    border: 2px #fff solid
+    border: 2px $white solid
     border-radius: 1em
     outline: none !important
     &:hover
-        border: 2px #aeaeae solid
+        border: 2px $srch solid
     &:focus
         border-radius: 0.25em
 #search
@@ -93,10 +109,10 @@ body
         color: $colorb
         
         &:hover 
-            background-color: #fa6787 !important
-            color: #960020
+            background-color: $button-hov !important
+            color: $white
         &:active
-            background-color: #ff3f69 !important
+            background-color: $button-act !important
 
 
 .newq
@@ -105,14 +121,9 @@ body
     
 
 .newqbrdr
-    border-bottom: 2px #fff solid
+    border-bottom: 2px $white solid
     padding-bottom: 6%
-    margin-bottom: 24%
-
-
-
-
-    
+    margin-bottom: 24%    
 .zuttons
         background-color: transparent !important
         outline: none !important
@@ -121,14 +132,14 @@ body
         margin-left: 1%
         
         &:hover 
-            background-color: #fa6787 !important
+            background-color: $button-hov !important
         &:active
-            background-color: #ff3f69 !important
+            background-color: $button-act !important
 
 #searchbtn
 
     border-radius: 0.25em
-    color: white
+    color: $white
 
 #filter
     border-radius: 0.25em
@@ -137,7 +148,7 @@ body
     margin-left: 10%
     margin-top: 5%
     &:active
-        background-color: #ebebeb
+        background-color: $eb-white
 
 
 .verify-div
