@@ -147,7 +147,9 @@
 
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        {% if current_user.kind == 'student'%}
         <a href="{{url_for('CreatePostPage')}}" id="newqbtn">سؤال جديد</a>
+        {%endif%}
         <a href="{{url_for('views.ProfilePage')}}">الملف الشخصي</a>
         <a href="{{url_for('auth.Logout')}}">تسجيل الخروج</a>
         

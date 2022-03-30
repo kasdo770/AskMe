@@ -1,3 +1,4 @@
+import profile
 from flask import Blueprint,redirect,url_for,render_template,request,flash
 from flask_login import login_required,logout_user,current_user
 from website import db,urlsafe
@@ -70,7 +71,7 @@ def View_Post(id):
 @login_required
 def ProfilePage():
     post = Post.query.all()
-    if request.method == "POST":
+    if request.method == "POST" and 'submitbtn' in request.form:
         verifyusername = request.form.get('username')
         user = User.query.filter_by(username=verifyusername).first()
 
@@ -96,7 +97,6 @@ def ProfilePage():
                 flash("لا يمكنك تعديل لهذا الاسم او الايميل",category="error")
 
             db.session.commit()
-
     return render_template("profile.html",post=post)
 
 
