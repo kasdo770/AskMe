@@ -43,7 +43,7 @@ def DeleteComment(comment_id,post_id):
     if not post:
         flash("هذا السؤال غير موجود")
     elif not comment:
-        flash('هذه الاحابة غير موجودة ')
+        flash('هذه الاجابة غير موجودة ')
     elif current_user.id != comment.user.id:
         flash('انت لست صاحب الاجابة, لا تملك صلاحية لحذفها')
     else:
@@ -75,7 +75,7 @@ def CreatePostPage():
                 elif form.cancel.data:
                     return redirect(url_for("views.MainPage"))
         elif current_user.kind == "teacher":
-            flash("لا يمكنك انشاء سؤال ب حساب معلم",category="error")
+            flash("لا يمكنك انشاء سؤال بحساب معلم",category="error")
             return redirect(url_for("views.MainPage"))
 
         if form.errors != {}:
@@ -97,10 +97,10 @@ def Delete_Post(id):
     post = Post.query.filter_by(id=id).first()
     if not post:
 
-        flash("هذا السؤال غير موجود من قبل", category="error")
+        flash("هذا السؤال غير موجود", category="error")
 
     elif current_user.id != post.user.id:
-        flash("انت لست صاحب السؤال . لا تملك صلاحية لحذفه", category="error")
+        flash("انت لست صاحب السؤال , لا تملك صلاحية لحذفه", category="error")
     else:
         db.session.delete(post)
         db.session.commit()
@@ -117,11 +117,11 @@ def Update_Post(id):
     form = UpdatePostForm()
     post = Post.query.filter_by(id=id).first()
     if current_user.id != post.user.id:
-        flash("انت لا تملك الصلاحية ل تعديل السؤال . فقط السائِل يملك هذه الصلاحية", category="error")
+        flash("انت لا تملك الصلاحية لتعديل السؤال , فقط السائِل يملك هذه الصلاحية", category="error")
         return redirect(url_for('views.MainPage'))
     else:
         if not post:
-            flash("هذا السؤال غير موجود من قبل", category="error")
+            flash("هذا السؤال غير موجود", category="error")
             return redirect(url_for("views.MainPage"))
         else:
                 if form.validate_on_submit():
@@ -138,7 +138,7 @@ def Update_Post(id):
                         db.session.delete(post)
                         db.session.merge(updated_post)
                         db.session.commit()
-                        flash("لقد تم تحديث سؤال بنجاح", category="success")
+                        flash("لقد تم تحديث السؤال بنجاح", category="success")
                         return redirect(url_for("views.MainPage"))
         return render_template("UpdatePost.html", form=form,post=post)
 
@@ -168,7 +168,7 @@ def Support():
             </i>
             </h3>
 
-                                    نوع مشكلتك : <b>{form.subjects.data}<b>
+                                    نوع طلبك : <b>{form.subjects.data}<b>
             ''')
             mail.send(msg)
             return redirect(url_for('views.MainPage'))

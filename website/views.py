@@ -40,7 +40,7 @@ def View_Post(id):
         if comment.user.kind == "teacher":
             teacher_ordered_comments.append(comment)
     if not post:
-        flash("هذا السؤال غير موجود من قبل", category="error")
+        flash("هذا السؤال غير موجود", category="error")
         return redirect(url_for("views.MainPage"))
     else:
         if request.method == "POST":
@@ -75,9 +75,9 @@ def ProfilePage():
 
 
         if user and user.username != current_user.username:
-            flash(" لا يمكنك تعديل من الاسم الخاص بك لهذا الاسم ",category="error")
+            flash(" لا يمكنك  تغيير اسم حسابك الي هذا الاسم ",category="error")
         if user and user.email != current_user.email:
-            flash(" لا يمكنك تعديل من الايميل الخاص بك لهذا الايميل",category="error")
+            flash(" لا يمكنك  تغيير ايميلك الي هذا الايميل ",category="error")
         else:
             try: 
                 current_user.email = request.form.get('email')
@@ -92,7 +92,7 @@ def ProfilePage():
                 current_user.verified = False
                 flash("لقد تم التعديل بنجاح", category="info")
             except:
-                flash("لا يمكنك تعديل لهذا الاسم او الايميل",category="error")
+                flash("لا يمكنك التغيير الي هذا الاسم او الايميل",category="error")
 
             db.session.commit()
     return render_template("profile.html",post=post)

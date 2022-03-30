@@ -27,11 +27,11 @@ class StudentRegisterForm(FlaskForm):
     def validate_email(self, email_to_check):
         user = User.query.filter_by(email=email_to_check.data).first()
         if user:
-            raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الاسم ')
+            raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الايميل ')
     
     def validate_password2(self, password2_to_check):
         if password2_to_check.data != self.password1.data :
-            raise ValidationError("يجب ان يكون كلمة المرور و تاكيد كلمة المرور متساويان")
+            raise ValidationError("يجب ان يكونا كلمة المرور و تاكيد كلمة المرور متساويان")
     
     username = StringField(
         label="الاسم", validators=[Length(min=6, max=40), DataRequired()]
@@ -59,12 +59,12 @@ class SupportForm(FlaskForm):
     def validate_description(self, description_to_check):
         if self.create.data:
             if len(str(description_to_check.data)) < 20:
-                raise ValidationError("لا يمكن انشاء سؤال بمعلوملات غير كافية ف الموضوع")
+                raise ValidationError("لا يمكنك انشاء سؤال بمعلومات غير كافية في الموضوع")
 
     def validate_title(self, title_to_check):
         if self.create.data:
             if len(str(title_to_check.data)) < 10:
-                raise ValidationError("لا يمكن انشاء سؤال بمعلوملات غير كافية ف العنوان")
+                raise ValidationError("لا يمكنك انشاء سؤال بمعلومات غير كافية في العنوان")
 
     title = StringField(label="عنوان الطلب", validators=[Length(max=60),DataRequired()])
     description = TextAreaField(label="الموضوع", validators=[DataRequired()] )
@@ -86,11 +86,11 @@ class TeacherRegisterForm(FlaskForm):
     def validate_email(self, email_to_check):
         user = User.query.filter_by(email=email_to_check.data).first()
         if user:
-            raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الاسم ')
+            raise ValidationError('هذا الايميل استخدم من قبل  . يرجي تغيير هذا الايميل ')
     
     def validate_password2(self, password2_to_check):
         if password2_to_check.data != self.password1.data :
-            raise ValidationError("يجب ان يكون كلمة المرور و تاكيد كلمة المرور متساويان")
+            raise ValidationError("يجب ان يكونا كلمة المرور و تاكيد كلمة المرور متساويان")
     
 
 
@@ -110,7 +110,7 @@ class TeacherRegisterForm(FlaskForm):
     
     first_subject = SelectField(
         label="المادة الاولى", choices=[('فيزياء', 'فيزياء'), ('كيمياء', 'كيمياء'), ('احياء', 'احياء'),
-    ("اللغة العربية","اللغة العربية"), ("اللغة الانجليزية", "اللغة الانجليزية"), ("اللغة الفرنسية", "الللغة الفرنسية"), ("اللغة الايطالية","اللغة الايطالية"),
+    ("اللغة العربية","اللغة العربية"), ("اللغة الانجليزية", "اللغة الانجليزية"), ("اللغة الفرنسية", "اللغة الفرنسية"), ("اللغة الايطالية","اللغة الايطالية"),
      ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")], validators=[DataRequired()]
     )
     second_subject = SelectField(
@@ -126,12 +126,12 @@ class PostForm(FlaskForm):
     def validate_title(self, title_to_check):
         if self.create.data:
             if len(str(title_to_check.data)) < 6:
-                raise ValidationError("لا يمكن انشاء سؤال ب عنوان اقل من ستة حروف")
+                raise ValidationError("لا يمكن انشاء سؤال بعنوان اقل من ستة حروف")
 
     def validate_description(self, description_to_check):
         if self.create.data:
             if len(str(description_to_check.data)) < 20:
-                raise ValidationError("لا يمكن انشاء سؤال بمعلوملات غير كافية ف الموضوع")
+                raise ValidationError("لا يمكن انشاء سؤال بمعلومات غير كافية في الموضوع")
 
 
     title = StringField(label="العنوان", validators=[Length(max=60)])
