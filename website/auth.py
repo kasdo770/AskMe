@@ -65,7 +65,6 @@ def ConfirmEmail(token):
     email = urlsafe.loads(token,salt='email-confirm')
     user = User.query.filter_by(email=email).first()
     if user:
-        if current_user.username == user.username:
             try:
                 validationemail = urlsafe.loads(token,salt='email-confirm',max_age=300)
                 user.verified = True
@@ -75,8 +74,6 @@ def ConfirmEmail(token):
             except SignatureExpired:
                 login_user(user)
                 return redirect(url_for('auth.VerifyEmail',id=current_user.id))
-        else:
-            flash("انت لست صاحب هذا الحساب")
     else:
         flash('لا يوجد اي مستخدم بهذا الاسم')
     return redirect(url_for('views.MainPage'))
