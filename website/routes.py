@@ -155,4 +155,10 @@ def Support():
             return redirect(url_for('views.MainPage'))
         else:
             return redirect(url_for('views.MainPage'))
+
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(
+                f"هنالك مشكلة في :  {err_msg}", category="error"
+            )
     return render_template('Support.html',form=form)
