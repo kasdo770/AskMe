@@ -13,7 +13,7 @@ views = Blueprint("views", __name__)
 def Likes(post_id):
     post = Post.query.filter_by(id = post_id).first()
     like = Like.query.filter_by(author=current_user.id,post = post_id).first()
-    if current_user.verified == 1:
+    if current_user.verified == 0:
         if not post:
             return jsonify({'error':'السؤال غير موجود'}, 400)
         elif like:
@@ -44,7 +44,7 @@ def View_Post(id):
         return redirect(url_for("views.MainPage"))
     else:
         if request.method == "POST":
-            if current_user.verified == 1:
+            if current_user.verified == 0:
                 if user_comments <= 2:
                     description = request.form.get('desc')
                     if len(str(description)) != 0:

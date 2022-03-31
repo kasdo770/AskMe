@@ -327,7 +327,7 @@
         <a href="{{url_for('auth.Logout')}}">تسجيل الخروج</a>
         
         
-          {%if current_user.verified == 1 %}
+          {%if current_user.verified == 0 %}
             <a href="{{url_for('Support')}}">الدعم </a>
           {%endif%}
         <a class="" id="togglefilter">نوع الاسئلة</a>
@@ -419,7 +419,7 @@
               <button class="btn btn-primary zuttons" onclick="window.location.href = 'http://127.0.0.1:5000/update-post/{{item.id}}'" >تعديل</button>
               {%endif%}
 
-              {% if current_user.verified == 1 %}
+              {% if current_user.verified == 0 %}
               <form method="POST" style="margin-bottom:0% !important;">
                   {%if current_user.id == item.user.id%}
                   <div class="verify-div">
