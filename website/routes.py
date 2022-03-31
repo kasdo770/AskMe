@@ -145,7 +145,7 @@ def Support():
                 description = form.description.data,
                 title = form.title.data,
                 subject = form.subjects.data,
-                author = user.id,
+                author = current_user.id,
             )
             db.session.add(new_problem)
             db.session.commit()
