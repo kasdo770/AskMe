@@ -79,6 +79,7 @@ def ConfirmEmail(token):
             flash("انت لست صاحب هذا الحساب")
     else:
         flash('لا يوجد اي مستخدم بهذا الاسم')
+    return redirect(url_for('views.MainPage'))
     
 
 @auth.route("/verify-mail/<id>")
