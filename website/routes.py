@@ -150,9 +150,15 @@ def Support():
             db.session.add(new_problem)
             db.session.commit()
             msg = Message('الدعم' , sender=current_user.email , recipients=["askme9210@gmail.com"])
-            msg.body = render_template('supportmail.html',user=current_user.username,desc=form.description.data, sub = form.subjects.data,title = form.title.data)
+            msg.html = render_template('supportmail.html',user=current_user.username,desc=form.description.data, sub = form.subjects.data,title = form.title.data)
             mail.send(msg)
             return redirect(url_for('views.MainPage'))
         else:
             return redirect(url_for('views.MainPage'))
+
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(
+                f"هنالك مشكلة في :  {err_msg}", category="error"
+            )
     return render_template('Support.html',form=form)
