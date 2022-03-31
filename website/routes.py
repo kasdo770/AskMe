@@ -58,7 +58,7 @@ def DeleteComment(comment_id,post_id):
 @login_required
 def CreatePostPage():
     form = PostForm()
-    if current_user.verified == 1:
+    if current_user.verified == 0:
         if current_user.kind == "student":
             if form.validate_on_submit():
                 if form.create.data:
