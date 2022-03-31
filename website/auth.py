@@ -98,9 +98,6 @@ def TeacherRegisterPage():
     form = TeacherRegisterForm()
     token = urlsafe.dumps(form.email.data,salt="email-confirm")
     if form.validate_on_submit():
-        msg = Message("تاكيد حساب المعلم", recipients=[form.email.data])
-        msg.html = render_template('Email.html')
-        mail.send(msg)
         if current_user:
             logout_user()
         new_teacher = User(
@@ -114,6 +111,7 @@ def TeacherRegisterPage():
         flash(f" تم انشاء حساب معلم جديد باسم {form.username.data}", category="success")
         db.session.add(new_teacher)
         db.session.commit()
+        msg = Message("تاكيد حساب المعلم", recipients=[form.email.data])
         link = url_for("auth.ConfirmEmail",token=token,_external=True)
         msg.html = render_template("Email.html",link=link,user=new_teacher)
         mail.send(msg)
