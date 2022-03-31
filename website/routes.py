@@ -150,17 +150,7 @@ def Support():
             db.session.add(new_problem)
             db.session.commit()
             msg = Message('الدعم' , sender=current_user.email , recipients=["askme9210@gmail.com"])
-            msg.html = (f'''
-            </h1>العنوان : {form.title.data}<h1>
-            <br>
-            <h3 style="font-weight:italic";>
-            <i>
-            {form.description.data}
-            </i>
-            </h3>
-
-                                    نوع طلبك : <b>{form.subjects.data}<b>
-            ''')
+            msg.body = render_template('supportmail.html',user=current_user.username,desc=form.description.data, sub = form.subjects.data,title = form.title.data)
             mail.send(msg)
             return redirect(url_for('views.MainPage'))
         else:

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email</title>
+
+    <style>
+
+        .btn{
+            color: inherit !important;
+            background-color: rgb(255, 255, 255);
+            border: 2px #000 solid;
+            border-radius: 0.25em;
+            font-size: 20px;
+            padding: 6px;
+            text-decoration: none !important;
+            
+        }
+    
+        .btn:hover{
+            background-color: rgb(230, 230, 230) ;
+        }
+    
+        .btn:active{
+            background-color: rgb(153, 153, 153);
+        }
+    
+    </style>
+    
+</head>
+<body>
+
+
+    <div dir="rtl" style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif; color: black;">
+        
+        <h1  style="margin: 4%;">  هنالك طلب دعم من المستخدم : {{user}}</h1>
+        <h2 style="margin: 4%;"> بعنوان : {{title}}</h2>
+        <br>
+        <h4>الموضوع : {{sub}}</h4>
+                        <br>
+                        {{desc}}
+                        <br>
+        <h2 style="margin: 4%;">بالتوفيق,</h2>
+        <h2 style="margin: 4%;">طاقم العمل.</h2>
+    </div>
+
+
+
+</body>
+</html>
