@@ -128,13 +128,7 @@ def Update_Post(id):
                     if form.cal.data:
                         return redirect(url_for("views.MainPage"))
                     if form.crt.data:
-                        post = Post(
-                            id = post.id,
-                            title= post.title,
-                            description= request.form.get('desc') ,
-                            subject = form.subject.data,
-                            author = current_user.id
-                        )
+                        post.description = request.form.get('desc')
                         db.session.commit()
                         flash("لقد تم تحديث السؤال بنجاح", category="success")
                         return redirect(url_for("views.MainPage"))
