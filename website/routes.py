@@ -139,7 +139,6 @@ def Update_Post(id):
 @app.route('/support',methods=['POST','GET'])
 def Support():
     form = SupportForm()
-    user = User.query.filter_by(id=current_user.id).first()
     if form.validate_on_submit():
         if form.create.data:
             new_problem = Problem(
@@ -150,7 +149,7 @@ def Support():
             )
             db.session.add(new_problem)
             db.session.commit()
-            msg = Message('الدعم',sender=user.email,recipients=["askme9210@gmail.com"])
+            msg = Message('الدعم' , sender=current_user.email , recipients=["askme9210@gmail.com"])
             msg.html = (f'''
             </h1>العنوان : {form.title.data}<h1>
             <br>
