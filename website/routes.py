@@ -19,6 +19,7 @@ def cleartable():
 
 
 #----------
+@app.route('/hm')
 @app.route("/home")
 @app.route("/")
 def HomePage():
