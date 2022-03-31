@@ -409,9 +409,9 @@
               {%if current_user.id == item.user.id%}
               <button class="btn btn-primary zuttons" onclick="window.location.href = '/view-post/{{item.id}}'" >ألقي نظرة</button>
               {%elif current_user.verified == True%}
-              <button style="margin-top:1% !important;" class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >اجب عليه</button>
+              <button style="margin-top:1% !important;" class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = '/view-post/{{item.id}}'" >اجب عليه</button>
               {%else%}
-              <button style="margin-top:1% !important;" class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = 'http://127.0.0.1:5000/view-post/{{item.id}}'" >القي نظرة</button>
+              <button style="margin-top:1% !important;" class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = '/view-post/{{item.id}}'" >القي نظرة</button>
               {%endif%}
 
               {%if current_user.id == item.user.id%}
