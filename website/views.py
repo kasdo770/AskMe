@@ -8,8 +8,6 @@ from .model import Post,User,Comment,Like
 views = Blueprint("views", __name__)
 
 
-BASE = "https://rocky-escarpment-76791.herokuapp.com"
-
 @views.route('/like-post/<post_id>',methods=["POST","GET"])
 @login_required
 def Likes(post_id):
@@ -31,7 +29,7 @@ def Likes(post_id):
 
 
 
-@views.route(f"{BASE}/view-post/<id>",methods=['POST','GET'])
+@views.route("/view-post/<id>",methods=['POST','GET'])
 @login_required
 def View_Post(id):
     post = Post.query.filter_by(id=id).first()

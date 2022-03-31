@@ -18,8 +18,6 @@ def cleartable():
     return redirect(url_for('HomePage'))
 
 
-BASE = "https://rocky-escarpment-76791.herokuapp.com"
-
 #----------
 @app.route("/home")
 @app.route("/")
@@ -93,7 +91,7 @@ def CreatePostPage():
 
 
 
-@app.route(f"{BASE}/delete-post/<id>")
+@app.route("/delete-post/<id>")
 @login_required
 def Delete_Post(id):
     post = Post.query.filter_by(id=id).first()
@@ -113,7 +111,7 @@ def Delete_Post(id):
 
 
 
-@app.route(f"{BASE}/update-post/<id>", methods=["POST", "GET"])
+@app.route("/update-post/<id>", methods=["POST", "GET"])
 @login_required
 def Update_Post(id):
     form = UpdatePostForm()
