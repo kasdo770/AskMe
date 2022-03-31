@@ -298,6 +298,10 @@
         margin-top: 2%;
                 cursor: pointer;
       }
+      .logo{
+        margin-left: 25%;
+        margin-bottom: 8%;
+      }
     </style>
     
 </head>
@@ -319,6 +323,7 @@
                                                           <!--Side Nav-->
 
       <div id="mySidenav" class="sidenav">
+        <img src="../static/Assets/logo2.png" width="100px" height="90px" class="logo">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         {% if current_user.kind == 'student'%}
         <a href="{{url_for('CreatePostPage')}}" id="newqbtn">سؤال جديد</a>
