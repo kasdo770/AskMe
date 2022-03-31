@@ -91,7 +91,7 @@ def CreatePostPage():
 
 
 
-@app.route("/delete-post/<id>")
+@app.route("https://rocky-escarpment-76791.herokuapp.com/delete-post/<id>")
 @login_required
 def Delete_Post(id):
     post = Post.query.filter_by(id=id).first()
@@ -111,7 +111,7 @@ def Delete_Post(id):
 
 
 
-@app.route("/update-post/<id>", methods=["POST", "GET"])
+@app.route("https://rocky-escarpment-76791.herokuapp.com/update-post/<id>", methods=["POST", "GET"])
 @login_required
 def Update_Post(id):
     form = UpdatePostForm()
