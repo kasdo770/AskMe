@@ -4,7 +4,6 @@ from flask import Blueprint,redirect,url_for,render_template,request,flash,jsoni
 from flask_login import login_required,logout_user,current_user
 from website import db,urlsafe
 from .model import Post,User,Comment,Like
-import datetime as dt
 
 views = Blueprint("views", __name__)
 
@@ -46,12 +45,10 @@ def View_Post(id):
     else:
         if request.method == "POST":
             if current_user.verified == 1:
-                date = dt.datetime.now()
                 if user_comments <= 2:
                     description = request.form.get('desc')
                     if len(str(description)) != 0:
                         new_comment = Comment(
-                            datetime = str(date.day) + "," + str(date.month) + ","  +str(date.year),
                             description=description,
                             author=current_user.id,
                             post=post.id
