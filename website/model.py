@@ -60,7 +60,7 @@ class Like(db.Model):
 class Comment(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     description = db.Column(db.String())
-    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    datetime= db.Column(db.String())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
     post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))
 

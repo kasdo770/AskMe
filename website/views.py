@@ -4,6 +4,7 @@ from flask import Blueprint,redirect,url_for,render_template,request,flash,jsoni
 from flask_login import login_required,logout_user,current_user
 from website import db,urlsafe
 from .model import Post,User,Comment,Like
+import time
 
 views = Blueprint("views", __name__)
 
@@ -51,6 +52,7 @@ def View_Post(id):
                         new_comment = Comment(
                             description=description,
                             author=current_user.id,
+                            datetime = time.ctime,
                             post=post.id
                         )
                         db.session.add(new_comment)
