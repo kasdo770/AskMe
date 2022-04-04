@@ -4,6 +4,7 @@ from sqlalchemy.sql import expression
 from website import bcrypts
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from datetime import date
 
 @login_man.user_loader
 def load_user(user_id):
@@ -44,7 +45,7 @@ class Post(db.Model):
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
     subject = db.Column(db.String())
-    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    datetime= db.Column(db.DateTime(), default=date.today())
     author = db.Column(db.Integer(), db.ForeignKey("user.id",ondelete="CASCADE"),nullable=False)
     comments = db.relationship("Comment", backref="posts", cascade="all, delete-orphan")
     likes = db.relationship("Like", backref="posts", cascade="all, delete-orphan")
@@ -53,14 +54,14 @@ class Post(db.Model):
 
 class Like(db.Model):
     id = db.Column(db.Integer(),primary_key=True)
-    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    datetime= db.Column(db.DateTime(), default=date.today())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
     post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))
 
 class Comment(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     description = db.Column(db.String())
-    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    datetime= db.Column(db.DateTime(), default=date.today())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
     post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))
 
@@ -69,5 +70,5 @@ class Problem(db.Model):
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
     subject = db.Column(db.String(), nullable=False)
-    datetime= db.Column(db.DateTime(timezone=True), default=func.now())
+    datetime= db.Column(db.DateTime(), default=date.today())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
