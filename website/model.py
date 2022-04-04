@@ -1,3 +1,4 @@
+from email.policy import default
 from flask_login.login_manager import LoginManager
 from website import db, login_man
 from sqlalchemy.sql import expression 
@@ -45,7 +46,7 @@ class Post(db.Model):
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
     subject = db.Column(db.String())
-    datetime= db.Column(db.DateTime(), default=date.today())
+    datetime= db.Column(db.String())
     author = db.Column(db.Integer(), db.ForeignKey("user.id",ondelete="CASCADE"),nullable=False)
     comments = db.relationship("Comment", backref="posts", cascade="all, delete-orphan")
     likes = db.relationship("Like", backref="posts", cascade="all, delete-orphan")
@@ -54,14 +55,14 @@ class Post(db.Model):
 
 class Like(db.Model):
     id = db.Column(db.Integer(),primary_key=True)
-    datetime= db.Column(db.DateTime(), default=date.today())
+    datetime= db.Column(db.Datetime(timezone=True), default=func.now())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
     post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))
 
 class Comment(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     description = db.Column(db.String())
-    datetime= db.Column(db.DateTime(), default=date.today())
+    datetime= db.Column(db.String())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))
     post = db.Column(db.Integer(), db.ForeignKey("post.id", ondelete="CASCADE"))
 
@@ -70,5 +71,5 @@ class Problem(db.Model):
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.String(), nullable=False)
     subject = db.Column(db.String(), nullable=False)
-    datetime= db.Column(db.DateTime(), default=date.today())
+    datetime= db.Column(db.String())
     author = db.Column(db.Integer(), db.ForeignKey("user.id", ondelete="CASCADE"))

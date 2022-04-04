@@ -5,6 +5,7 @@ from website.model import Like, User , Post,Comment,Problem
 from flask import request
 from .views import views
 from .auth import auth
+import datetime as dt
 from flask_login import login_required,current_user
 from website.forms import StudentRegisterForm,TeacherRegisterForm,PostForm,LoginForm,UpdatePostForm,SupportForm
 
@@ -60,8 +61,11 @@ def CreatePostPage():
     if current_user.verified == 1:
         if current_user.kind == "student":
             if form.validate_on_submit():
+                date = dt.datetime.now()
+
                 if form.create.data:
                     new_post = Post(
+                        datetime = str(date.day) + "," + str(date.month) + ","  +str(date.year),
                         title=form.title.data,
                         description=form.description.data,
                         subject = form.subject.data,
@@ -141,7 +145,9 @@ def Support():
     form = SupportForm()
     if form.validate_on_submit():
         if form.create.data:
+            date = dt.datetime.now()
             new_problem = Problem(
+                datetime = str(date.day) + "," + str(date.month) + ","  + str(date.year),
                 description = form.description.data,
                 title = form.title.data,
                 subject = form.subjects.data,
