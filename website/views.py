@@ -4,6 +4,7 @@ from flask import Blueprint,redirect,url_for,render_template,request,flash,jsoni
 from flask_login import login_required,logout_user,current_user
 from website import db,urlsafe
 from .model import Post,User,Comment,Like
+from sqlite3 import IntegrityError
 
 views = Blueprint("views", __name__)
 
@@ -68,15 +69,18 @@ def View_Post(id):
 @views.route("/profile", methods=["POST","GET"])
 @login_required
 def ProfilePage():
-    post = Post.query.all()
     if request.method == "POST" and 'submitbtn' in request.form:
+        verifyemail = request.form.get('email')
         verifyusername = request.form.get('username')
         user = User.query.filter_by(username=verifyusername).first()
-
-
-        if user and user.username != current_user.username:
+        email = User.query.filter_by(email=verifyemail).first()
+        if email and email.email != current_user.email and user and user.username != current_user.username:
+            flash(" لا يمكنك  تغيير ايميل ولا اسم حسابك الي هذا الايميل ولا هذا الاسم",category="error")
+        elif user and user.username != current_user.username:
+            print('ws')
             flash(" لا يمكنك  تغيير اسم حسابك الي هذا الاسم ",category="error")
-        if user and user.email != current_user.email:
+        elif email and email.email != current_user.email:
+            print('ws')
             flash(" لا يمكنك  تغيير ايميلك الي هذا الايميل ",category="error")
         else:
             try: 
@@ -93,9 +97,8 @@ def ProfilePage():
                 flash("لقد تم التعديل بنجاح", category="info")
             except:
                 flash("لا يمكنك التغيير الي هذا الاسم او الايميل",category="error")
-
-            db.session.commit()
-    return render_template("profile.html",post=post)
+        db.session.commit()
+    return render_template("profile.html")
 
 
 
