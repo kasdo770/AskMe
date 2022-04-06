@@ -451,7 +451,9 @@
               {%endfor%}
               {%for item in second_post%}
               <div class="container newq">
+
                 <div dir="rtl" class=" newqbrdr text-center text-light">
+                  
                     {%if item.title|length < 35 %}
                     <h2 class="card_title d-flex justify-content-center mx-1"> {{item.title}}</h2>
                     {%elif item.title|length > 35 and item.title|length < 45 %}
@@ -464,17 +466,19 @@
                     
                     
                     {%else%}
-                    <h3 class="card_by d-flex justify-content-center mx-1">بواسطة: {{item.user.username}} </h3>          
+                    <h5 class="card_by d-flex justify-content-center mx-1">بواسطة: {{item.user.username}} </h3>          
                     {%endif%}                
                     <h5 class = "subject d-flex justify-content-center mx-1">{{item.subject}}</h5>     
                     <h6 class="card_answer d-flex justify-content-center mx-1">{{item.datetime}}</h6>   
-      
+                  
       
                         <div dir="rtl" class="d-flex flex-row justify-content-center align-items-center">
                     {%if current_user.id == item.user.id%}
                     <button class="btn btn-primary zuttons" onclick="window.location.href = '/view-post/{{item.id}}'" >ألقي نظرة</button>
+                    {%elif current_user.verified == True%}
+                    <button style="margin-top:1% !important;" class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = '/view-post/{{item.id}}'" >اجب عليه</button>
                     {%else%}
-                    <button class="btn btn-primary" onclick="window.location.href = '/view-post/{{item.id}}'" >اجب عليه</button>
+                    <button style="margin-top:1% !important;" class="btn btn-primary zuttons" style="margin-Top: 2%; margin-bottom: -2%;" onclick="window.location.href = '/view-post/{{item.id}}'" >القي نظرة</button>
                     {%endif%}
       
                     {%if current_user.id == item.user.id%}
@@ -482,9 +486,30 @@
                     <button class="btn btn-primary zuttons" onclick="window.location.href = '/update-post/{{item.id}}'" >تعديل</button>
                     {%endif%}
       
+                    {% if current_user.verified == 1 %}
+                    <form method="POST" style="margin-bottom:0% !important;">
+                        {%if current_user.id == item.user.id%}
+                        <div class="verify-div">
+                      <img onclick='like("{{item.id}}")' id="like-button-{{item.id}}" src="../static/Assets/thumbs unfill.png" class="verify like" width="50px" height="50px">
+                      <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
+                    </div>
+                      {%elif current_user.verified == True%}
+                      <div class="verify-div" style="margin-top:20% !important;">
+                        <img onclick='like("{{item.id}}")' id="like-button-{{item.id}}" src="../static/Assets/thumbs unfill.png" class="verify like" width="50px" height="50px">
+                        <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
+                      </div>
+                      {%else%}
+                      <div class="verify-div" style="margin-top:20% !important;">
+                        <img onclick='like("{{item.id}}")' id="like-button-{{item.id}}" src="../static/Assets/thumbs unfill.png" class="verify like" width="50px" height="50px">
+                        <h6 style="color:white;" class='likenum' id="like-count-{{item.id}}">{{item.likes|length}}</h6>
+                      </div>
+                      {%endif%}
+                    </form>
+                    {%endif%}
                          </div>
                   
-              </div>
+                </div>
+      
 
                 
               {%endfor%} 
