@@ -41,6 +41,18 @@ def Admin_Add():
     return render_template('admin.html',form = form)
 
 
+@app.route('/delete-account/<id>')
+def Delete_Account(id):
+    if current_user.id == id or current_user.kind == 'admin' :
+        user = User.query.filter_by(id = current_user.id).first()
+        db.session.delete(user)
+        db.session.commit()
+        flash('يحزننا فراقك')
+    else:
+        flash('لا يمكنك مسح حساب  ما لم تملكه')
+        return redirect(url_for('views.MainPage'))
+    return redirect(url_for('HomePage'))
+
 #----------
 @app.route("/home")
 @app.route("/")
