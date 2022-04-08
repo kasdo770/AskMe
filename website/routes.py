@@ -12,7 +12,6 @@ from website.forms import StudentRegisterForm,TeacherRegisterForm,PostForm,Login
 #temporay function
 @app.route("/ct")
 @app.route("/cleartable")
-@login_required
 def cleartable():
     db.drop_all()
     db.create_all()
