@@ -44,7 +44,7 @@ def Admin_Add():
 @app.route('/delete-account/<name>')
 def Delete_Account(name):
     if current_user.username == name or current_user.kind == 'admin' :
-        user = User.query.filter_by(username = current_user.name).first()
+        user = User.query.filter_by(username = name).first()
         db.session.delete(user)
         db.session.commit()
         flash('يحزننا فراقك')
