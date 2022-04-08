@@ -12,9 +12,11 @@ from website.forms import StudentRegisterForm,TeacherRegisterForm,PostForm,Login
 #temporay function
 @app.route("/ct")
 @app.route("/cleartable")
+@login_required
 def cleartable():
-    db.drop_all()
-    db.create_all()
+    if current_user.kind == "admin":
+        db.drop_all()
+        db.create_all()
     return redirect(url_for('HomePage'))
 
 @app.route('/admin/add',methods=["POST",'GET'])
