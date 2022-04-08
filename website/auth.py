@@ -80,7 +80,6 @@ def VerifyEmail(id):
 @auth.route("/register/tea", methods = ["POST", "GET"])
 def TeacherRegisterPage():
     form = TeacherRegisterForm()
-    token = urlsafe.dumps(form.email.data,salt="email-confirm")
     if form.validate_on_submit():
         if current_user:
             logout_user()
@@ -95,10 +94,6 @@ def TeacherRegisterPage():
         flash(f" تم انشاء حساب معلم جديد باسم {form.username.data}", category="success")
         db.session.add(new_teacher)
         db.session.commit()
-        msg = Message("تاكيد حساب المعلم", recipients=[form.email.data])
-        link = url_for("auth.ConfirmEmail",token=token,_external=True)
-        msg.html = render_template("Email.html",link=link,user=new_teacher)
-        mail.send(msg)
         login_user(new_teacher)
         return redirect(url_for('views.MainPage'))
     if form.errors != {}:
@@ -112,10 +107,7 @@ def TeacherRegisterPage():
 @auth.route("/register/std", methods = ["POST", "GET"])
 def StudentRegisterPage():
     form = StudentRegisterForm()  
-    token = urlsafe.dumps(form.email.data,salt="email-confirm")
-    if form.validate_on_submit():   
-        msg=Message("تاكيد الحساب", recipients=[form.email.data])
-        
+    if form.validate_on_submit():       
         if current_user:
             logout_user()
         new_student = User(
@@ -129,9 +121,6 @@ def StudentRegisterPage():
         flash(f" تم انشاء حساب طالب جديد باسم {form.username.data} " , category="success")
         db.session.add(new_student)
         db.session.commit()
-        link = url_for("auth.ConfirmEmail",token=token,_external=True)
-        msg.html = render_template("Email.html",link=link,user=new_student)
-        mail.send(msg)
         login_user(new_student)
         return redirect(url_for('views.MainPage'))
     if form.errors != {}:
