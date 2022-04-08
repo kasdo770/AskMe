@@ -54,6 +54,17 @@ class StudentRegisterForm(FlaskForm):
         label = "انشاء حساب"
     )
 
+class AdminForm(FlaskForm):
+    def validate_username(self,username_to_check):
+        user = User.query.filter_by(username=username_to_check.data).first()
+        if not user:
+            raise ValidationError('لا يوجد مستخدم بهذا الاسم')
+    username = StringField(
+        label="الاسم" 
+    )
+    submit = SubmitField(
+        label="تم"
+    )
 
 class SupportForm(FlaskForm):
     def validate_description(self, description_to_check):

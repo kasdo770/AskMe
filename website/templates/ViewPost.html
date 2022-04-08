@@ -245,13 +245,17 @@
 </div>  
               <h3 class="text-center text-light my-5">الاجابات :</h3>
               {% for item in teacher_comments%}
-                {%if item.user.kind == "teacher"%}
+                {%if item.user.kind == "teacher" or item.user.kind=="admin"%}
               <div class="container">
                 <div class="d-flex flex-column shadow p-5 comment">
 
                   
                   <div class="infocmnt d-flex flex-column justify-content-start text-light my-4 mb-5">
+                    {%if current_user.kind == 'teacher'%}
                     <h6 ><span style="color: #F64C72;"> بواسطة الاستاذ : </span>{{item.user.username}}</h6>
+                    {%elif current_user.kind == 'admin'%}
+                    <h6 ><span style="color: #F64C72;"> بواسطة الادمن : </span>{{item.user.username}}</h6>
+                    {%endif%}
                     <h6 ><span style="color: #F64C72;">التاريخ :</span> {{item.datetime}}</h6>
                   </div>
 
@@ -264,8 +268,10 @@
                 </div>  
                   {% if current_user.id == item.user.id%}
                 
-                <a href="/delete-comment/{{item.id}}/{{post.id}}" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
-            {%endif%}
+                  <a href="/delete-comment/{{item.id}}/{{post.id}}" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
+                  {%elif current_user.kind == 'admin'%}
+                  <a href="/delete-comment/{{item.id}}/{{post.id}}" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
+                  {%endif%}
         </div>
 
 
@@ -294,8 +300,11 @@
                 </div>
                   </h6>
                   {% if current_user.id == item.user.id%}
-                    <a href="/delete-comment/{{item.id}}/{{post.id}}" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
-                    {%endif%}
+                
+                  <a href="/delete-comment/{{item.id}}/{{post.id}}" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
+                  {%elif current_user.kind == 'admin'%}
+                  <a href="/delete-comment/{{item.id}}/{{post.id}}" class="btn btn-primary mb-4" id="back" >حذف الاجابة</a>
+                  {%endif%}
             </div>
 
 

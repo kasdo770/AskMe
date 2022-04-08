@@ -422,6 +422,8 @@
               {%if current_user.id == item.user.id%}
               <button class="btn btn-primary zuttons" onclick="window.location.href = '/delete-post/{{item.id}}'" >حذف</button>
               <button class="btn btn-primary zuttons" onclick="window.location.href = '/update-post/{{item.id}}'" >تعديل</button>
+              {%elif current_user.kind =='admin'%}
+              <button class="btn btn-primary zuttons" onclick="window.location.href = '/delete-post/{{item.id}}'" >حذف</button>
               {%endif%}
 
               {% if current_user.verified == 1 %}
@@ -484,6 +486,8 @@
                     {%if current_user.id == item.user.id%}
                     <button class="btn btn-primary zuttons" onclick="window.location.href = '/delete-post/{{item.id}}'" >حذف</button>
                     <button class="btn btn-primary zuttons" onclick="window.location.href = '/update-post/{{item.id}}'" >تعديل</button>
+                    {%elif current_user.kind == "admin"%}
+                    <button class="btn btn-primary zuttons" onclick="window.location.href = '/delete-post/{{item.id}}'" >حذف</button>
                     {%endif%}
       
                     {% if current_user.verified == 1 %}

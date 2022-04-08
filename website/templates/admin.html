@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
+    <title>انشاء ادمن</title>
+
+</head>
+<style> 
+
+    :root{
+      --first-background-gradient:#f5e6ff;
+      --last-background-gradient:#fff;
+      --header:#000;
+      --header-text:#1C1C1C;
+      --footer:#2D2D2D;
+      --button-color:#6B0085;
+      --button-color-hover:#6a0085cb;
+      --button-color-active:#5c0272;
+      --alert-button-color:#ed4337;
+      --success-button-color:#53A653;
+      --info-button-color:#b39800;
+    }
+        /* _______________________________________Error Button_____________________________________________ */
+    .flash-container{
+      display: flex;
+      justify-content: center;
+    }
+     .succes{
+      width: fit-content;
+       background-color: var(--success-button-color);
+       opacity: 90%;
+       color: white;
+     }
+     .Info{
+      width: fit-content;
+       background-color: var(--info-button-color);
+       opacity: 90%;
+       color: white;
+     }
+     .alert{
+      width: fit-content;
+       background-color: var(--alert-button-color);
+       opacity: 90%;
+       color: white;
+     }
+     .closebtn {
+       margin-left: 15px;
+       color: white;
+       font-weight: bold;
+       float: right;
+       font-size: 22px;
+       line-height: 20px;
+       cursor: pointer;
+       transition: 0.3s;
+     }
+     .closebtn:hover {
+       color: black;
+     }
+     </style>
+     {% with messages = get_flashed_messages(with_categories=true) %} {% if
+       messages %} {% for category, message in messages %}
+       {% if category =='success' %}
+           <div class="flash-container">
+            <div dir="rtl" class="succes">
+              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              {{message}}
+            </div>
+          </div>
+          {% elif category =='error' %}
+          <div class="flash-container">
+           <div dir="rtl" class="alert">
+             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+             {{message}}
+           </div>
+         </div>
+       {%else%}
+       <div class="flash-container">
+        <div dir="rtl" class="Info">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+          </div>
+        </div>
+
+       {% endif %} {% endfor %} {% endif %} {% endwith %}
+<style>
+    form label{
+      display: flex;
+      margin-top: 12%;
+      font-size: 18px;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin-bottom: 1%;
+      margin-right: 1%;
+ }
+ form input{
+     float: right;
+      width: 80%;
+      padding:2%;
+      margin-top: 1%;
+      margin-right:2%;
+      color: black;
+      background-color: transparent;
+ }
+    body {
+        background-color:#2F2FA2 !important;
+        background-repeat: no-repeat;
+        background-size: 80%;
+        }  
+        .zuttons-suc {
+                background-color: transparent !important;
+                color: black;
+                outline: none !important;
+                box-shadow: none !important;
+                margin-bottom:3%;
+                margin-right: 36%;
+                width: 25%;
+                margin-left: 20%;
+                border-color: #4ca760;
+                border-radius: 0.5em;
+        }
+        .zuttons-suc:hover {
+                background-color: #69e484 !important;
+                color: black !important;
+                border-color: #377a45 !important;
+        }
+        .zuttons-suc:active {
+                background-color: #4daa61 !important;
+                outline: none !important;
+                box-shadow: none !important;
+                color: black !important;
+                border-color: #377a45 !important;
+        }
+        .zuttons-can:hover {
+                background-color: #ec7a9b !important;
+                color: black !important;
+                border-color: #6b1c33 !important;
+        }
+        .zuttons-can:active {
+                background-color: #c4647f !important;
+                outline: none !important;
+                box-shadow: none !important;
+                color: black !important;
+                border-color: #6b1c33 !important;
+        }
+
+        /*----------------------------------------------Title------------------------------------*/
+    .title_text
+    {
+      margin-left:90%;
+      margin-top: 2%;
+      font-weight: bold;
+      margin-bottom: 2%;
+      color: black;
+    }
+    .title_input
+    {
+      width: 90%;
+      text-align: right;
+      margin-left:6%;
+
+    }
+    .margin{
+        margin-left: 25%;
+        
+    }
+    .border{
+        border-radius: 2%;
+        border-color: black;
+        border-style:solid;
+        border-width: 200%;
+    }
+    .box-color{
+        background-color: #32338b;
+    }
+    .black{
+        color: black;
+    }
+    @media screen and (max-device-width:575px) {
+      .margin{
+        margin-left: 0;
+      }
+      
+    }
+</style>
+<body>
+    <form method="POST">
+        {{ form.hidden_tag()}}
+        {{ form.csrf_token }}
+        <div style="margin-top:10%;" class="container">
+            <div class="row d-flex justify-contenet-center align-item-center">
+                <div class="col-md-8 pt-5 margin">
+                    <div class="row z-depth-3 ">
+                        <div class="col-sm-8 bg-white rounded-right box-color border ">
+                            <h3 class="mt-3 text-center black">انشاء ادمن</h3>
+                            <div class="row">
+                                <div dir="rtl" class="mb-3">
+                                    {{form.username.label(class = "title_text")}}
+                                    {{form.username(class = "title_input")}}
+                                </div>
+                                <div>
+                                    {{form.submit(class ="btn btn-primary zuttons-suc ")}}
+                                </div>
+    
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</body>
+</html>

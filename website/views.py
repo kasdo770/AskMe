@@ -38,7 +38,7 @@ def View_Post(id):
     user_comments = Comment.query.filter_by(author=current_user.id).count()
     teacher_ordered_comments = []
     for comment in comments:
-        if comment.user.kind == "teacher":
+        if comment.user.kind == "teacher" or comment.user.kind == 'admin':
             teacher_ordered_comments.append(comment)
     if not post:
         flash("هذا السؤال غير موجود", category="error")

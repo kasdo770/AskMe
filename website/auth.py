@@ -20,7 +20,6 @@ def LoginPage():
             logout_user()
         user = User.query.filter_by(username=form.username.data).first()
         if user:
-            if user.kind =="student":
                 if user.password_check(thepass=form.password.data):
                     flash(
                         f" تم تسجيل الدخول بنجاح يا {form.username.data}",
@@ -32,21 +31,6 @@ def LoginPage():
                 else:
                     flash("كلمة المرور خاطئة", category="error")
                     
-            if user.kind == "teacher":
-                if user.password_check(thepass=form.password.data):
-                    flash(
-                        f" تم تسجيل الدخول بنجاح يا {form.username.data} ",
-                        category="success",
-                    )
-                    login_user(user, remember=True)
-                    print(current_user)
-                    print("Logged in successfuly")
-                    return redirect(url_for("HomePage"))
-                else:
-                    flash("كلمة المرور خاطئة", category="error")
-                    
-            else:
-                flash("ليس هنالك اي حساب بهذا الاسم", category="error")
         else:
             flash("لا يوجد أي مستخدم بهذا الاسم",category="error")
 

@@ -6,16 +6,39 @@ from flask import request
 from .views import views
 from .auth import auth
 from flask_login import login_required,current_user
-from website.forms import StudentRegisterForm,TeacherRegisterForm,PostForm,LoginForm,UpdatePostForm,SupportForm
+from website.forms import StudentRegisterForm,TeacherRegisterForm,PostForm,LoginForm,UpdatePostForm,SupportForm,AdminForm
 
 
 #temporay function
 @app.route("/ct")
 @app.route("/cleartable")
 def cleartable():
-    db.drop_all()
-    db.create_all()
+    if current_user.kind == "admin":
+        db.drop_all()
+        db.create_all()
     return redirect(url_for('HomePage'))
+
+@app.route('/admin/add',methods=["POST",'GET'])
+@login_required
+def Admin_Add():
+    form = AdminForm()
+    if current_user.kind == 'admin' or current_user.id == 1:
+        if form.validate_on_submit():
+            user = User.query.filter_by(username=form.username.data).first()
+            user.kind = 'admin'
+            flash('لقد تم التغيير بنجاح',category="success")
+            db.session.commit()
+            return redirect(url_for('views.MainPage'))
+    else:
+        return redirect(url_for('views.MainPage'))
+        
+
+    if form.errors != {}:
+            for err_msg in form.errors.values():
+                flash(
+                    f"هنالك مشكلة في :  {err_msg}", category="error"
+                )
+    return render_template('admin.html',form = form)
 
 
 #----------
@@ -44,6 +67,9 @@ def DeleteComment(comment_id,post_id):
         flash("هذا السؤال غير موجود")
     elif not comment:
         flash('هذه الاجابة غير موجودة ')
+    elif current_user.kind == 'admin':
+        db.session.delete(comment)
+        db.session.commit()
     elif current_user.id != comment.user.id:
         flash('انت لست صاحب الاجابة, لا تملك صلاحية لحذفها')
     else:
@@ -58,7 +84,7 @@ def DeleteComment(comment_id,post_id):
 def CreatePostPage():
     form = PostForm()
     if current_user.verified == 1:
-        if current_user.kind == "student":
+        if current_user.kind == "student" or current_user.kind=="admin":
             if form.validate_on_submit():
                 if form.create.data:
                     new_post = Post(
@@ -98,7 +124,9 @@ def Delete_Post(id):
     if not post:
 
         flash("هذا السؤال غير موجود", category="error")
-
+    elif current_user.kind == 'admin':
+        db.session.delete(post)
+        db.session.commit()
     elif current_user.id != post.user.id:
         flash("انت لست صاحب السؤال , لا تملك صلاحية لحذفه", category="error")
     else:
