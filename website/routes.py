@@ -41,10 +41,10 @@ def Admin_Add():
     return render_template('admin.html',form = form)
 
 
-@app.route('/delete-account/<id>')
-def Delete_Account(id):
-    if current_user.id == id or current_user.kind == 'admin' :
-        user = User.query.filter_by(id = current_user.id).first()
+@app.route('/delete-account/<name>')
+def Delete_Account(name):
+    if current_user.username == name or current_user.kind == 'admin' :
+        user = User.query.filter_by(username = current_user.name).first()
         db.session.delete(user)
         db.session.commit()
         flash('يحزننا فراقك')
