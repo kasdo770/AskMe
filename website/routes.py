@@ -52,7 +52,7 @@ def Delete_Account(name):
         return redirect(url_for('views.MainPage'))
     return redirect(url_for('HomePage'))
 
-#----------
+
 @app.route("/home")
 @app.route("/")
 def HomePage():

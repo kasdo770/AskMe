@@ -45,10 +45,12 @@ class StudentRegisterForm(FlaskForm):
     email = EmailField(
         label="الايميل الاكتروني", validators=[DataRequired(), Length(min=8)]
     )
-    schooltype = SelectField(label='اختار نوع مدرستك', choices=[('عالمية', 'عالمية'), ('خاص', 'خاص'), ('عام', 'عام'),
+    schooltype = SelectField(label='نوع المدرسة', choices=[('عالمية', 'عالمية'), ('خاص', 'خاص'), ('عام', 'عام'),
     ("لغات","لغات")])
 
     age = StringField(label = "العمر",validators=[Length(min=1,max=2), DataRequired()] )
+
+    #gender = SelectField(label='الجنس', choices=[("ذكر", 'ذكر') , ('انثي', "انثي")])
 
     submit = SubmitField(
         label = "انشاء حساب"
@@ -129,6 +131,8 @@ class TeacherRegisterForm(FlaskForm):
     ("اللغة العربية","اللغة العربية"), ("اللغة الانجليزية", "اللغة الانجليزية"), ("اللغة الفرنسية", "اللغة الفرنسية"), ("اللغة الايطالية","اللغة الايطالية"),
      ("فلسفة", "فلسفة"), ("الجغرافيا", "الجغرافيا"), ("التاريخ", "التاريخ"), ("رياضيات", "رياضيات")]
     )
+    #gender = SelectField(label='الجنس', choices=[("ذكر", 'male') , ('انثي', "female")])
+
     submit = SubmitField(
         label = "انشاء حساب"
     )

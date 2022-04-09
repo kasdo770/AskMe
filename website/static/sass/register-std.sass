@@ -1,0 +1,193 @@
+/*--------------------------------------------------------------------------------Variables---------------------------------------------------------------*/
+
+$colorz: #242582
+$colorz-light:#4d09ba
+$colora:  #553D67
+$colorb:  #F64C72
+$colorc:  #99738E
+$colorx:  #2F2FA2
+$nav-log-hov:#fa6787
+$nav-log-act:#ff3f69
+$white:#ffffff
+$S-white:#fffffff5
+$b-white:#bbbbbb
+$eb-white:#ebebeb
+$black:#000
+$nav-op-border:#f895ab
+$srch-hover:#aeaeae
+$button-hov:#fa6787
+$button-act:#ff3f69
+$bg-create:#2F2FA2
+$create-btn-hov:#4242af
+$create-btn-act:#2c2cbb
+$about:#5700ae
+$alert-button-color:#ed4337
+$success-button-color:#53A653
+$info-button-color:#b39800
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.zuttons
+        background-color: transparent !important
+        outline: none !important
+        border: 2px $colorb solid !important
+        box-shadow: none !important
+        margin-left: 1%
+        
+        &:hover 
+            background-color: $button-hov !important
+        &:active
+            background-color: $button-act !important
+
+.flash-container
+        display: flex
+        justify-content: center
+      
+.succes
+        width: fit-content
+         background-color: var($success-button-color)
+         opacity: 90%
+         color: $white
+       
+.Info
+        width: fit-content
+         background-color: var($info-button-color)
+         opacity: 90%
+         color: $white
+       
+.alert
+         width: fit-content
+         background-color: var(4alert-button-color)
+         opacity: 90%
+         color: $white
+.closebtn 
+         margin-left: 15px
+         color: $white
+         font-weight: bold
+         float: right
+         font-size: 22px
+         line-height: 20px
+         cursor: pointer
+         transition: 0.3s
+       
+.closebtn:hover 
+         color: $black
+
+    
+body
+      background-image: url("../Assets/blue-book-background.jpg")
+      background-repeat: no-repeat
+      background-size: 65% 150%
+      background-position: left top
+
+
+.color-text
+        color: $black
+        float: right
+        font-size: 15px
+      
+.color-title
+        color: $black
+        float: right
+        font-size: 22p
+      
+.m-container
+        float: right
+        margin-left: 43%
+        width: 100%
+      
+.img-body
+        width: fit-content
+      
+.btn
+        float: right
+      
+.bg_color
+        background-color: blue
+      
+.right
+        float: right
+      
+.left
+        float: left
+
+.margin_right
+    margin-right: 14%
+
+    
+@media  screen  and (min-device-width:1005px) and (max-device-width:1440px) 
+    .m-container
+          width: 150%
+          margin-left: 15%
+          margin-right: 3%
+          height: 80%     
+        
+    body
+        background-image: url("../Assets/blue-book-background.jpg")
+        background-repeat: no-repeat
+        background-size: 50% 150%
+        background-position: left top
+    
+      
+      
+    .margin-right
+        margin-right: 14%
+      
+    .button
+        padding: 2%
+        border-radius: 0.25em
+      
+    .wait
+        cursor: wait
+      
+
+@media screen and (min-device-width:1005px) and (max-device-width:1199px) 
+    .m-container
+          width: 150%
+          margin-left: 50%
+          margin-right: 0.1% 
+          height: fit-content
+        
+      
+@media screen and (min-device-width:984px) and (max-device-width:1004px) 
+    .m-container
+          width: 150%
+          margin-left: 50%
+          margin-right: 0.1%
+          height: fit-content    
+        
+    body
+        background-image: url("../Assets/blue-book-background.jpg")
+        background-repeat: no-repeat, no-repeat
+        background-size: 45% 150%
+        background-position: left top
+
+
+    
+    
+      
+     
+@media screen and (max-device-width:984px) 
+    body
+          background-size: 100% 200%
+          background-image: linear-gradient(#242582,#2F2FA2)
+        
+    .color-text
+          font-size: 15px
+        
+    .m-container
+          width: 100%
+          margin-left: 10%
+        
+
+      
+        
+      
+          
+      
+    
+      
+
+
+
+       
+
+       
