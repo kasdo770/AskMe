@@ -48,6 +48,10 @@ body {
   font-size: 28px !important;
 }
 
+#logo {
+  font-size: 25px !important;
+}
+
 #num {
   border-bottom: #F64C72 2px solid;
   border-radius: 0.25em;
