@@ -35,7 +35,7 @@ def Likes(post_id):
 def View_Post(id):
     post = Post.query.filter_by(id=id).first()
     comments = Comment.query.filter_by(post=post.id).all()
-    user_comments = Comment.query.filter_by(author=current_user.id).count()
+    user_comments = Comment.query.filter_by(id=current_user.id).count()
     teacher_ordered_comments = []
     for comment in comments:
         if comment.user.kind == "teacher" or comment.user.kind == 'admin':
