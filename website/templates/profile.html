@@ -289,13 +289,13 @@
                             {%else%}
                             <div class="row">
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold email-school-margin">: المادة الاولي </p>
-                                    <h6 class="text-muted email-school-margin">{{current_user.first_subject}}</h6>
+                                    <p class="font-weight-bold email-school-margin">: المادة الثانية </p>
+                                    <h6 class="text-muted email-school-margin">{{current_user.second_subject}}</h6>
         
                                 </div>
                                 <div class="col-sm-6 text">
-                                    <p class="font-weight-bold name-age-margin ">: المادة الثانية</p>
-                                    <h6 class="text-muted name-age-margin">{{current_user.second_subject}}</h6>
+                                    <p class="font-weight-bold name-age-margin ">: المادة الاولي</p>
+                                    <h6 class="text-muted name-age-margin">{{current_user.first_subject}}</h6>
         
                                 </div>
                             </div>
@@ -343,10 +343,10 @@
                                     {%else%}
                                     <div class="row mr-5">
                                         <div class="col-sm-6 text">
-                                            <p class=" email-school-margin font-weight-bold remake-text">: المادة الاولي</p>
-                                            <select id="first_subject" name="first_subject" class="email-school-margin">
+                                            <p class=" email-school-margin font-weight-bold remake-text">: المادة الثانية</p>
+                                            <select id="second_subject" name="second_subject" class="email-school-margin">
                                                 <div class="email-school-margin remake-text text-muted options">
-                                                    <option value="{{current_user.first_subject}}" selected disabled hidden>{{current_user.first_subject}}</option>
+                                                    <option value="{{current_user.second_subject}}" selected hidden>{{current_user.second_subject}}</option>
                                                     <option value="فيزياء">فيزياء</option>
                                                     <option value="كيمياء">كيمياء</option>
                                                     <option value="احياء">احياء</option>
@@ -363,10 +363,10 @@
                 
                                         </div>
                                         <div class="col-sm-6 text">
-                                            <p class="font-weight-bold remake-text">:المادة الثانية</p>
-                                            <select id="second_subject" name="second_subject">
+                                            <p class="font-weight-bold remake-text">المادة الاولي</p>
+                                            <select id="first_subject" name="first_subject">
                                                 <div class="font-weight-bold remake-text">
-                                                    <option value="{{current_user.second_subject}}" selected disabled hidden>{{current_user.second_subject}}</option>
+                                                    <option value="{{current_user.first_subject}}" selected hidden>{{current_user.first_subject}}</option>
                                                     <option value="فيزياء">فيزياء</option>
                                                     <option value="كيمياء">كيمياء</option>
                                                     <option value="احياء">احياء</option>

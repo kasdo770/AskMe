@@ -66,9 +66,22 @@ def View_Post(id):
 
     return render_template("ViewPost.html",post=post,comment=comments,teacher_comments = teacher_ordered_comments)
 
+@views.route('/view-profile/<id>',methods=['POST','GET'])
+@login_required
+def View_Profile(id):
+    user = User.query.filter_by(id=id).first()
+    if not user:
+        flash('هذا المستخدم غير موجود',category='error')
+    else:
+        if user.profile_privacy == True or user.kind =='admin':
+            flash('لا يمكنك رؤية الملف الشخصي لهذا المستخدم')
+            return redirect(url_for('views.MainPage'))
+    return render_template('ViewProfile.html',user=user)
+        
+
 @views.route("/profile", methods=["POST","GET"])
 @login_required
-def ProfilePage():
+def ProfilePage(): 
     if request.method == "POST" and 'submitbtn' in request.form:
         verifyemail = request.form.get('email')
         verifyusername = request.form.get('username')
@@ -89,9 +102,12 @@ def ProfilePage():
                 if current_user.kind == "student":
                     current_user.schooltype = request.form.get('schooltype')
                     current_user.age = request.form.get('age')
-                elif current_user.kind == "teacher":
+                if current_user.kind == "teacher":
+                    if request.form.get('first_subject') == request.form.get('second_subject'):
+                        current_user.second_subject = "لا شيء اخر"
+                    else:
+                        current_user.second_subject = request.form.get('second_subject')  
                     current_user.first_subject = request.form.get('first_subject')
-                    current_user.second_subject = request.form.get('second_subject')  
 
                 current_user.verified = False
                 flash("لقد تم التعديل بنجاح", category="info")
