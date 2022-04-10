@@ -23,7 +23,7 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  width-background-color: var(#53A653);
+  width-background-color: #53A653 !important;
   width-opacity: 90%;
   width-color: #ffffff;
 }
@@ -32,7 +32,7 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  width-background-color: var(#b39800);
+  width-background-color: #b39800 !important;
   width-opacity: 90%;
   width-color: #ffffff;
 }
@@ -41,7 +41,7 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  background-color: var(4alert-button-color);
+  background-color: #ed4337 !important;
   opacity: 90%;
   color: #ffffff;
 }

@@ -10,6 +10,7 @@ $nav-log-hov:#fa6787
 $nav-log-act:#ff3f69
 $white:#ffffff
 $S-white:#fffffff5
+$shadow:#414141
 $b-white:#bbbbbb
 $eb-white:#ebebeb
 $black:#000
@@ -43,19 +44,19 @@ $info-button-color:#b39800
       
 .succes
         width: fit-content
-         background-color: var($success-button-color)
+         background-color: $success-button-color !important
          opacity: 90%
          color: $white
        
 .Info
         width: fit-content
-         background-color: var($info-button-color)
+         background-color: $info-button-color !important
          opacity: 90%
          color: $white
        
 .alert
          width: fit-content
-         background-color: var(4alert-button-color)
+         background-color: $alert-button-color !important
          opacity: 90%
          color: $white
 .closebtn 
@@ -111,6 +112,7 @@ body
 
 .margin_right
     margin-right: 14%
+    
 
     
 @media  screen  and (min-device-width:1005px) and (max-device-width:1440px) 
