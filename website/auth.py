@@ -66,14 +66,13 @@ def ConfirmEmail(token):
 @auth.route("/verify-mail/<id>")
 def VerifyEmail(id):
     user = User.query.filter_by(id=id).first()
+    print(user.email)
     if user.verified == 0:
-        token = urlsafe.dumps(current_user.email,salt='email-confirm')
+        token = urlsafe.dumps(current_user.email ,salt='email-confirm')
         msg = Message("تاكيد حسابك", recipients=[current_user.email])
-        link = url_for("auth.ConfirmEmail",token=token,_external=True)
+        link = url_for("auth.ConfirmEmail" ,token=token,_external=True)
         msg.html = render_template("Email.html",link=link,user=user)
         mail.send(msg)
-    elif user.verified == 1:
-        return redirect(url_for("views.ProfilePage",id=current_user.id))
     return render_template("verify.html")
 
 

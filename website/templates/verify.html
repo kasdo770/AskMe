@@ -65,7 +65,6 @@
                         <h3 class="mt-3 text-center white text "> بتفعيل الحساب تستطيع انشاء الاسئلة والاجابة عليها</h3>
                     </div>
                     {%elif current_user.verified == 1%}
-                    <!---------------------------------------------------------if he/she verfied----------------->
                     <div class="col-sm-5 bg-black rounded-right box-color border margin box-color ">
                         <h3 class="mt-3 text-center white ">تم تفعيل الحساب</h3>
                         <img src="../static/Assets/verify.png" class="rounded mx-auto d-block mt-5 mb-4 ml" width="200px" height="200px">
@@ -74,7 +73,6 @@
                           </div>
                     </div>
                     {%else%}
-                    <!---------------------------------------------------------if time expired----------------->
                     <div class="col-sm-5 bg-black rounded-right box-color border margin box-color ">
                         <h3 class="mt-3 text-center white ">لم يتم تفعيل الحساب</h3>
                         <img src="../static/Assets/time expried.png" class="rounded mx-auto d-block mt-5 mb-4 ml" width="200px" height="200px">
