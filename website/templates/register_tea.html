@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="{{url_for('static',filename='/TemplatesCss/register-tea.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
-
+<style>
+  body{
+    background-image: url("../static/Assets/tea.jpg");
+  background-repeat: no-repeat, no-repeat;
+  background-size: 65% 100%;
+  background-position: left top;
+  }
+</style>
 
     <title> انشاء حساب معلم</title>
        {% with messages = get_flashed_messages(with_categories=true) %} {% if

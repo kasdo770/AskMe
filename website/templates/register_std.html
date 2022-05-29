@@ -9,8 +9,16 @@
     <link rel="stylesheet" href="{{url_for('static',filename='js/bootstrap.min.js')}}">
     <script src="{{url_for('static',filename='jquery/jquery-3.6.0.min.js')}}"></script>
     <title>تسجيل دخول الطالب</title>
+      <style>
+        body{
+          background-image: url("../static/Assets/student.png");
+        background-repeat: no-repeat, no-repeat;
+        background-size: 65% 100%;
+        background-position: left top;
+        }
+      </style>
     
-       </style>
+       
        {% with messages = get_flashed_messages(with_categories=true) %} {% if
          messages %} {% for category, message in messages %}
          {% if category =='success' %}
